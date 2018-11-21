@@ -11,9 +11,13 @@ public class MockTakesPlayersTurn extends TakesPlayersTurn {
   private UserInterface userInterface;
 
   @Override
-  public Move takeTurn(Game game, UserInterface userInterface) {
-    this.game = game;
+  public void registerUserInterface(UserInterface userInterface) {
     this.userInterface = userInterface;
+  }
+
+  @Override
+  public Move takeTurn(Game game) {
+    this.game = game;
     return moves.get(numberOfTimesTakeTurnHasBeenCalled++);
   }
 
@@ -25,7 +29,11 @@ public class MockTakesPlayersTurn extends TakesPlayersTurn {
     return numberOfTimesTakeTurnHasBeenCalled;
   }
 
-  public boolean wasLastCalledWith(Game game, UserInterface userInterface) {
-    return this.game.equals(game) && this.userInterface.equals(userInterface);
+  public boolean wasLastCalledWith(Game game) {
+    return this.game.equals(game);
+  }
+
+  public boolean registeredUserInterface() {
+    return this.userInterface != null;
   }
 }

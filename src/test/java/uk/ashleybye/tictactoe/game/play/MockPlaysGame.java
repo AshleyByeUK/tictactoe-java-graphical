@@ -12,12 +12,20 @@ public class MockPlaysGame extends PlaysGame {
   }
 
   @Override
-  public void play(Game game, UserInterface userInterface) {
-    this.game = game;
+  public void registerUserInterface(UserInterface userInterface) {
     this.userInterface = userInterface;
   }
 
-  public boolean wasCalledWith(Game game, UserInterface userInterface) {
-    return this.game.equals(game) && this.userInterface.equals(userInterface);
+  @Override
+  public void play(Game game) {
+    this.game = game;
+  }
+
+  public boolean wasCalledWith(Game game) {
+    return this.game.equals(game);
+  }
+
+  public boolean registeredUserInterface() {
+    return this.userInterface != null;
   }
 }

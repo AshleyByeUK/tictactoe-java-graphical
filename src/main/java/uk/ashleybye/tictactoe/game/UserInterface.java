@@ -1,5 +1,7 @@
 package uk.ashleybye.tictactoe.game;
 
-public interface UserInterface {
+import uk.ashleybye.tictactoe.game.play.GameOverview;
 
+public interface UserInterface {
+  void update(GameOverview gameOverview);
 }

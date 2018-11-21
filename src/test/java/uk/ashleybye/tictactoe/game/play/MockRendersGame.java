@@ -9,17 +9,25 @@ public class MockRendersGame extends RendersGame {
   private UserInterface userInterface;
 
   @Override
-  public void render(Game game, UserInterface userInterface) {
+  public void registerUserInterface(UserInterface userInterface) {
+    this.userInterface = userInterface;
+  }
+
+  @Override
+  public void render(Game game) {
     numberOfTimesRenderHasBeenCalled++;
     this.game = game;
-    this.userInterface = userInterface;
   }
 
   public int getNumberOfTimesRenderHasBeenCalled() {
     return numberOfTimesRenderHasBeenCalled;
   }
 
-  public boolean wasLastCalledWith(Game game, UserInterface userInterface) {
-    return this.game.equals(game) && this.userInterface.equals(userInterface);
+  public boolean wasLastCalledWith(Game game) {
+    return this.game.equals(game);
+  }
+
+  public boolean registeredUserInterface() {
+    return this.userInterface != null;
   }
 }

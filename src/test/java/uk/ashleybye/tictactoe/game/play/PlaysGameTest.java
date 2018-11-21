@@ -29,6 +29,15 @@ public class PlaysGameTest {
   }
 
   @Test
+  void testUserInterfaceIsCorrectlyRegistered() {
+    PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
+    playsGame.registerUserInterface(userInterface);
+
+    assertTrue(takesPlayersTurn.registeredUserInterface());
+    assertTrue(rendersGame.registeredUserInterface());
+  }
+
+  @Test
   void testGamePlayStopsWhenGameIsDrawn() {
     Move move = new MockMove(1);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
@@ -36,14 +45,14 @@ public class PlaysGameTest {
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.play(game, userInterface);
+    playsGame.play(game);
 
     assertEquals(1, takesPlayersTurn.getNumberOfTimesTakeTurnHasBeenCalled());
-    assertTrue(takesPlayersTurn.wasLastCalledWith(game, userInterface));
+    assertTrue(takesPlayersTurn.wasLastCalledWith(game));
     assertEquals(1, updatesGame.getNumberOfTimesApplyHasBeenCalled());
     assertTrue(updatesGame.wasLastCalledWith(move, game));
     assertEquals(1, rendersGame.getNumberOfTimesRenderHasBeenCalled());
-    assertTrue(rendersGame.wasLastCalledWith(game, userInterface));
+    assertTrue(rendersGame.wasLastCalledWith(game));
   }
 
   @Test
@@ -54,14 +63,14 @@ public class PlaysGameTest {
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.play(game, userInterface);
+    playsGame.play(game);
 
     assertEquals(1, takesPlayersTurn.getNumberOfTimesTakeTurnHasBeenCalled());
-    assertTrue(takesPlayersTurn.wasLastCalledWith(game, userInterface));
+    assertTrue(takesPlayersTurn.wasLastCalledWith(game));
     assertEquals(1, updatesGame.getNumberOfTimesApplyHasBeenCalled());
     assertTrue(updatesGame.wasLastCalledWith(move, game));
     assertEquals(1, rendersGame.getNumberOfTimesRenderHasBeenCalled());
-    assertTrue(rendersGame.wasLastCalledWith(game, userInterface));
+    assertTrue(rendersGame.wasLastCalledWith(game));
   }
 
   @Test
@@ -72,14 +81,14 @@ public class PlaysGameTest {
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.play(game, userInterface);
+    playsGame.play(game);
 
     assertEquals(1, takesPlayersTurn.getNumberOfTimesTakeTurnHasBeenCalled());
-    assertTrue(takesPlayersTurn.wasLastCalledWith(game, userInterface));
+    assertTrue(takesPlayersTurn.wasLastCalledWith(game));
     assertEquals(1, updatesGame.getNumberOfTimesApplyHasBeenCalled());
     assertTrue(updatesGame.wasLastCalledWith(move, game));
     assertEquals(1, rendersGame.getNumberOfTimesRenderHasBeenCalled());
-    assertTrue(rendersGame.wasLastCalledWith(game, userInterface));
+    assertTrue(rendersGame.wasLastCalledWith(game));
   }
 
   @Test
@@ -91,13 +100,13 @@ public class PlaysGameTest {
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.play(game, userInterface);
+    playsGame.play(game);
 
     assertEquals(2, takesPlayersTurn.getNumberOfTimesTakeTurnHasBeenCalled());
-    assertTrue(takesPlayersTurn.wasLastCalledWith(game, userInterface));
+    assertTrue(takesPlayersTurn.wasLastCalledWith(game));
     assertEquals(2, updatesGame.getNumberOfTimesApplyHasBeenCalled());
     assertTrue(updatesGame.wasLastCalledWith(moveTwo, game));
     assertEquals(2, rendersGame.getNumberOfTimesRenderHasBeenCalled());
-    assertTrue(rendersGame.wasLastCalledWith(game, userInterface));
+    assertTrue(rendersGame.wasLastCalledWith(game));
   }
 }

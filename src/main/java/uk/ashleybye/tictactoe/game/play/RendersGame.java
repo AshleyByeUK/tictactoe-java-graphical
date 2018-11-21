@@ -4,7 +4,14 @@ import uk.ashleybye.tictactoe.game.Game;
 import uk.ashleybye.tictactoe.game.UserInterface;
 
 public class RendersGame {
-  public void render(Game game, UserInterface userInterface) {
+  private UserInterface userInterface;
 
+  public void registerUserInterface(UserInterface userInterface) {
+    this.userInterface = userInterface;
+  }
+
+  public void render(Game game) {
+    GameOverview gameOverview = game.getOverview();
+    userInterface.update(gameOverview);
   }
 }

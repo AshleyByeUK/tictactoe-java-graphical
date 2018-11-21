@@ -16,11 +16,12 @@ class TicTacToeTest {
 
     GameOptions gameOptions = new GameOptions();
     TicTacToe tictactoe = new TicTacToe(createsGame, playsGame);
-    tictactoe.registerUserInterface(userInterface);
     tictactoe.registerPlayerFactory(playerFactory);
+    tictactoe.registerUserInterface(userInterface);
     tictactoe.play(gameOptions);
 
     assertTrue(createsGame.wasCalledWith(gameOptions, playerFactory));
-    assertTrue(playsGame.wasCalledWith(game, userInterface));
+    assertTrue(playsGame.registeredUserInterface());
+    assertTrue(playsGame.wasCalledWith(game));
   }
 }

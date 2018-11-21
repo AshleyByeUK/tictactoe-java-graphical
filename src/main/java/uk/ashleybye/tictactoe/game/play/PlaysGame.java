@@ -15,11 +15,16 @@ public class PlaysGame {
     this.rendersGame = rendersGame;
   }
 
-  public void play(Game game, UserInterface userInterface) {
+  public void registerUserInterface(UserInterface userInterface) {
+    takesPlayersTurn.registerUserInterface(userInterface);
+    rendersGame.registerUserInterface(userInterface);
+  }
+
+  public void play(Game game) {
     while (game.getState() == GameState.IN_PROGRESS) {
-      Move move = takesPlayersTurn.takeTurn(game, userInterface);
+      Move move = takesPlayersTurn.takeTurn(game);
       game = updatesGame.apply(move, game);
-      rendersGame.render(game, userInterface);
+      rendersGame.render(game);
     }
   }
 }
