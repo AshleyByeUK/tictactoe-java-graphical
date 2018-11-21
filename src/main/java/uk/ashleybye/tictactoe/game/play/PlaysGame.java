@@ -16,15 +16,14 @@ public class PlaysGame {
   }
 
   public void registerUserInterface(UserInterface userInterface) {
-    takesPlayersTurn.registerUserInterface(userInterface);
     rendersGame.registerUserInterface(userInterface);
   }
 
   public void play(Game game) {
-    while (game.getState() == GameState.IN_PROGRESS) {
+    do {
       Move move = takesPlayersTurn.takeTurn(game);
       game = updatesGame.apply(move, game);
       rendersGame.render(game);
-    }
+    } while (game.getState() == GameState.IN_PROGRESS);
   }
 }

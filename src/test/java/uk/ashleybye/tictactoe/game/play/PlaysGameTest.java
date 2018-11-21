@@ -33,7 +33,6 @@ public class PlaysGameTest {
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
     playsGame.registerUserInterface(userInterface);
 
-    assertTrue(takesPlayersTurn.registeredUserInterface());
     assertTrue(rendersGame.registeredUserInterface());
   }
 
@@ -41,7 +40,7 @@ public class PlaysGameTest {
   void testGamePlayStopsWhenGameIsDrawn() {
     Move move = new MockMove(1);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
-    gameStates = Arrays.asList(GameState.IN_PROGRESS, GameState.GAME_OVER_DRAW);
+    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER_DRAW);
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
@@ -59,7 +58,7 @@ public class PlaysGameTest {
   void testGamePlayStopsWhenGameIsWonByPlayerOne() {
     Move move = new MockMove(1);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
-    gameStates = Arrays.asList(GameState.IN_PROGRESS, GameState.GAME_OVER_WIN_PLAYER_ONE);
+    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER_WIN_PLAYER_ONE);
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
@@ -77,7 +76,7 @@ public class PlaysGameTest {
   void testGamePlayStopsWhenGameIsWonByPlayerTwo() {
     Move move = new MockMove(1);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
-    gameStates = Arrays.asList(GameState.IN_PROGRESS, GameState.GAME_OVER_WIN_PLAYER_TWO);
+    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER_WIN_PLAYER_TWO);
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
@@ -96,7 +95,7 @@ public class PlaysGameTest {
     Move moveOne = new MockMove(1);
     Move moveTwo = new MockMove(2);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(moveOne, moveTwo));
-    gameStates = Arrays.asList(GameState.IN_PROGRESS, GameState.IN_PROGRESS, GameState.GAME_OVER_DRAW);
+    gameStates = Arrays.asList(GameState.READY, GameState.IN_PROGRESS, GameState.GAME_OVER_DRAW);
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
