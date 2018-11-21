@@ -15,10 +15,10 @@ public class PlaysGame {
   }
 
   public void play(Game game) {
-    do {
+    while (game.getState() != GameState.GAME_OVER) {
       Move move = takesPlayersTurn.takeTurn(game);
       game = updatesGame.apply(move, game);
       rendersGame.render(game);
-    } while (game.getState() == GameState.IN_PROGRESS);
+    }
   }
 }

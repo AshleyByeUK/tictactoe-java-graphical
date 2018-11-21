@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.game.GameState;
 import uk.ashleybye.tictactoe.game.MockGame;
-import uk.ashleybye.tictactoe.game.MockUserInterface;
 
 public class PlaysGameTest {
   private MockTakesPlayersTurn takesPlayersTurn;
@@ -27,46 +26,10 @@ public class PlaysGameTest {
   }
 
   @Test
-  void testGamePlayStopsWhenGameIsDrawn() {
+  void testGamePlayStopsWhenGameIsOver() {
     Move move = new MockMove(1);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
-    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER_DRAW);
-    game.returnGameStatesInOrder(gameStates);
-
-    PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.play(game);
-
-    assertEquals(1, takesPlayersTurn.getNumberOfTimesTakeTurnHasBeenCalled());
-    assertTrue(takesPlayersTurn.wasLastCalledWith(game));
-    assertEquals(1, updatesGame.getNumberOfTimesApplyHasBeenCalled());
-    assertTrue(updatesGame.wasLastCalledWith(move, game));
-    assertEquals(1, rendersGame.getNumberOfTimesRenderHasBeenCalled());
-    assertTrue(rendersGame.wasLastCalledWith(game));
-  }
-
-  @Test
-  void testGamePlayStopsWhenGameIsWonByPlayerOne() {
-    Move move = new MockMove(1);
-    takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
-    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER_WIN_PLAYER_ONE);
-    game.returnGameStatesInOrder(gameStates);
-
-    PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.play(game);
-
-    assertEquals(1, takesPlayersTurn.getNumberOfTimesTakeTurnHasBeenCalled());
-    assertTrue(takesPlayersTurn.wasLastCalledWith(game));
-    assertEquals(1, updatesGame.getNumberOfTimesApplyHasBeenCalled());
-    assertTrue(updatesGame.wasLastCalledWith(move, game));
-    assertEquals(1, rendersGame.getNumberOfTimesRenderHasBeenCalled());
-    assertTrue(rendersGame.wasLastCalledWith(game));
-  }
-
-  @Test
-  void testGamePlayStopsWhenGameIsWonByPlayerTwo() {
-    Move move = new MockMove(1);
-    takesPlayersTurn.makeMovesInOrder(Arrays.asList(move));
-    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER_WIN_PLAYER_TWO);
+    gameStates = Arrays.asList(GameState.READY, GameState.GAME_OVER);
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
@@ -85,7 +48,7 @@ public class PlaysGameTest {
     Move moveOne = new MockMove(1);
     Move moveTwo = new MockMove(2);
     takesPlayersTurn.makeMovesInOrder(Arrays.asList(moveOne, moveTwo));
-    gameStates = Arrays.asList(GameState.READY, GameState.IN_PROGRESS, GameState.GAME_OVER_DRAW);
+    gameStates = Arrays.asList(GameState.READY, GameState.IN_PROGRESS, GameState.GAME_OVER);
     game.returnGameStatesInOrder(gameStates);
 
     PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);

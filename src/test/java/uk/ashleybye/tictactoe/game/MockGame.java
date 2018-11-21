@@ -25,7 +25,7 @@ public class MockGame extends Game {
 
   @Override
   public GameState getState() {
-    return gameStates.get(++numberOfTimesGetStateHasBeenCalled);
+    return gameStates.get(numberOfTimesGetStateHasBeenCalled++);
   }
 
   @Override
