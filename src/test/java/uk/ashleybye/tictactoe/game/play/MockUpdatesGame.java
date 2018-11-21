@@ -1,7 +1,7 @@
 package uk.ashleybye.tictactoe.game.play;
 
 import uk.ashleybye.tictactoe.game.Game;
-import uk.ashleybye.tictactoe.game.MockGame;
+import uk.ashleybye.tictactoe.game.Move;
 
 public class MockUpdatesGame extends UpdatesGame {
   private int numberOfTimesApplyHasBeenCalled = 0;

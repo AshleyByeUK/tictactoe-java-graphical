@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.game.play;
 
 import uk.ashleybye.tictactoe.game.Game;
 import uk.ashleybye.tictactoe.game.GameState;
+import uk.ashleybye.tictactoe.game.Move;
 
 public class PlaysGame {
   private final TakesPlayersTurn takesPlayersTurn;

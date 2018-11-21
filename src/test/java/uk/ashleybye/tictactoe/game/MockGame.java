@@ -1,8 +1,6 @@
 package uk.ashleybye.tictactoe.game;
 
 import java.util.List;
-import uk.ashleybye.tictactoe.game.play.GameOverview;
-import uk.ashleybye.tictactoe.game.play.Move;
 
 public class MockGame extends Game {
   private int numberOfTimesGetStateHasBeenCalled = 0;
@@ -10,7 +8,10 @@ public class MockGame extends Game {
   private List<Move> moves;
   private Move lastAppliedMove;
   private List<GameState> gameStates;
-  private GameOverview gameOverview;
+  private int currentPlayerNumber;
+  private List<Integer> currentBoard;
+  private List<Integer> currentOpenPositions;
+  private boolean lastMoveValid;
 
   @Override
   public Move getNextMove() {
@@ -29,8 +30,23 @@ public class MockGame extends Game {
   }
 
   @Override
-  public GameOverview getOverview() {
-    return gameOverview;
+  public List<Integer> getBoard() {
+    return currentBoard;
+  }
+
+  @Override
+  public List<Integer> getOpenPositions() {
+    return currentOpenPositions;
+  }
+
+  @Override
+  public Integer getCurrentPlayer() {
+    return currentPlayerNumber;
+  }
+
+  @Override
+  public Boolean isLastMoveValid() {
+    return lastMoveValid;
   }
 
   public void returnMovesInOrder(List<Move> moves) {
@@ -41,15 +57,27 @@ public class MockGame extends Game {
     this.gameStates = gameStates;
   }
 
-  public void returnGameOverview(GameOverview gameOverview) {
-    this.gameOverview = gameOverview;
-  }
-
   public int numberOfTimesGetNextMoveHasBeenCalled() {
     return numberOfTimesGetNextMoveHasBeenCalled;
   }
 
   public boolean applyMoveWasLastCalledWith(Move move) {
     return lastAppliedMove.equals(move);
+  }
+
+  public void returnCurrentPlayer(int playerNumber) {
+    currentPlayerNumber = playerNumber;
+  }
+
+  public void returnCurrentBoard(List<Integer> board) {
+    currentBoard = board;
+  }
+
+  public void returnOpenPositions(List<Integer> openPositions) {
+    currentOpenPositions = openPositions;
+  }
+
+  public void returnLastMoveValid(boolean lastMoveValid) {
+    this.lastMoveValid = lastMoveValid;
   }
 }

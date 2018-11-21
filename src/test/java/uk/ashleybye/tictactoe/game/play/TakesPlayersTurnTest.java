@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.game.MockGame;
+import uk.ashleybye.tictactoe.game.MockMove;
+import uk.ashleybye.tictactoe.game.Move;
 
 public class TakesPlayersTurnTest {
   @Test

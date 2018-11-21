@@ -7,7 +7,7 @@ public class MockRendersGame extends RendersGame {
   private Game game;
 
   public MockRendersGame() {
-    super(null);
+    super(null, null);
   }
 
   @Override

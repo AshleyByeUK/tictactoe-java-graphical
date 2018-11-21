@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.game.play;
 
 import java.util.List;
 import uk.ashleybye.tictactoe.game.Game;
+import uk.ashleybye.tictactoe.game.Move;
 
 public class MockTakesPlayersTurn extends TakesPlayersTurn {
   private int numberOfTimesTakeTurnHasBeenCalled = 0;

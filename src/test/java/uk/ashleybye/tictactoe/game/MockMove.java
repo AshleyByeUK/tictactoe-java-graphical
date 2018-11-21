@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.game.play;
+package uk.ashleybye.tictactoe.game;
 
 public class MockMove extends Move {
   private final int position;

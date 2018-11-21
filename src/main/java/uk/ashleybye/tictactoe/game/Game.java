@@ -1,7 +1,6 @@
 package uk.ashleybye.tictactoe.game;
 
-import uk.ashleybye.tictactoe.game.play.GameOverview;
-import uk.ashleybye.tictactoe.game.play.Move;
+import java.util.List;
 
 public class Game {
   public Move getNextMove() {
@@ -16,7 +15,19 @@ public class Game {
     return null;
   }
 
-  public GameOverview getOverview() {
+  public List<Integer> getBoard() {
+    return null;
+  }
+
+  public List<Integer> getOpenPositions() {
+    return null;
+  }
+
+  public Integer getCurrentPlayer() {
+    return null;
+  }
+
+  public Boolean isLastMoveValid() {
     return null;
   }
 }

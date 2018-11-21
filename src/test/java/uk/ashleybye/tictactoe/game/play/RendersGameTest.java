@@ -9,14 +9,16 @@ import uk.ashleybye.tictactoe.game.MockUserInterface;
 public class RendersGameTest {
   @Test
   void testUserInterfaceIsInstructedToUpdate() {
-    MockUserInterface userInterface = new MockUserInterface();
-    RendersGame rendersGame = new RendersGame(userInterface);
+    MockGeneratesGameOverview generatesGameOverview = new MockGeneratesGameOverview();
     GameOverview gameOverview = new MockGameOverview();
+    generatesGameOverview.returnGameOverview(gameOverview);
+    MockUserInterface userInterface = new MockUserInterface();
+    RendersGame rendersGame = new RendersGame(generatesGameOverview, userInterface);
     MockGame game = new MockGame();
-    game.returnGameOverview(gameOverview);
 
     rendersGame.render(game);
 
+    assertTrue(generatesGameOverview.wasCalledWith(game));
     assertTrue(userInterface.updateWasCalledWith(gameOverview));
   }
 }

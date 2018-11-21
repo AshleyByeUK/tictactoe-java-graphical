@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.game.GameState;
 import uk.ashleybye.tictactoe.game.MockGame;
+import uk.ashleybye.tictactoe.game.MockMove;
+import uk.ashleybye.tictactoe.game.Move;
 
 public class PlaysGameTest {
   private MockTakesPlayersTurn takesPlayersTurn;
