@@ -8,12 +8,19 @@ public class MockGame extends Game {
   private int numberOfTimesGetStateHasBeenCalled = 0;
   private int numberOfTimesGetNextMoveHasBeenCalled = 0;
   private List<Move> moves;
+  private Move lastAppliedMove;
   private List<GameState> gameStates;
   private GameOverview gameOverview;
 
   @Override
   public Move getNextMove() {
     return moves.get(numberOfTimesGetNextMoveHasBeenCalled++);
+  }
+
+  @Override
+  public Game applyMove(Move move) {
+    this.lastAppliedMove = move;
+    return this;
   }
 
   @Override
@@ -40,5 +47,9 @@ public class MockGame extends Game {
 
   public int numberOfTimesGetNextMoveHasBeenCalled() {
     return numberOfTimesGetNextMoveHasBeenCalled;
+  }
+
+  public boolean applyMoveWasLastCalledWith(Move move) {
+    return lastAppliedMove.equals(move);
   }
 }

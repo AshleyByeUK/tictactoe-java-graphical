@@ -8,6 +8,10 @@ public class Game {
     return null;
   }
 
+  public Game applyMove(Move move) {
+    return null;
+  }
+
   public GameState getState() {
     return null;
   }

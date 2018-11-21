@@ -4,6 +4,6 @@ import uk.ashleybye.tictactoe.game.Game;
 
 public class UpdatesGame {
   public Game apply(Move move, Game game) {
-    return null;
+    return game.applyMove(move);
   }
 }
