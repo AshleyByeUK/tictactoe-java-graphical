@@ -10,8 +10,7 @@ public class RendersGameTest {
   @Test
   void testUserInterfaceIsInstructedToUpdate() {
     MockUserInterface userInterface = new MockUserInterface();
-    RendersGame rendersGame = new RendersGame();
-    rendersGame.registerUserInterface(userInterface);
+    RendersGame rendersGame = new RendersGame(userInterface);
     GameOverview gameOverview = new MockGameOverview();
     MockGame game = new MockGame();
     game.returnGameOverview(gameOverview);

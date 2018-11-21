@@ -1,7 +1,13 @@
 package uk.ashleybye.tictactoe.game;
 
 public class CreatesGame {
-  public Game create(GameOptions gameOptions, PlayerFactory playerFactory) {
+  private final PlayerFactory playerFactory;
+
+  public CreatesGame(PlayerFactory playerFactory) {
+    this.playerFactory = playerFactory;
+  }
+
+  public Game create(GameOptions gameOptions) {
     return null;
   }
 }

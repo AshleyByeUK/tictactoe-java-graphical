@@ -6,7 +6,7 @@ import uk.ashleybye.tictactoe.game.UserInterface;
 public class RendersGame {
   private UserInterface userInterface;
 
-  public void registerUserInterface(UserInterface userInterface) {
+  public RendersGame(UserInterface userInterface) {
     this.userInterface = userInterface;
   }
 

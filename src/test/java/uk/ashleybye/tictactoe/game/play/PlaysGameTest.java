@@ -15,7 +15,6 @@ public class PlaysGameTest {
   private MockTakesPlayersTurn takesPlayersTurn;
   private MockUpdatesGame updatesGame;
   private MockRendersGame rendersGame;
-  private MockUserInterface userInterface;
   private MockGame game;
   private List<GameState> gameStates;
 
@@ -24,16 +23,7 @@ public class PlaysGameTest {
     takesPlayersTurn = new MockTakesPlayersTurn();
     updatesGame = new MockUpdatesGame();
     rendersGame = new MockRendersGame();
-    userInterface = new MockUserInterface();
     game = new MockGame();
-  }
-
-  @Test
-  void testUserInterfaceIsCorrectlyRegistered() {
-    PlaysGame playsGame = new PlaysGame(takesPlayersTurn, updatesGame, rendersGame);
-    playsGame.registerUserInterface(userInterface);
-
-    assertTrue(rendersGame.registeredUserInterface());
   }
 
   @Test

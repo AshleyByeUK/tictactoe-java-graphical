@@ -2,7 +2,6 @@ package uk.ashleybye.tictactoe.game.play;
 
 import uk.ashleybye.tictactoe.game.Game;
 import uk.ashleybye.tictactoe.game.GameState;
-import uk.ashleybye.tictactoe.game.UserInterface;
 
 public class PlaysGame {
   private final TakesPlayersTurn takesPlayersTurn;
@@ -13,10 +12,6 @@ public class PlaysGame {
     this.takesPlayersTurn = takesPlayersTurn;
     this.updatesGame = updatesGame;
     this.rendersGame = rendersGame;
-  }
-
-  public void registerUserInterface(UserInterface userInterface) {
-    rendersGame.registerUserInterface(userInterface);
   }
 
   public void play(Game game) {

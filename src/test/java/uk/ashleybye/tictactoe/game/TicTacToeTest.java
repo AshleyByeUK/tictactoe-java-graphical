@@ -11,17 +11,12 @@ class TicTacToeTest {
     MockGame game = new MockGame();
     MockCreatesGame createsGame = new MockCreatesGame(game);
     MockPlaysGame playsGame = new MockPlaysGame();
-    UserInterface userInterface = new MockUserInterface();
-    PlayerFactory playerFactory = new MockPlayerFactory();
 
     GameOptions gameOptions = new GameOptions();
     TicTacToe tictactoe = new TicTacToe(createsGame, playsGame);
-    tictactoe.registerPlayerFactory(playerFactory);
-    tictactoe.registerUserInterface(userInterface);
     tictactoe.play(gameOptions);
 
-    assertTrue(createsGame.wasCalledWith(gameOptions, playerFactory));
-    assertTrue(playsGame.registeredUserInterface());
+    assertTrue(createsGame.wasCalledWith(gameOptions));
     assertTrue(playsGame.wasCalledWith(game));
   }
 }
