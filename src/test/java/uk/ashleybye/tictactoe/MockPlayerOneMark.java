@@ -29,4 +29,9 @@ public class MockPlayerOneMark implements Mark {
   public int hashCode() {
     return Objects.hash(mark);
   }
+
+  @Override
+  public String toString() {
+    return mark;
+  }
 }

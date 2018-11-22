@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class Board implements Iterable<Square> {
 
@@ -31,28 +32,38 @@ public class Board implements Iterable<Square> {
   }
 
   public Board markSquare(int squareNumber, Mark mark) {
-    if (isSquareAlreadyMarked(squareNumber))
-      throw new SquareUnavailable();
+    throwExceptionIfInvalid(squareNumber);
 
     Board board = new Board(this);
     board.squares.set(squareNumber - 1, new Square(squareNumber, mark));
     return board;
   }
 
-  private boolean isSquareAlreadyMarked(int squareNumber) {
-    return listUnmarkedSquares().size() == 0 || squares.get(squareNumber - 1).isMarked();
+  private void throwExceptionIfInvalid(int squareNumber) {
+    if (squareNumber < 1 || squareNumber > squares.size())
+      throw new InvalidSquareNumber();
+    if (listUnmarkedSquares().size() == 0 || squares.get(squareNumber - 1).isMarked())
+      throw new SquareUnavailable();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Board board = (Board) o;
+    return Objects.equals(squares, board.squares);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(squares);
   }
 
   @Override
   public Iterator<Square> iterator() {
     return new BoardIterator();
-  }
-
-  class SquareUnavailable extends RuntimeException {
-
-    SquareUnavailable() {
-      super("square has already been marked");
-    }
   }
 
   private class BoardIterator implements Iterator<Square> {
@@ -70,5 +81,21 @@ public class Board implements Iterable<Square> {
         throw new NoSuchElementException("attempting to access non-existing square on board");
       return squares.get(currentIteration++);
     }
+
+  }
+
+  class SquareUnavailable extends RuntimeException {
+
+    SquareUnavailable() {
+      super("square has already been marked");
+    }
+  }
+
+  class InvalidSquareNumber extends RuntimeException {
+
+    InvalidSquareNumber() {
+      super("invalid square number provided");
+    }
+
   }
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.Board.SquareUnavailable;
 
 class BoardTest {
@@ -47,5 +48,23 @@ class BoardTest {
 
     Throwable exception = assertThrows(SquareUnavailable.class, () -> board.markSquare(1, mark));
     assertEquals("square has already been marked", exception.getMessage());
+  }
+
+  @Test
+  void testSquaresGreaterThanBoardSizeCannotBeMarked() {
+    Board board = TestHelpers.generateBoard(("O - - - - - - - -"));
+    Mark mark = new MockPlayerOneMark();
+
+    Throwable exception = assertThrows(InvalidSquareNumber.class, () -> board.markSquare(10, mark));
+    assertEquals("invalid square number provided", exception.getMessage());
+  }
+
+  @Test
+  void testSquaresLessThanBoardSizeCannotBeMarked() {
+    Board board = TestHelpers.generateBoard(("O - - - - - - - -"));
+    Mark mark = new MockPlayerOneMark();
+
+    Throwable exception = assertThrows(InvalidSquareNumber.class, () -> board.markSquare(0, mark));
+    assertEquals("invalid square number provided", exception.getMessage());
   }
 }
