@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe;
+package uk.ashleybye.tictactoe.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,10 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.Board.InvalidSquareNumber;
-import uk.ashleybye.tictactoe.Board.SquareUnavailable;
+import uk.ashleybye.tictactoe.game.Board.InvalidSquareNumber;
+import uk.ashleybye.tictactoe.game.Board.SquareUnavailable;
 
 public class GameTest {
 
@@ -28,11 +29,11 @@ public class GameTest {
 
   @Test
   void testNewGameIsCorrectlySetup() {
-    assertEquals(TestHelpers.generateBoard("- - - - - - - - -"), game.getBoard());
+    Assertions.assertEquals(TestHelpers.generateBoard("- - - - - - - - -"), game.getBoard());
     assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9), game.listOpenPositions());
     assertEquals(playerOne, game.getCurrentPlayer());
     assertEquals(playerTwo, game.getOtherPlayer());
-    assertEquals(GameState.READY, game.getGameState());
+    Assertions.assertEquals(GameState.READY, game.getGameState());
     assertFalse(game.isWon(playerOne));
     assertFalse(game.isWon(playerTwo));
     assertFalse(game.isTied());
@@ -44,7 +45,7 @@ public class GameTest {
 
     game = game.playNextTurn();
 
-    assertEquals(TestHelpers.generateBoard("X - - - - - - - -"), game.getBoard());
+    Assertions.assertEquals(TestHelpers.generateBoard("X - - - - - - - -"), game.getBoard());
     assertEquals(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9), game.listOpenPositions());
     assertEquals(playerTwo, game.getCurrentPlayer());
     assertEquals(playerOne, game.getOtherPlayer());
@@ -62,7 +63,7 @@ public class GameTest {
     game = game.playNextTurn();
     game = game.playNextTurn();
 
-    assertEquals(TestHelpers.generateBoard("X O - - - - - - -"), game.getBoard());
+    Assertions.assertEquals(TestHelpers.generateBoard("X O - - - - - - -"), game.getBoard());
     assertEquals(Arrays.asList(3, 4, 5, 6, 7, 8, 9), game.listOpenPositions());
     assertEquals(playerTwo, game.getCurrentPlayer());
     assertEquals(playerOne, game.getOtherPlayer());

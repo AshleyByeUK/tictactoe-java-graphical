@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe;
+package uk.ashleybye.tictactoe.game;
 
 public class EasyPlayer implements Player {
 

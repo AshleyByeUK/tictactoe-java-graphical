@@ -1,11 +1,11 @@
-package uk.ashleybye.tictactoe;
+package uk.ashleybye.tictactoe.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.Board.InvalidSquareNumber;
-import uk.ashleybye.tictactoe.Board.SquareUnavailable;
+import uk.ashleybye.tictactoe.game.Board.InvalidSquareNumber;
+import uk.ashleybye.tictactoe.game.Board.SquareUnavailable;
 
 class BoardTest {
 

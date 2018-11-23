@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe;
+package uk.ashleybye.tictactoe.game;
 
 import java.util.List;
 import java.util.Objects;

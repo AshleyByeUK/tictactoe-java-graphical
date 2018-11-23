@@ -1,13 +1,13 @@
-package uk.ashleybye.tictactoe;
+package uk.ashleybye.tictactoe.game;
 
 import java.util.Objects;
 
-public class MockPlayerTwoMark implements Mark {
+public class MockPlayerOneMark implements Mark {
 
   private final String mark;
 
-  public MockPlayerTwoMark() {
-    this.mark = "O";
+  public MockPlayerOneMark() {
+    this.mark = "X";
   }
 
   @Override
@@ -21,7 +21,7 @@ public class MockPlayerTwoMark implements Mark {
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
-    MockPlayerTwoMark that = (MockPlayerTwoMark) o;
+    MockPlayerOneMark that = (MockPlayerOneMark) o;
     return Objects.equals(mark, that.mark);
   }
 
