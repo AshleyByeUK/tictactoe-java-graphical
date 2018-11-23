@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ public class HumanPlayerTest {
     assertEquals(1, player.choosePositionToPlay(game));
   }
 
+  @Disabled
   @Test
   @Tag("slow")
   void testCanGetAMoveWhenThereIsADelay() {

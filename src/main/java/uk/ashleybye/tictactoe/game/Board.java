@@ -23,7 +23,7 @@ public class Board implements Iterable<Square> {
   private Board(Board board) {
     this.squares = new ArrayList<>();
     for (Square square : board)
-      this.squares.add(square);
+      this.squares.add(new Square(square.getPosition(), square.getMark()));
   }
 
   public List<Square> listUnmarkedSquares() {

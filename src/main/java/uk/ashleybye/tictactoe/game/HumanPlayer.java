@@ -20,10 +20,9 @@ public class HumanPlayer implements Player, HumanMoveSubscriber {
   public int choosePositionToPlay(Game game) {
     positionToPlay = null;
     publisher.subscribe(this);
-    while (positionToPlay == null) {
-
-    }
-    return positionToPlay;
+    while (true)
+      if (positionToPlay != null)
+        return positionToPlay;
   }
 
   @Override
