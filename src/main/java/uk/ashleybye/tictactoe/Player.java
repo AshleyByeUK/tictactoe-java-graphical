@@ -4,5 +4,5 @@ public interface Player {
 
   Mark getMark();
 
-  int choosePositionToPlay();
+  int choosePositionToPlay(Game game);
 }

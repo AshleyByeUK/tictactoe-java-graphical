@@ -69,7 +69,7 @@ public class Game {
   }
 
   private Board boardWithTurnApplied() {
-    return this.board.markSquare(getCurrentPlayer().choosePositionToPlay(), getCurrentPlayer().getMark());
+    return this.board.markSquare(getCurrentPlayer().choosePositionToPlay(this), getCurrentPlayer().getMark());
   }
 
   private Game swapPlayers() {

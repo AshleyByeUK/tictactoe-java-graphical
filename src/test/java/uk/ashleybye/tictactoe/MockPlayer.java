@@ -15,7 +15,7 @@ public class MockPlayer implements Player {
   }
 
   @Override
-  public int choosePositionToPlay() {
+  public int choosePositionToPlay(Game game) {
     return nextPositionToPlay;
   }
 
