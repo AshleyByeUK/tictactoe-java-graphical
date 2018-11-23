@@ -19,4 +19,9 @@ public class MockHumanMovePublisher implements HumanMovePublisher {
     }
     subscriber.notifyMoveMade(positionToReturn);
   }
+
+  @Override
+  public void handleMoveMade(int position) {
+
+  }
 }
