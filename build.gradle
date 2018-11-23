@@ -24,7 +24,15 @@ clean {
     delete "${rootDir}/out"
 }
 
-test { useJUnitPlatform() }
+test {
+    useJUnitPlatform {
+        excludeTags 'slow'
+    }
+}
+
+task testSlow(type: Test) {
+    useJUnitPlatform()
+}
 
 jacoco {
     toolVersion = "0.8.2"
