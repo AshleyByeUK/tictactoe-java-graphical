@@ -2,12 +2,16 @@ package uk.ashleybye.tictactoe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.Board.InvalidSquareNumber;
+import uk.ashleybye.tictactoe.Board.SquareUnavailable;
 
 public class GameTest {
 
@@ -69,6 +73,30 @@ public class GameTest {
   }
 
   @Test
+  void testGameDoesNotChangeWhenChoosingPreviouslyMarkedSquare() {
+    Board board = TestHelpers.generateBoard("X - - - - - - - -");
+    playerOne.setNextPositionToPlay(1);
+    game = new Game(playerOne, playerTwo, board);
+
+    final Game[] gameAfterBadTurn = new Game[1];
+    Throwable exception = assertThrows(SquareUnavailable.class, () -> gameAfterBadTurn[0] = game.playNextTurn());
+
+    assertEquals("square has already been marked", exception.getMessage());
+    assertNull(gameAfterBadTurn[0]);
+  }
+
+  @Test
+  void testGameDoesNotChangeWhenChoosingInvalidSquareNumber() {
+    playerOne.setNextPositionToPlay(999);
+
+    final Game[] gameAfterBadTurn = new Game[1];
+    Throwable exception = assertThrows(InvalidSquareNumber.class, () -> gameAfterBadTurn[0] = game.playNextTurn());
+
+    assertEquals("invalid square number provided", exception.getMessage());
+    assertNull(gameAfterBadTurn[0]);
+  }
+
+  @Test
   void testFullBoardNoWinnerResultsInTiedGame() {
     Board board = TestHelpers.generateBoard("X X O O X X X O O");
 
@@ -83,6 +111,53 @@ public class GameTest {
 
   @Test
   void testPlayerOneHasWon() {
-    
+    Board board = TestHelpers.generateBoard("X X X O O - - - -");
+
+    game = new Game(playerOne, playerTwo, board);
+
+    assertEquals(Arrays.asList(6, 7, 8, 9), game.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, game.getGameState());
+    assertTrue(game.isWon(playerOne));
+    assertFalse(game.isWon(playerTwo));
+    assertFalse(game.isTied());
+  }
+
+  @Test
+  void testPlayerTwoHasWon() {
+    Board board = TestHelpers.generateBoard("X X - O O O X - -");
+
+    game = new Game(playerOne, playerTwo, board);
+
+    assertEquals(Arrays.asList(3, 8, 9), game.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, game.getGameState());
+    assertFalse(game.isWon(playerOne));
+    assertTrue(game.isWon(playerTwo));
+    assertFalse(game.isTied());
+  }
+
+  @Test
+  void testWinOnFinalTurnIsNotATie() {
+    Board board = TestHelpers.generateBoard("O X X X O X O O -");
+    playerOne.setNextPositionToPlay(9);
+
+    game = new Game(playerOne, playerTwo, board);
+    game = game.playNextTurn();
+
+    assertEquals(Collections.emptyList(), game.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, game.getGameState());
+    assertTrue(game.isWon(playerOne));
+    assertFalse(game.isWon(playerTwo));
+    assertFalse(game.isTied());
+  }
+
+  @Test
+  void testWhenGameIsOverPlayingATurnHasNoEffect() {
+    Board board = TestHelpers.generateBoard("O X X X O X O O X");
+    playerOne.setNextPositionToPlay(9);
+
+    game = new Game(playerOne, playerTwo, board);
+    Game unchangedGame = game.playNextTurn();
+
+    assertEquals(game, unchangedGame);
   }
 }

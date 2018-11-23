@@ -22,6 +22,10 @@ public class Square {
     return marked;
   }
 
+  public Mark getMark() {
+    return mark;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o)

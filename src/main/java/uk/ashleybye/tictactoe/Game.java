@@ -1,6 +1,7 @@
 package uk.ashleybye.tictactoe;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -34,12 +35,16 @@ public class Game {
   }
 
   public GameState getGameState() {
-    if (isTied())
+    if (isGameOver())
       return GameState.GAME_OVER;
     if (listOpenPositions().size() < 9)
       return GameState.PLAYING;
     else
       return GameState.READY;
+  }
+
+  private boolean isGameOver() {
+    return isTied() || isWon(playerOne) || isWon(playerTwo);
   }
 
   public List<Integer> listOpenPositions() {
@@ -52,23 +57,58 @@ public class Game {
   }
 
   public Game playNextTurn() {
-    Player player = getCurrentPlayer();
-    int position = player.choosePositionToPlay();
-    Board board = this.board.markSquare(position, player.getMark());
-    Game game = new Game(playerOne, playerTwo, board);
-    game.swapPlayers();
-    return game;
+    if (isGameOver())
+      return new Game(playerOne, playerTwo, board);
+    else
+      return gameWithTurnApplied();
   }
 
-  private void swapPlayers() {
+  private Game gameWithTurnApplied() {
+    return new Game(playerOne, playerTwo, boardWithTurnApplied())
+        .swapPlayers();
+  }
+
+  private Board boardWithTurnApplied() {
+    return this.board.markSquare(getCurrentPlayer().choosePositionToPlay(), getCurrentPlayer().getMark());
+  }
+
+  private Game swapPlayers() {
     currentPlayer = currentPlayer == 1 ? 2 : 1;
+    return this;
   }
 
   public boolean isWon(Player player) {
-    return false;
+    return board
+        .listPossibleWinningSquares()
+        .stream()
+        .anyMatch(wc -> isWiningCombination(wc, player.getMark()));
+  }
+
+  private boolean isWiningCombination(List<Square> possibleWinningCombination, Mark mark) {
+    return possibleWinningCombination.get(0).getMark().equals(mark)
+        && possibleWinningCombination.get(1).getMark().equals(mark)
+        && possibleWinningCombination.get(2).getMark().equals(mark);
   }
 
   public boolean isTied() {
-    return listOpenPositions().size() == 0;
+    return listOpenPositions().size() == 0 && !(isWon(playerOne) || isWon(playerTwo));
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Game game = (Game) o;
+    return currentPlayer == game.currentPlayer &&
+        Objects.equals(playerOne, game.playerOne) &&
+        Objects.equals(playerTwo, game.playerTwo) &&
+        Objects.equals(board, game.board);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(playerOne, playerTwo, board, currentPlayer);
   }
 }
