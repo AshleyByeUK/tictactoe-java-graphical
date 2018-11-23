@@ -1,6 +1,6 @@
 package uk.ashleybye.tictactoe.game;
 
-interface Mark {
+public interface Mark {
 
   boolean isEmpty();
 }

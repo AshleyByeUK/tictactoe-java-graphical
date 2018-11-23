@@ -43,10 +43,6 @@ public class Game {
       return GameState.READY;
   }
 
-  private boolean isGameOver() {
-    return isTied() || isWon(playerOne) || isWon(playerTwo);
-  }
-
   public List<Integer> listOpenPositions() {
     return board
         .listUnmarkedSquares()
@@ -77,6 +73,14 @@ public class Game {
     return this;
   }
 
+  public boolean isGameOver() {
+    return isTied() || isWon(playerOne) || isWon(playerTwo);
+  }
+
+  public boolean isTied() {
+    return listOpenPositions().size() == 0 && !(isWon(playerOne) || isWon(playerTwo));
+  }
+
   public boolean isWon(Player player) {
     return board
         .listPossibleWinningSquares()
@@ -88,10 +92,6 @@ public class Game {
     return possibleWinningCombination.get(0).getMark().equals(mark)
         && possibleWinningCombination.get(1).getMark().equals(mark)
         && possibleWinningCombination.get(2).getMark().equals(mark);
-  }
-
-  public boolean isTied() {
-    return listOpenPositions().size() == 0 && !(isWon(playerOne) || isWon(playerTwo));
   }
 
   @Override
