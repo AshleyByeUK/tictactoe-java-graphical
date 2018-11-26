@@ -23,7 +23,7 @@ public class HumanPlayerTest {
     assertEquals(1, player.choosePositionToPlay(game));
   }
 
-//  @Disabled
+  @Disabled
   @Test
   @Tag("slow")
   void testCanGetAMoveWhenThereIsADelay() {

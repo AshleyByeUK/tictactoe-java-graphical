@@ -3,12 +3,12 @@ package uk.ashleybye.tictactoe.console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import uk.ashleybye.tictactoe.core.UserInterface;
-import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.GameReport;
 import uk.ashleybye.tictactoe.core.HumanTurnPublisher;
 import uk.ashleybye.tictactoe.core.HumanTurnSubscriber;
 import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.UserInterface;
+import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 
 public class GameConsole implements HumanTurnPublisher, UserInterface {
 

@@ -4,10 +4,10 @@ import uk.ashleybye.tictactoe.console.ConsoleMark;
 import uk.ashleybye.tictactoe.console.GameConsole;
 import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.core.Game;
-import uk.ashleybye.tictactoe.core.player.EasyPlayer;
-import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 import uk.ashleybye.tictactoe.core.Player;
 import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.player.EasyPlayer;
+import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 
 public class ConsoleApplication {
 

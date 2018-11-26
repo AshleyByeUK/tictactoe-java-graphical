@@ -8,17 +8,22 @@ public class MockIOWrapper extends IOWrapper {
   private List<String> input = new ArrayList<>();
   private int numberOfTimesRenderWasCalled = 0;
   private int numberOfTimesGetInputWasCalled = 0;
-  private String renderedText;
+  private boolean retainAllRenderedText = false;
+  private List<String> renderedText = new ArrayList<>();
 
   @Override
   public void render(String text) {
-    renderedText = text;
+    renderedText.add(text);
     numberOfTimesRenderWasCalled++;
   }
 
   @Override
   public String getInput() {
     return input.get(numberOfTimesGetInputWasCalled++);
+  }
+
+  public void retainAllRenderedText() {
+    retainAllRenderedText = true;
   }
 
   public void addMockInput(String input) {
@@ -34,6 +39,16 @@ public class MockIOWrapper extends IOWrapper {
   }
 
   public String getRenderedText() {
-    return renderedText;
+    if (retainAllRenderedText)
+      return allRenderedText();
+    else
+      return renderedText.get(numberOfTimesRenderWasCalled - 1);
+  }
+
+  private String allRenderedText() {
+    String text = "";
+    for (String str : renderedText)
+      text += str;
+    return text;
   }
 }
