@@ -1,11 +1,15 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console.menu;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.ui.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.ui.console.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.ui.console.MenuItem;
+import uk.ashleybye.tictactoe.ui.console.MockIOWrapper;
+import uk.ashleybye.tictactoe.ui.console.MockPlayerFactory;
 
 class ConfigurePlayerMenuItemTest extends MenuItem {
 

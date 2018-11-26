@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console;
 
 public class ConsoleClient {
 

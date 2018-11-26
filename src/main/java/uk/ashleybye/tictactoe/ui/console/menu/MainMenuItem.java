@@ -1,12 +1,15 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console.menu;
 
 import java.util.Arrays;
 import java.util.List;
-import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.ui.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.ui.console.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.ui.console.MenuItem;
 
 public class MainMenuItem extends MenuItem {
 
-  static final String MAIN_TITLE =
+  public static final String MAIN_TITLE =
       " _______ _   _______      _______          \n" +
           "|__   __(_) |__   __|    |__   __|         \n" +
           "   | |   _  ___| | __ _  ___| | ___   ___  \n" +

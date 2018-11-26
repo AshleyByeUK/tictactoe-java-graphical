@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console;
 
 import uk.ashleybye.tictactoe.core.HumanTurnSubscriber;
 

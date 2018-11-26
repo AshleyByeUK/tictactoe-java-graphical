@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.MockGameConsole;
-import uk.ashleybye.tictactoe.console.MockPlayerFactory;
+import uk.ashleybye.tictactoe.ui.console.MockGameConsole;
+import uk.ashleybye.tictactoe.ui.console.MockPlayerFactory;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;

@@ -1,10 +1,13 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.ui.console.menu.ConfigurePlayerMenuItem;
+import uk.ashleybye.tictactoe.ui.console.menu.MainMenuItem;
+import uk.ashleybye.tictactoe.ui.console.menu.PlayGameMenuItem;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 
 public class ConsoleClientTest {

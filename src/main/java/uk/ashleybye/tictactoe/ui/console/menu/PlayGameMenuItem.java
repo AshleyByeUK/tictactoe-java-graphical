@@ -1,5 +1,7 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console.menu;
 
+import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.ui.console.MenuItem;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.TicTacToe;
 import uk.ashleybye.tictactoe.core.UserInterface;

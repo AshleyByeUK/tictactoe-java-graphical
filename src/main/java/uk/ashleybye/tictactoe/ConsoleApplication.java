@@ -1,15 +1,15 @@
 package uk.ashleybye.tictactoe;
 
-import uk.ashleybye.tictactoe.console.ConfigurePlayerMenuItem;
-import uk.ashleybye.tictactoe.console.ConsoleClient;
-import uk.ashleybye.tictactoe.console.ConsoleGameConfiguration;
-import uk.ashleybye.tictactoe.console.ConsoleMark;
-import uk.ashleybye.tictactoe.console.ConsolePlayerConfiguration;
-import uk.ashleybye.tictactoe.console.ConsolePlayerFactory;
-import uk.ashleybye.tictactoe.console.GameConsole;
-import uk.ashleybye.tictactoe.console.IOWrapper;
-import uk.ashleybye.tictactoe.console.MainMenuItem;
-import uk.ashleybye.tictactoe.console.PlayGameMenuItem;
+import uk.ashleybye.tictactoe.ui.console.menu.ConfigurePlayerMenuItem;
+import uk.ashleybye.tictactoe.ui.console.ConsoleClient;
+import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.ui.console.ConsoleMark;
+import uk.ashleybye.tictactoe.ui.console.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.ui.console.ConsolePlayerFactory;
+import uk.ashleybye.tictactoe.ui.console.GameConsole;
+import uk.ashleybye.tictactoe.ui.console.IOWrapper;
+import uk.ashleybye.tictactoe.ui.console.menu.MainMenuItem;
+import uk.ashleybye.tictactoe.ui.console.menu.PlayGameMenuItem;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 
 public class ConsoleApplication {

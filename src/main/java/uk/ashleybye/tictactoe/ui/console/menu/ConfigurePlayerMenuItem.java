@@ -1,7 +1,10 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console.menu;
 
 import java.util.List;
-import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.ui.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.ui.console.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.ui.console.MenuItem;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 
 public class ConfigurePlayerMenuItem extends MenuItem {

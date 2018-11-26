@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console;
+package uk.ashleybye.tictactoe.ui.console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.core.Player;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
-import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 
