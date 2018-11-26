@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.ui.console.MockGameConsole;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.HumanTurnPublisher;
 import uk.ashleybye.tictactoe.core.MockGame;
 import uk.ashleybye.tictactoe.core.MockHumanTurnPublisher;
 import uk.ashleybye.tictactoe.core.Player;
+import uk.ashleybye.tictactoe.ui.console.MockGameConsole;
 
 public class HumanPlayerTest {
 
@@ -25,7 +25,6 @@ public class HumanPlayerTest {
     assertEquals(1, player.choosePositionToPlay(game));
   }
 
-  @Disabled
   @Test
   @Tag("slow")
   void testCanGetAMoveWhenThereIsADelay() {
@@ -44,7 +43,8 @@ public class HumanPlayerTest {
 
     assertEquals(player, player);
     assertEquals(player, new HumanPlayer(new MockPlayerOneMark(), "Player 1", new MockGameConsole()));
-    assertEquals(player.hashCode(), (new HumanPlayer(new MockPlayerOneMark(), "Player 1", new MockGameConsole())).hashCode());
+    assertEquals(player.hashCode(),
+        (new HumanPlayer(new MockPlayerOneMark(), "Player 1", new MockGameConsole())).hashCode());
     assertNotEquals(player, otherPlayer);
     assertNotEquals(player, "not a player");
     assertNotEquals(player, null);

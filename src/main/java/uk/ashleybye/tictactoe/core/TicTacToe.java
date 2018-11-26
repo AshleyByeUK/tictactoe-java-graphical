@@ -9,6 +9,11 @@ public class TicTacToe {
   private final UserInterface userInterface;
   private Game game;
 
+  TicTacToe(Game game, UserInterface userInterface) {
+    this.game = game;
+    this.userInterface = userInterface;
+  }
+
   public static TicTacToe create(
       PlayerFactory playerFactory, GameConfiguration gameConfiguration, UserInterface userInterface) {
     Player playerOne = makePlayer(1, playerFactory, gameConfiguration);
@@ -17,11 +22,6 @@ public class TicTacToe {
     Game game = new Game(playerOne, playerTwo, gameConfiguration.getEmptyMark());
 
     return new TicTacToe(game, userInterface);
-  }
-
-  TicTacToe(Game game, UserInterface userInterface) {
-    this.game = game;
-    this.userInterface = userInterface;
   }
 
   private static Player makePlayer(int player, PlayerFactory playerFactory, GameConfiguration gameConfiguration) {

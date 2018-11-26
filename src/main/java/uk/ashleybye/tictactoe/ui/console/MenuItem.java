@@ -12,9 +12,8 @@ public abstract class MenuItem {
   protected static final String PLAYER_TYPE_EASY = "Easy Computer";
   protected static final String PLAYER_TYPE_HUMAN = "User";
   protected static final String PROMPT = "> ";
-
-  protected MenuItem previousMenu;
   protected final ConsoleGameConfiguration configuration;
+  protected MenuItem previousMenu;
 
   public MenuItem(MenuItem previousMenu, ConsoleGameConfiguration gameConfiguration) {
     this.previousMenu = previousMenu;

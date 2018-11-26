@@ -68,7 +68,6 @@ public class MainMenuItem extends MenuItem {
   }
 
 
-
   private String textForMainMenu() {
     return MAIN_MENU_HEADING + "\n\n"
         + textForMainMenuOptions();

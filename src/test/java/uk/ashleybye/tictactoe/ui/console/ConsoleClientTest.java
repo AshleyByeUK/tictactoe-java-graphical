@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.ui.console.menu.ConfigurePlayerMenuItem;
 import uk.ashleybye.tictactoe.ui.console.menu.MainMenuItem;
 import uk.ashleybye.tictactoe.ui.console.menu.PlayGameMenuItem;
-import uk.ashleybye.tictactoe.core.PlayerFactory;
 
 public class ConsoleClientTest {
 
@@ -44,8 +44,10 @@ public class ConsoleClientTest {
     PlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
 
     MainMenuItem mainMenu = new MainMenuItem(gameConfiguration);
-    ConfigurePlayerMenuItem configurePlayerOneMenuItem = new ConfigurePlayerMenuItem(mainMenu, gameConfiguration, 1, playerFactory);
-    ConfigurePlayerMenuItem configurePlayerTwoMenuItem = new ConfigurePlayerMenuItem(mainMenu, gameConfiguration, 2, playerFactory);
+    ConfigurePlayerMenuItem configurePlayerOneMenuItem = new ConfigurePlayerMenuItem(mainMenu, gameConfiguration, 1,
+        playerFactory);
+    ConfigurePlayerMenuItem configurePlayerTwoMenuItem = new ConfigurePlayerMenuItem(mainMenu, gameConfiguration, 2,
+        playerFactory);
     PlayGameMenuItem playGameMenuItem = new PlayGameMenuItem(mainMenu, gameConfiguration, playerFactory, gameConsole);
     mainMenu.setConfigurePlayerOneMenuItem(configurePlayerOneMenuItem);
     mainMenu.setConfigurePlayerTwoMenuItem(configurePlayerTwoMenuItem);

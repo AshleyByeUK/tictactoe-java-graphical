@@ -1,10 +1,10 @@
 package uk.ashleybye.tictactoe.ui.console.menu;
 
-import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
-import uk.ashleybye.tictactoe.ui.console.MenuItem;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.TicTacToe;
 import uk.ashleybye.tictactoe.core.UserInterface;
+import uk.ashleybye.tictactoe.ui.console.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.ui.console.MenuItem;
 
 public class PlayGameMenuItem extends MenuItem {
 
@@ -12,7 +12,8 @@ public class PlayGameMenuItem extends MenuItem {
   private final PlayerFactory playerFactory;
   private final UserInterface userInterface;
 
-  public PlayGameMenuItem(MenuItem previousMenu, ConsoleGameConfiguration configuration, PlayerFactory playerFactory, UserInterface userInterface) {
+  public PlayGameMenuItem(MenuItem previousMenu, ConsoleGameConfiguration configuration, PlayerFactory playerFactory,
+      UserInterface userInterface) {
     super(previousMenu, configuration);
     this.playerFactory = playerFactory;
     this.userInterface = userInterface;

@@ -44,5 +44,6 @@ public class ConsoleClient {
   }
 
   public static class InvalidMenuOption extends RuntimeException {
+
   }
 }
