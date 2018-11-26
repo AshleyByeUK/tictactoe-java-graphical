@@ -1,11 +1,16 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core.board;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.game.Board.InvalidSquareNumber;
-import uk.ashleybye.tictactoe.game.Board.SquareUnavailable;
+import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
+import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
+import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
+import uk.ashleybye.tictactoe.TestHelpers;
 
 class BoardTest {
 
@@ -66,5 +71,19 @@ class BoardTest {
 
     Throwable exception = assertThrows(InvalidSquareNumber.class, () -> board.markSquare(0, mark));
     assertEquals("invalid square number provided", exception.getMessage());
+  }
+
+  @Test
+  void testEquality() {
+    Board board = new Board(new MockEmptyMark());
+    Board otherBoard = new Board(new MockPlayerOneMark());
+
+    assertEquals(board, board);
+    assertEquals(board, new Board(new MockEmptyMark()));
+    assertEquals(board.hashCode(), (new Board(new MockEmptyMark())).hashCode());
+    assertNotEquals(board, otherBoard);
+    assertNotEquals(board, "not a board");
+    assertNotEquals(board, null);
+    assertNotEquals(board.hashCode(), otherBoard.hashCode());
   }
 }

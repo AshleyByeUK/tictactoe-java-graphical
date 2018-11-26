@@ -1,14 +1,19 @@
 package uk.ashleybye.tictactoe.console;
 
-import uk.ashleybye.tictactoe.game.HumanMoveSubscriber;
+import uk.ashleybye.tictactoe.core.HumanTurnSubscriber;
 
-public class MockHumanMoveSubscriber implements HumanMoveSubscriber {
+public class MockHumanTurnSubscriber implements HumanTurnSubscriber {
 
   private int position;
 
   @Override
   public void notifyMoveMade(int position) {
     this.position = position;
+  }
+
+  @Override
+  public String getName() {
+    return "Player Name";
   }
 
   public int valueOfMoveNotification() {

@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core;
 
 public interface Mark {
 

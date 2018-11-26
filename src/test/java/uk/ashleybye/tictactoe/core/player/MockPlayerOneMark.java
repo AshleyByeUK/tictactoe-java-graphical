@@ -1,18 +1,19 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core.player;
 
 import java.util.Objects;
+import uk.ashleybye.tictactoe.core.Mark;
 
-public class MockEmptyMark implements Mark {
+public class MockPlayerOneMark implements Mark {
 
   private final String mark;
 
-  public MockEmptyMark() {
-    this.mark = " ";
+  public MockPlayerOneMark() {
+    this.mark = "X";
   }
 
   @Override
   public boolean isEmpty() {
-    return true;
+    return false;
   }
 
   @Override
@@ -21,12 +22,17 @@ public class MockEmptyMark implements Mark {
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
-    MockEmptyMark that = (MockEmptyMark) o;
+    MockPlayerOneMark that = (MockPlayerOneMark) o;
     return Objects.equals(mark, that.mark);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(mark);
+  }
+
+  @Override
+  public String toString() {
+    return mark;
   }
 }

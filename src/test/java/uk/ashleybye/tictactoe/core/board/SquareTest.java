@@ -1,17 +1,32 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core.board;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 
 class SquareTest {
 
+  private Mark emptyMark;
+  private Mark playerOneMark;
+  private Mark playerTwoMark;
+
+  @BeforeEach
+  void setUp() {
+    emptyMark = new MockEmptyMark();
+    playerOneMark = new MockPlayerOneMark();
+    playerTwoMark = new MockPlayerTwoMark();
+  }
+
   @Test
   void testEmptySquareIsNotMarked() {
-    Mark emptyMark = new MockEmptyMark();
     Square unmarkedSquare = new Square(1, emptyMark);
 
     assertFalse(unmarkedSquare.isMarked());
@@ -19,17 +34,13 @@ class SquareTest {
 
   @Test
   void testMarkedSquareIsMarked() {
-    Mark mark = new MockPlayerOneMark();
-    Square markedSquare = new Square(1, mark);
+    Square markedSquare = new Square(1, playerOneMark);
 
     assertTrue(markedSquare.isMarked());
   }
 
   @Test
   void testEmptySquareDoesNotEqualMarkedSquare() {
-    Mark emptyMark = new MockEmptyMark();
-    Mark playerOneMark = new MockPlayerOneMark();
-
     Square unmarked = new Square(1, emptyMark);
     Square marked = new Square(1, playerOneMark);
 
@@ -38,8 +49,6 @@ class SquareTest {
 
   @Test
   void testUnmarkedSquaresInSamePositionAreEqual() {
-    Mark emptyMark = new MockEmptyMark();
-
     Square squareOne = new Square(1, emptyMark);
     Square squareTwo = new Square(1, emptyMark);
 
@@ -48,8 +57,6 @@ class SquareTest {
 
   @Test
   void testSimilarlyMarkedSquaresInSamePositionAreEqual() {
-    Mark playerOneMark = new MockPlayerOneMark();
-
     Square squareOne = new Square(1, playerOneMark);
     Square squareTwo = new Square(1, playerOneMark);
 
@@ -58,9 +65,6 @@ class SquareTest {
 
   @Test
   void testDifferentlyMarkedSquaresInSamePositionAreNotEqual() {
-    Mark playerOneMark = new MockPlayerOneMark();
-    Mark playerTwoMark = new MockPlayerTwoMark();
-
     Square squareOne = new Square(1, playerOneMark);
     Square squareTwo = new Square(1, playerTwoMark);
 
@@ -69,8 +73,6 @@ class SquareTest {
 
   @Test
   void testUnmarkedSquaresInDifferentPositionsAreEqual() {
-    Mark emptyMark = new MockEmptyMark();
-
     Square squareOne = new Square(1, emptyMark);
     Square squareTwo = new Square(2, emptyMark);
 
@@ -79,8 +81,6 @@ class SquareTest {
 
   @Test
   void testSimilarlyMarkedSquaresInDifferentPositionsAreEqual() {
-    Mark playerOneMark = new MockPlayerOneMark();
-
     Square squareOne = new Square(1, playerOneMark);
     Square squareTwo = new Square(2, playerOneMark);
 
@@ -89,12 +89,23 @@ class SquareTest {
 
   @Test
   void testDifferentlyMarkedSquaresInDifferentPositionsAreNotEqual() {
-    Mark playerOneMark = new MockPlayerOneMark();
-    Mark playerTwoMark = new MockPlayerTwoMark();
-
     Square squareOne = new Square(1, playerOneMark);
     Square squareTwo = new Square(2, playerTwoMark);
 
     assertNotEquals(squareOne, squareTwo);
+  }
+
+  @Test
+  void testEquality() {
+    Square square = new Square(1, emptyMark);
+    Square otherSquare = new Square(1, playerOneMark);
+
+    assertEquals(square, square);
+    assertEquals(square, new Square(1, new MockEmptyMark()));
+    assertEquals(square.hashCode(), (new Square(1, new MockEmptyMark())).hashCode());
+    assertNotEquals(square, otherSquare);
+    assertNotEquals(square, "not a square");
+    assertNotEquals(square, null);
+    assertNotEquals(square.hashCode(), otherSquare.hashCode());
   }
 }

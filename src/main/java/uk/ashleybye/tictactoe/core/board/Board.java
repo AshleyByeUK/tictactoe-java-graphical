@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core.board;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import uk.ashleybye.tictactoe.core.Mark;
 
 public class Board implements Iterable<Square> {
 
@@ -96,6 +97,20 @@ public class Board implements Iterable<Square> {
     return new BoardIterator();
   }
 
+  public static class SquareUnavailable extends RuntimeException {
+
+    public SquareUnavailable() {
+      super("square has already been marked");
+    }
+  }
+
+  public static class InvalidSquareNumber extends RuntimeException {
+
+    public InvalidSquareNumber() {
+      super("invalid square number provided");
+    }
+  }
+
   private class BoardIterator implements Iterator<Square> {
 
     int currentIteration = 0;
@@ -110,21 +125,6 @@ public class Board implements Iterable<Square> {
       if (!hasNext())
         throw new NoSuchElementException("attempting to access non-existing square on board");
       return squares.get(currentIteration++);
-    }
-
-  }
-
-  class SquareUnavailable extends RuntimeException {
-
-    SquareUnavailable() {
-      super("square has already been marked");
-    }
-  }
-
-  class InvalidSquareNumber extends RuntimeException {
-
-    InvalidSquareNumber() {
-      super("invalid square number provided");
     }
 
   }

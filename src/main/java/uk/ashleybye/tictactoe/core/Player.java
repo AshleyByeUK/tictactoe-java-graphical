@@ -1,8 +1,10 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core;
 
 public interface Player {
 
   Mark getMark();
+
+  String getName();
 
   int choosePositionToPlay(Game game);
 }

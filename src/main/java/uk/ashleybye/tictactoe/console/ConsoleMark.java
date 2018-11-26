@@ -1,6 +1,6 @@
 package uk.ashleybye.tictactoe.console;
 
-import uk.ashleybye.tictactoe.game.Mark;
+import uk.ashleybye.tictactoe.core.Mark;
 
 public class ConsoleMark implements Mark {
 

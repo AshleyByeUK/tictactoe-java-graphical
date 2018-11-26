@@ -1,8 +1,10 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.board.Square;
 
 public class Game {
 
@@ -54,13 +56,13 @@ public class Game {
 
   public Game playNextTurn() {
     if (isGameOver())
-      return new Game(playerOne, playerTwo, board);
+      return new Game(getCurrentPlayer(), getOtherPlayer(), board);
     else
       return gameWithTurnApplied();
   }
 
   private Game gameWithTurnApplied() {
-    return new Game(playerOne, playerTwo, boardWithTurnApplied())
+    return new Game(getCurrentPlayer(), getOtherPlayer(), boardWithTurnApplied())
         .swapPlayers();
   }
 
@@ -92,6 +94,16 @@ public class Game {
     return possibleWinningCombination.get(0).getMark().equals(mark)
         && possibleWinningCombination.get(1).getMark().equals(mark)
         && possibleWinningCombination.get(2).getMark().equals(mark);
+  }
+
+  public GameReport generateGameReport() {
+    GameReport report = new GameReport();
+    report.setCurrentBoard(board);
+    report.setCurrentPlayer(getCurrentPlayer());
+    report.setLastPlayer(getOtherPlayer());
+    report.setCurrentState(getGameState());
+    report.setResult(isTied(), isWon(playerOne) || isWon(playerTwo));
+    return report;
   }
 
   @Override

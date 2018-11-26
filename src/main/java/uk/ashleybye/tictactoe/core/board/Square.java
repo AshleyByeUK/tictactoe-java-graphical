@@ -1,6 +1,7 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe.core.board;
 
 import java.util.Objects;
+import uk.ashleybye.tictactoe.core.Mark;
 
 public class Square {
 

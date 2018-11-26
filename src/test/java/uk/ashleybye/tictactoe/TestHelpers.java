@@ -1,4 +1,10 @@
-package uk.ashleybye.tictactoe.game;
+package uk.ashleybye.tictactoe;
+
+import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 
 public class TestHelpers {
 

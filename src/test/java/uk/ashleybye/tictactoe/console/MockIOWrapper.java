@@ -8,9 +8,11 @@ public class MockIOWrapper extends IOWrapper {
   private List<String> input = new ArrayList<>();
   private int numberOfTimesRenderWasCalled = 0;
   private int numberOfTimesGetInputWasCalled = 0;
+  private String renderedText;
 
   @Override
   public void render(String text) {
+    renderedText = text;
     numberOfTimesRenderWasCalled++;
   }
 
@@ -29,5 +31,9 @@ public class MockIOWrapper extends IOWrapper {
 
   public int getNumberOfTimesRenderWasCalled() {
     return numberOfTimesRenderWasCalled;
+  }
+
+  public String getRenderedText() {
+    return renderedText;
   }
 }
