@@ -16,6 +16,7 @@ public class GameConsole implements HumanTurnPublisher, UserInterface {
   private static final String EMPTY_STRING = "";
   private static final String GAME_OVER = "Game over!";
   private static final String INVALID_SQUARE = "That square is not available, try again %s %s";
+  private static final String LAST_POSITION = "%s played in position %d";
   private static final String PLAYERS_TURN = "%s's turn %s";
   private static final String PROMPT = "> ";
   private static final String ROW_SPACER = "-----------";
@@ -105,15 +106,36 @@ public class GameConsole implements HumanTurnPublisher, UserInterface {
     if (thisTurnSameAsLastTurn(gameReport))
       return String.format(INVALID_SQUARE, gameReport.getCurrentPlayer(), PROMPT);
     else if (!gameReport.getCurrentState().equals("game_over"))
-      return String.format(PLAYERS_TURN, gameReport.getCurrentPlayer(), PROMPT);
+      return String.format("%s%s",
+          getTextForLastPositionPlayed(gameReport),
+          String.format(PLAYERS_TURN, gameReport.getCurrentPlayer(), PROMPT));
     else
-      return EMPTY_STRING;
+      return getTextForLastPositionPlayed(gameReport);
   }
 
   private boolean thisTurnSameAsLastTurn(GameReport gameReport) {
     return !gameReport.getCurrentState().equals("game_over")
         && history.size() > 0
         && history.get(history.size() - 1).getCurrentBoard().equals(gameReport.getCurrentBoard());
+  }
+
+  private String getTextForLastPositionPlayed(GameReport gameReport) {
+    if (history.size() == 0)
+      return "";
+    else
+      return String.format(LAST_POSITION, gameReport.getLastPlayer(), getLastPositionPlayed(gameReport)) + "\n\n";
+
+  }
+
+  private int getLastPositionPlayed(GameReport gameReport) {
+    int lastPosition = -1;
+    Map<Integer, Mark> lastTurn = history.get(history.size() - 1).getCurrentBoard();
+    Map<Integer, Mark> thisTurn = gameReport.getCurrentBoard();
+    for (int position : lastTurn.keySet()) {
+      if (!lastTurn.get(position).equals(thisTurn.get(position)))
+        lastPosition = position;
+    }
+    return lastPosition;
   }
 
   private String getTextForGameOverSection(GameReport gameReport) {

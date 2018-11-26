@@ -62,6 +62,7 @@ public class GameConsoleTest {
     String renderedText = ioWrapper.getRenderedText();
     assertTrue(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 "));
+    assertFalse(renderedText.contains("played in position"));
     assertTrue(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
     assertFalse(renderedText.contains("Game over"));
@@ -77,6 +78,7 @@ public class GameConsoleTest {
     String renderedText = ioWrapper.getRenderedText();
     assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 "));
+    assertFalse(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertTrue(renderedText.contains("That square is not available, try again Player 1 > "));
     assertFalse(renderedText.contains("Game over"));
@@ -93,6 +95,7 @@ public class GameConsoleTest {
     String renderedText = ioWrapper.getRenderedText();
     assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | O | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 "));
+    assertTrue(renderedText.contains("played in position"));
     assertTrue(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
     assertFalse(renderedText.contains("Game over"));
@@ -100,13 +103,18 @@ public class GameConsoleTest {
 
   @Test
   void testCorrectlyRendersTiedGame() {
+    GameReport readyReport = MockGameReport.readyGame();
+    GameReport inProgressReport = MockGameReport.inProgressGame();
     GameReport report = MockGameReport.tiedGame();
 
+    gameConsole.renderGame(readyReport);
+    gameConsole.renderGame(inProgressReport);
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
     assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | X | O \n-----------\n O | X | X \n-----------\n X | O | O "));
+    assertTrue(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("Player 2's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
@@ -116,13 +124,18 @@ public class GameConsoleTest {
 
   @Test
   void testCorrectlyRendersWonGamePlayerOneWins() {
+    GameReport readyReport = MockGameReport.readyGame();
+    GameReport inProgressReport = MockGameReport.inProgressGame();
     GameReport report = MockGameReport.playerOneWins();
 
+    gameConsole.renderGame(readyReport);
+    gameConsole.renderGame(inProgressReport);
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
     assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | X | X \n-----------\n O | O | 6 \n-----------\n 7 | 8 | 9 "));
+    assertTrue(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("Player 2's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
@@ -132,13 +145,18 @@ public class GameConsoleTest {
 
   @Test
   void testCorrectlyRendersWonGamePlayerTwoWins() {
+    GameReport readyReport = MockGameReport.readyGame();
+    GameReport inProgressReport = MockGameReport.inProgressGame();
     GameReport report = MockGameReport.playerTwoWins();
 
+    gameConsole.renderGame(readyReport);
+    gameConsole.renderGame(inProgressReport);
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
     assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | X | 3 \n-----------\n O | O | O \n-----------\n 7 | 8 | X "));
+    assertTrue(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("Player 2's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));

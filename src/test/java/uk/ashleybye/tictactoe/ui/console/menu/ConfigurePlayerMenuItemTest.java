@@ -114,7 +114,6 @@ class ConfigurePlayerMenuItemTest extends MenuItem {
   @Test
   void testPlayersMarksCannotBeTheSame() {
     MenuItem returnedMenuItem = configurePlayerTwoMenuItem.handleInput("2");
-    String text = returnedMenuItem.launch();
 
     assertThrows(DuplicateMark.class, () -> returnedMenuItem.handleInput("X"));
   }
