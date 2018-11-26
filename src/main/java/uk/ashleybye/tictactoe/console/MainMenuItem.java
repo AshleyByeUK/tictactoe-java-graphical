@@ -20,8 +20,24 @@ public class MainMenuItem extends MenuItem {
   private static final String MAIN_MENU_PLAY = "Play a game";
   private static final String MAIN_MENU_QUIT = "Quit";
 
+  private MenuItem configurePlayerOneMenuItem;
+  private MenuItem configurePlayerTwoMenuItem;
+  private MenuItem playGameMenuItem;
+
   public MainMenuItem(ConsoleGameConfiguration gameConfiguration) {
     super(gameConfiguration);
+  }
+
+  public void setConfigurePlayerOneMenuItem(MenuItem menuItem) {
+    configurePlayerOneMenuItem = menuItem;
+  }
+
+  public void setConfigurePlayerTwoMenuItem(MenuItem menuItem) {
+    configurePlayerTwoMenuItem = menuItem;
+  }
+
+  public void setPlayGameMenuItem(MenuItem menuItem) {
+    playGameMenuItem = menuItem;
   }
 
   @Override
@@ -39,25 +55,16 @@ public class MainMenuItem extends MenuItem {
   }
 
   private String textForCurrentPlayerOptions(int playerNumber) {
-    List<ConsolePlayerConfiguration> playerConfigurations = configuration.getPlayerConfigurations();
+    ConsolePlayerConfiguration playerConfiguration = configuration.getPlayerConfiguration(playerNumber);
     return String.format(
         PLAYER_CONFIGURATION,
         String.format("%s:", String.format(PLAYER_HEADING, playerNumber)),
-        String.format(PLAYER_TYPE, textForPlayerType(playerConfigurations.get(playerNumber - 1).getPlayerType())),
-        String.format(PLAYER_NAME, playerConfigurations.get(playerNumber - 1).getPlayerName()),
-        String.format(PLAYER_MARK, playerConfigurations.get(playerNumber - 1).getPlayerMark()));
+        String.format(PLAYER_TYPE, textForPlayerType(playerConfiguration.getPlayerType())),
+        String.format(PLAYER_NAME, playerConfiguration.getPlayerName()),
+        String.format(PLAYER_MARK, playerConfiguration.getPlayerMark()));
   }
 
-  private String textForPlayerType(String type) {
-    switch (type) {
-      case "human":
-        return PLAYER_TYPE_HUMAN;
-      case "easy":
-        return PLAYER_TYPE_EASY;
-      default:
-        return "";
-    }
-  }
+
 
   private String textForMainMenu() {
     return MAIN_MENU_HEADING + "\n\n"
@@ -81,13 +88,11 @@ public class MainMenuItem extends MenuItem {
   public MenuItem handleInput(String input) {
     switch (input) {
       case "1":
-        return new ConfigurePlayerMenuItem(this, configuration, 1);
+        return configurePlayerOneMenuItem;
       case "2":
-        return new ConfigurePlayerMenuItem(this, configuration, 2);
+        return configurePlayerTwoMenuItem;
       case "3":
-        MenuItem play = new PlayGameMenuItem(this, configuration);
-        play.setIOWrapper(ioWrapper);
-        return play;
+        return playGameMenuItem;
       case "4":
         return previousMenu;
       default:

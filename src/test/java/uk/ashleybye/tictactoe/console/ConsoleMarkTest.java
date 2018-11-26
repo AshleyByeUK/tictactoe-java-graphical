@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -63,5 +64,19 @@ class ConsoleMarkTest {
     Mark mark = new ConsoleMark("X");
 
     assertFalse(mark.isEmpty());
+  }
+
+  @Test
+  void testEquality() {
+    Mark mark = new ConsoleMark("X");
+    Mark otherMark = new ConsoleMark("O");
+
+    assertEquals(mark, mark);
+    assertEquals(mark, new ConsoleMark("X"));
+    assertEquals(mark.hashCode(), (new ConsoleMark("X")).hashCode());
+    assertNotEquals(mark, otherMark);
+    assertNotEquals(mark, "not a mark");
+    assertNotEquals(mark, null);
+    assertNotEquals(mark.hashCode(), otherMark.hashCode());
   }
 }

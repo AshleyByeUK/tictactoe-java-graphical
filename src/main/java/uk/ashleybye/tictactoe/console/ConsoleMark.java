@@ -1,5 +1,6 @@
 package uk.ashleybye.tictactoe.console;
 
+import java.util.Objects;
 import uk.ashleybye.tictactoe.core.Mark;
 
 public class ConsoleMark implements Mark {
@@ -27,5 +28,20 @@ public class ConsoleMark implements Mark {
   @Override
   public String toString() {
     return mark;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    ConsoleMark that = (ConsoleMark) o;
+    return Objects.equals(mark, that.mark);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(mark);
   }
 }

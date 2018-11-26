@@ -1,11 +1,15 @@
 package uk.ashleybye.tictactoe.console;
 
-public class ConsolePlayerConfiguration {
+import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.PlayerConfiguration;
+
+public class ConsolePlayerConfiguration implements PlayerConfiguration {
 
   private String playerType;
   private String playerName;
-  private String playerMark;
+  private Mark playerMark;
 
+  @Override
   public String getPlayerType() {
     return playerType;
   }
@@ -14,6 +18,7 @@ public class ConsolePlayerConfiguration {
     this.playerType = playerType;
   }
 
+  @Override
   public String getPlayerName() {
     return playerName;
   }
@@ -22,11 +27,12 @@ public class ConsolePlayerConfiguration {
     this.playerName = playerName;
   }
 
-  public String getPlayerMark() {
+  @Override
+  public Mark getPlayerMark() {
     return playerMark;
   }
 
   public void setPlayerMark(String playerMark) {
-    this.playerMark = playerMark;
+    this.playerMark = new ConsoleMark(playerMark);
   }
 }

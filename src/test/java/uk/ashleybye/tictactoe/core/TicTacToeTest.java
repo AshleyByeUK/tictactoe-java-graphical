@@ -1,10 +1,16 @@
 package uk.ashleybye.tictactoe.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.console.MockGameConsole;
+import uk.ashleybye.tictactoe.console.MockPlayerFactory;
+import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayer;
+import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
+import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 
 class TicTacToeTest {
 
@@ -68,5 +74,42 @@ class TicTacToeTest {
     assertEquals(3, game.getNumberOfTimesIsGameOverCalled());
     assertEquals(3, game.getNumberOfTimesGenerateGameReportCalled());
     assertEquals(3, console.getNumberOfTimesRenderGameWasCalled());
+  }
+
+  @Test
+  void testCreatesNewGame() {
+    PlayerFactory playerFactory = new MockPlayerFactory();
+    GameConfiguration gameConfiguration = new MockGameConfiguration();
+    UserInterface userInterface = new MockGameConsole();
+
+    Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
+    Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
+    Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
+    TicTacToe expected = new TicTacToe(game, userInterface);
+
+    TicTacToe actual = TicTacToe.create(playerFactory, gameConfiguration, userInterface);
+
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void testEquality() {
+    PlayerFactory playerFactory = new MockPlayerFactory();
+    GameConfiguration gameConfiguration = new MockGameConfiguration();
+    UserInterface userInterface = new MockGameConsole();
+    TicTacToe ticTacToe = TicTacToe.create(playerFactory, gameConfiguration, userInterface);
+
+    Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Not Player 1");
+    Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Not Player 2");
+    Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
+    TicTacToe other = new TicTacToe(game, userInterface);
+
+    assertEquals(ticTacToe, ticTacToe);
+    assertEquals(ticTacToe, TicTacToe.create(playerFactory, gameConfiguration, userInterface));
+    assertEquals(ticTacToe.hashCode(), (TicTacToe.create(playerFactory, gameConfiguration, userInterface)).hashCode());
+    assertNotEquals(ticTacToe, other);
+    assertNotEquals(game, "not TicTacToe");
+    assertNotEquals(game, null);
+    assertNotEquals(game.hashCode(), other.hashCode());
   }
 }

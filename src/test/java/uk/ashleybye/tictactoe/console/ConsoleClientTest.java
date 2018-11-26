@@ -3,9 +3,9 @@ package uk.ashleybye.tictactoe.console;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.core.PlayerFactory;
 
 public class ConsoleClientTest {
 
@@ -28,11 +28,27 @@ public class ConsoleClientTest {
     playerTwoConfiguration.setPlayerName("Player 2");
     playerTwoConfiguration.setPlayerType("easy");
 
-    gameConfiguration = new ConsoleGameConfiguration(Arrays.asList(playerOneConfiguration, playerTwoConfiguration));
+    gameConfiguration = new ConsoleGameConfiguration();
+    gameConfiguration.addPlayerConfiguration(1, playerOneConfiguration);
+    gameConfiguration.addPlayerConfiguration(2, playerTwoConfiguration);
+    gameConfiguration.setEmptyMark(ConsoleMark.emptyMark());
+
     ioWrapper = new MockIOWrapper();
     ioWrapper.retainAllRenderedText();
 
-    consoleClient = new ConsoleClient(gameConfiguration, ioWrapper);
+    GameConsole gameConsole = new GameConsole(ioWrapper);
+
+    PlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
+
+    MainMenuItem mainMenu = new MainMenuItem(gameConfiguration);
+    ConfigurePlayerMenuItem configurePlayerOneMenuItem = new ConfigurePlayerMenuItem(mainMenu, gameConfiguration, 1, playerFactory);
+    ConfigurePlayerMenuItem configurePlayerTwoMenuItem = new ConfigurePlayerMenuItem(mainMenu, gameConfiguration, 2, playerFactory);
+    PlayGameMenuItem playGameMenuItem = new PlayGameMenuItem(mainMenu, gameConfiguration, playerFactory, gameConsole);
+    mainMenu.setConfigurePlayerOneMenuItem(configurePlayerOneMenuItem);
+    mainMenu.setConfigurePlayerTwoMenuItem(configurePlayerTwoMenuItem);
+    mainMenu.setPlayGameMenuItem(playGameMenuItem);
+
+    consoleClient = new ConsoleClient(mainMenu, ioWrapper);
   }
 
   @Test

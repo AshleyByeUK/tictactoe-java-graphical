@@ -5,10 +5,9 @@ public class ConsoleClient {
   private final IOWrapper ioWrapper;
   private MenuItem menuItem;
 
-  public ConsoleClient(ConsoleGameConfiguration gameConfiguration, IOWrapper ioWrapper) {
+  public ConsoleClient(MenuItem mainMenu, IOWrapper ioWrapper) {
     this.ioWrapper = ioWrapper;
-    menuItem = new MainMenuItem(gameConfiguration);
-    menuItem.setIOWrapper(ioWrapper);
+    menuItem = mainMenu;
   }
 
   public void start() {

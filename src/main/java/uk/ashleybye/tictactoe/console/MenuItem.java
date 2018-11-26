@@ -3,7 +3,7 @@ package uk.ashleybye.tictactoe.console;
 public abstract class MenuItem {
 
   protected static final String GOOD_BYE = "Good bye, thank you for playing";
-  private static final String INVALID_OPTION = "Invalid option, please try again";
+  protected static final String INVALID_OPTION = "Invalid option, please try again";
   protected static final String PLAYER_CONFIGURATION = "%s\n%s\n%s\n%s\n";
   protected static final String PLAYER_HEADING = "Player %d";
   protected static final String PLAYER_MARK = "Mark: %s";
@@ -15,7 +15,6 @@ public abstract class MenuItem {
 
   protected MenuItem previousMenu;
   protected final ConsoleGameConfiguration configuration;
-  protected IOWrapper ioWrapper;
 
   public MenuItem(MenuItem previousMenu, ConsoleGameConfiguration gameConfiguration) {
     this.previousMenu = previousMenu;
@@ -25,11 +24,6 @@ public abstract class MenuItem {
   protected MenuItem(ConsoleGameConfiguration gameConfiguration) {
     this(null, gameConfiguration);
     this.previousMenu = new QuitMenuItem();
-  }
-
-  // TODO: Move this method to something like game factory, it's only used in PlayGameMenuItem.
-  public void setIOWrapper(IOWrapper ioWrapper) {
-    this.ioWrapper = ioWrapper;
   }
 
   abstract public String launch();
@@ -46,6 +40,17 @@ public abstract class MenuItem {
 
   public boolean willQuit() {
     return false;
+  }
+
+  protected String textForPlayerType(String type) {
+    switch (type) {
+      case "human":
+        return PLAYER_TYPE_HUMAN;
+      case "easy":
+        return PLAYER_TYPE_EASY;
+      default:
+        return "";
+    }
   }
 
   private class QuitMenuItem extends MenuItem {
