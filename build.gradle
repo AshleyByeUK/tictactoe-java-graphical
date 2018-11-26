@@ -1,11 +1,13 @@
 plugins { 
+    id 'application'
     id 'java'
     id 'jacoco'
 }
 
 group 'uk.ashleybye'
 
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
@@ -13,6 +15,21 @@ repositories {
 
 dependencies {
     testCompile 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+run {
+    mainClassName = 'uk.ashleybye.tictactoe.ConsoleApplication'
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'uk.ashleybye.tictactoe.ConsoleApplication'
+        )
+    }
+    destinationDir = file("$rootDir/out")
 }
 
 wrapper {
@@ -23,7 +40,15 @@ clean {
     delete "${rootDir}/out"
 }
 
-test { useJUnitPlatform() }
+test {
+    useJUnitPlatform {
+        excludeTags 'slow'
+    }
+}
+
+task testSlow(type: Test) {
+    useJUnitPlatform()
+}
 
 jacoco {
     toolVersion = "0.8.2"
@@ -39,7 +64,7 @@ jacocoTestReport {
 
 jacocoTestCoverageVerification {
     violationRules.rule {
-        limit { counter = 'INSTRUCTION'; minimum = 0.95 }
+        limit { counter = 'INSTRUCTION'; minimum = 0.90 }
     }
 }
 
