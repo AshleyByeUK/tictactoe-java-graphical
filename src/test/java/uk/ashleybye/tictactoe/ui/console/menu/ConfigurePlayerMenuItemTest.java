@@ -119,6 +119,7 @@ class ConfigurePlayerMenuItemTest extends MenuItem {
     assertTrue(text.contains("Select a player type for Player 1"));
     assertTrue(text.contains("1. User"));
     assertTrue(text.contains("2. Easy Computer"));
+    assertTrue(text.contains("3. Hard Computer"));
     assertEquals("easy", gameConfiguration.getPlayerConfiguration(1).getPlayerType());
   }
 
@@ -131,6 +132,7 @@ class ConfigurePlayerMenuItemTest extends MenuItem {
     assertTrue(text.contains("Select a player type for Player 2"));
     assertTrue(text.contains("1. User"));
     assertTrue(text.contains("2. Easy Computer"));
+    assertTrue(text.contains("3. Hard Computer"));
     assertEquals("human", gameConfiguration.getPlayerConfiguration(2).getPlayerType());
   }
 

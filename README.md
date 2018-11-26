@@ -6,7 +6,7 @@
 ## Introduction
 
 A game of TicTacToe that can be played in the console. Features include Human vs Human, Human vs Computer and
-Computer vs Computer game play. The computer player can currently only be configured for easy difficulty.
+Computer vs Computer game play. The computer player can be configured for easy and hard difficulties.
 
 ![Game Play Screenshot](images/screenshot.png)
 

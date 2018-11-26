@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.core.Player;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
+import uk.ashleybye.tictactoe.core.player.HardPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 
 class ConsolePlayerFactoryTest {
@@ -25,6 +26,7 @@ class ConsolePlayerFactoryTest {
   void testProvidesListOfValidTypes() {
     assertEquals("human", factory.listPlayerTypes().get(0));
     assertEquals("easy", factory.listPlayerTypes().get(1));
+    assertEquals("hard", factory.listPlayerTypes().get(2));
   }
 
   @Test
@@ -39,6 +41,14 @@ class ConsolePlayerFactoryTest {
   void testCreatesEasyPlayer() {
     Player expected = new EasyPlayer(new ConsoleMark("X"), "Player 1");
     Player player = factory.make("easy", "Player 1", new ConsoleMark("X"));
+
+    assertEquals(expected, player);
+  }
+
+  @Test
+  void testCreatesHardPlayer() {
+    Player expected = new HardPlayer(new ConsoleMark("X"), "Player 1");
+    Player player = factory.make("hard", "Player 1", new ConsoleMark("X"));
 
     assertEquals(expected, player);
   }

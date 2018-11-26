@@ -13,7 +13,7 @@ public class MockPlayerFactory implements PlayerFactory {
 
   @Override
   public List<String> listPlayerTypes() {
-    return Arrays.asList("human", "easy");
+    return Arrays.asList("human", "easy", "hard");
   }
 
   @Override

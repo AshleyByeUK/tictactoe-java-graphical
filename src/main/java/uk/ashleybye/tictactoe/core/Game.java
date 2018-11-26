@@ -17,7 +17,7 @@ public class Game {
     this(playerOne, playerTwo, new Board(emptyMark));
   }
 
-  Game(Player playerOne, Player playerTwo, Board board) {
+  public Game(Player playerOne, Player playerTwo, Board board) {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.board = board;

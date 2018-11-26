@@ -10,6 +10,7 @@ public abstract class MenuItem {
   protected static final String PLAYER_NAME = "Name: %s";
   protected static final String PLAYER_TYPE = "Type: %s";
   protected static final String PLAYER_TYPE_EASY = "Easy Computer";
+  protected static final String PLAYER_TYPE_HARD = "Hard Computer";
   protected static final String PLAYER_TYPE_HUMAN = "User";
   protected static final String PROMPT = "> ";
   protected final ConsoleGameConfiguration configuration;
@@ -47,6 +48,8 @@ public abstract class MenuItem {
         return PLAYER_TYPE_HUMAN;
       case "easy":
         return PLAYER_TYPE_EASY;
+      case "hard":
+        return PLAYER_TYPE_HARD;
       default:
         return "";
     }

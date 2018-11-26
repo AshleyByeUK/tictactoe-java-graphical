@@ -7,6 +7,7 @@ import uk.ashleybye.tictactoe.core.Mark;
 import uk.ashleybye.tictactoe.core.Player;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
+import uk.ashleybye.tictactoe.core.player.HardPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 
 public class ConsolePlayerFactory implements PlayerFactory {
@@ -19,7 +20,7 @@ public class ConsolePlayerFactory implements PlayerFactory {
 
   @Override
   public List<String> listPlayerTypes() {
-    return Arrays.asList("human", "easy");
+    return Arrays.asList("human", "easy", "hard");
   }
 
   @Override
@@ -29,6 +30,8 @@ public class ConsolePlayerFactory implements PlayerFactory {
         return new HumanPlayer(playerMark, playerName, turnPublisher);
       case "easy":
         return new EasyPlayer(playerMark, playerName);
+      case "hard":
+        return new HardPlayer(playerMark, playerName);
       default:
         throw new IllegalArgumentException();
     }

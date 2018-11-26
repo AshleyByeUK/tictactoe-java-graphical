@@ -3,7 +3,6 @@ package uk.ashleybye.tictactoe.core.player;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.core.Game;
