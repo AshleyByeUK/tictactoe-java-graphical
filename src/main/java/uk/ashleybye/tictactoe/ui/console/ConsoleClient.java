@@ -26,19 +26,17 @@ public class ConsoleClient {
   }
 
   private void handleMenuItem() {
-    render(menuItem.launch());
+    ioWrapper.render(menuItem.launch());
     if (!menuItem.willQuit()) {
       String input = getInput();
       menuItem = menuItem.handleInput(input);
+      ioWrapper.clearScreen();
     }
   }
 
   private void handleBadInput() {
-    render(menuItem.handleBadInput());
-  }
-
-  private void render(String text) {
-    ioWrapper.render(text);
+    ioWrapper.clearScreen();
+    ioWrapper.render(menuItem.handleBadInput());
   }
 
   private String getInput() {

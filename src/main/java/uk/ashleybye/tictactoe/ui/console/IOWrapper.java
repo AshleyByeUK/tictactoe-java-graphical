@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class IOWrapper {
 
+  public void clearScreen() {
+    render("\033[2J");
+  }
+
   public void render(String text) {
     System.out.print(text);
   }

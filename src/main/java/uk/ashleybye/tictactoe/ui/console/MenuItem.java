@@ -66,7 +66,7 @@ public abstract class MenuItem {
     @Override
     public String launch() {
       hasQuit = true;
-      return GOOD_BYE;
+      return GOOD_BYE + "\n\n";
     }
 
     @Override

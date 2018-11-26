@@ -57,6 +57,7 @@ public class GameConsole implements HumanTurnPublisher, UserInterface {
         + getTextForMessageSection(gameReport)
         + getTextForGameOverSection(gameReport);
     history.add(gameReport);
+    ioWrapper.clearScreen();
     ioWrapper.render(text);
   }
 

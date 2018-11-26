@@ -12,6 +12,11 @@ public class MockIOWrapper extends IOWrapper {
   private List<String> renderedText = new ArrayList<>();
 
   @Override
+  public void clearScreen() {
+    // Do nothing
+  }
+
+  @Override
   public void render(String text) {
     renderedText.add(text);
     numberOfTimesRenderWasCalled++;
