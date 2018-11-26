@@ -1,5 +1,7 @@
 package uk.ashleybye.tictactoe.ui.console;
 
+import uk.ashleybye.tictactoe.ui.console.menu.ConfigurePlayerMenuItem.DuplicateMark;
+
 public class ConsoleClient {
 
   private final IOWrapper ioWrapper;
@@ -18,8 +20,8 @@ public class ConsoleClient {
   private void run() {
     try {
       handleMenuItem();
-    } catch (InvalidMenuOption ex) {
-      handleInvalidMenuOption();
+    } catch (InvalidMenuOption | DuplicateMark ex) {
+      handleBadInput();
     }
   }
 
@@ -31,7 +33,7 @@ public class ConsoleClient {
     }
   }
 
-  private void handleInvalidMenuOption() {
+  private void handleBadInput() {
     render(menuItem.handleBadInput());
   }
 

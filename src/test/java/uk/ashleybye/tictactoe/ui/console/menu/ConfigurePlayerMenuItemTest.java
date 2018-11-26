@@ -12,6 +12,7 @@ import uk.ashleybye.tictactoe.ui.console.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.ui.console.MenuItem;
 import uk.ashleybye.tictactoe.ui.console.MockIOWrapper;
 import uk.ashleybye.tictactoe.ui.console.MockPlayerFactory;
+import uk.ashleybye.tictactoe.ui.console.menu.ConfigurePlayerMenuItem.DuplicateMark;
 
 class ConfigurePlayerMenuItemTest extends MenuItem {
 
@@ -108,6 +109,14 @@ class ConfigurePlayerMenuItemTest extends MenuItem {
 
     assertTrue(text.contains("Enter a new mark for Player 2"));
     assertEquals("B", gameConfiguration.getPlayerConfiguration(2).getPlayerMark().toString());
+  }
+
+  @Test
+  void testPlayersMarksCannotBeTheSame() {
+    MenuItem returnedMenuItem = configurePlayerTwoMenuItem.handleInput("2");
+    String text = returnedMenuItem.launch();
+
+    assertThrows(DuplicateMark.class, () -> returnedMenuItem.handleInput("X"));
   }
 
   @Test

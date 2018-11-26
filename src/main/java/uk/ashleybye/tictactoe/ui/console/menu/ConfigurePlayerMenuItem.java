@@ -9,6 +9,7 @@ import uk.ashleybye.tictactoe.ui.console.MenuItem;
 
 public class ConfigurePlayerMenuItem extends MenuItem {
 
+  private static final String DUPLICATE_MARK = "Cannot have the same mark as %s, try again";
   private static final String ENTER_PLAYER_MARK = "Enter a new mark for %s";
   private static final String ENTER_PLAYER_NAME = "Enter a new name for %s";
   private static final String MAIN_HEADING = "Configure options for %s, current options shown in brackets:";
@@ -85,10 +86,13 @@ public class ConfigurePlayerMenuItem extends MenuItem {
   private class SetPlayerMarkMenuItem extends MenuItem {
 
     private final int player;
+    private final int otherPlayer;
+    private boolean duplicateMark = false;
 
     SetPlayerMarkMenuItem(MenuItem previousMenu, ConsoleGameConfiguration configuration, int player) {
       super(previousMenu, configuration);
       this.player = player;
+      this.otherPlayer = player == 1 ? 2 : 1;
     }
 
     @Override
@@ -100,9 +104,32 @@ public class ConfigurePlayerMenuItem extends MenuItem {
     @Override
     public MenuItem handleInput(String input) {
       ConsolePlayerConfiguration playerConfiguration = configuration.getPlayerConfiguration(player);
+      ConsolePlayerConfiguration otherPlayerConfiguration = configuration.getPlayerConfiguration(otherPlayer);
       playerConfiguration.setPlayerMark(input.strip().toUpperCase());
       configuration.setPlayerConfiguration(player, playerConfiguration);
-      return previousMenu;
+
+      if (playerConfiguration.getPlayerMark().equals(otherPlayerConfiguration.getPlayerMark()))
+        return handleDuplicateMark();
+      else
+        return previousMenu;
+    }
+
+    private MenuItem handleDuplicateMark() {
+      duplicateMark = true;
+      throw new DuplicateMark();
+    }
+
+    @Override
+    public String handleBadInput() {
+      if (duplicateMark)
+        return textForDuplicateMark();
+      else
+        return super.handleBadInput();
+    }
+
+    private String textForDuplicateMark() {
+      duplicateMark = false;
+      return String.format(DUPLICATE_MARK, configuration.getPlayerConfiguration(otherPlayer).getPlayerName()) + "\n\n";
     }
   }
 
@@ -146,4 +173,6 @@ public class ConfigurePlayerMenuItem extends MenuItem {
       }
     }
   }
+
+  public static class DuplicateMark extends RuntimeException {}
 }
