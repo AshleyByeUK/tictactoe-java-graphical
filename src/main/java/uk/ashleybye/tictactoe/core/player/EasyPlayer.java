@@ -1,9 +1,8 @@
 package uk.ashleybye.tictactoe.core.player;
 
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.Game;
-import uk.ashleybye.tictactoe.core.Mark;
-import uk.ashleybye.tictactoe.core.Player;
+import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.board.Mark;
 
 public class EasyPlayer implements Player {
 
@@ -26,8 +25,8 @@ public class EasyPlayer implements Player {
   }
 
   @Override
-  public int choosePositionToPlay(Game game) {
-    return game.listOpenPositions().get(0);
+  public int choosePositionToPlay(TicTacToe ticTacToe) {
+    return ticTacToe.listOpenPositions().get(0);
   }
 
   @Override

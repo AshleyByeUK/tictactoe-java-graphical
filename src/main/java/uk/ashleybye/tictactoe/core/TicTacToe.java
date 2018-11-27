@@ -1,50 +1,111 @@
 package uk.ashleybye.tictactoe.core;
 
+import java.util.List;
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
-import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
+import java.util.stream.Collectors;
+import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.board.Mark;
+import uk.ashleybye.tictactoe.core.board.Square;
+import uk.ashleybye.tictactoe.core.player.Player;
 
 public class TicTacToe {
 
-  private final UserInterface userInterface;
-  private Game game;
+  private final Player playerOne;
+  private final Player playerTwo;
+  private Board board;
+  private int currentPlayer;
 
-  TicTacToe(Game game, UserInterface userInterface) {
-    this.game = game;
-    this.userInterface = userInterface;
+  public TicTacToe(Player playerOne, Player playerTwo, Mark emptyMark) {
+    this(playerOne, playerTwo, new Board(emptyMark));
   }
 
-  public static TicTacToe create(
-      PlayerFactory playerFactory, GameConfiguration gameConfiguration, UserInterface userInterface) {
-    Player playerOne = makePlayer(1, playerFactory, gameConfiguration);
-    Player playerTwo = makePlayer(2, playerFactory, gameConfiguration);
-
-    Game game = new Game(playerOne, playerTwo, gameConfiguration.getEmptyMark());
-
-    return new TicTacToe(game, userInterface);
+  public TicTacToe(Player playerOne, Player playerTwo, Board board) {
+    this.playerOne = playerOne;
+    this.playerTwo = playerTwo;
+    this.board = board;
+    currentPlayer = 1;
   }
 
-  private static Player makePlayer(int player, PlayerFactory playerFactory, GameConfiguration gameConfiguration) {
-    PlayerConfiguration playerOneConfiguration = gameConfiguration.getPlayerConfiguration(player);
-    return playerFactory.make(
-        playerOneConfiguration.getPlayerType(),
-        playerOneConfiguration.getPlayerName(),
-        playerOneConfiguration.getPlayerMark());
+  public Board getBoard() {
+    return board;
   }
 
-  public void play() {
-    while (!game.isGameOver())
-      playGame();
-    userInterface.renderGame(game.generateGameReport());
+  public Player getCurrentPlayer() {
+    return currentPlayer == 1 ? playerOne : playerTwo;
   }
 
-  private void playGame() {
-    try {
-      userInterface.renderGame(game.generateGameReport());
-      game = game.playNextTurn();
-    } catch (InvalidSquareNumber | SquareUnavailable ex) {
-      // Do nothing.
-    }
+  public Player getOtherPlayer() {
+    return currentPlayer == 1 ? playerTwo : playerOne;
+  }
+
+  public GameState getGameState() {
+    if (isGameOver())
+      return GameState.GAME_OVER;
+    if (listOpenPositions().size() < 9)
+      return GameState.PLAYING;
+    else
+      return GameState.READY;
+  }
+
+  public List<Integer> listOpenPositions() {
+    return board
+        .listUnmarkedSquares()
+        .stream()
+        .filter(square -> !square.isMarked())
+        .map(square -> square.getPosition())
+        .collect(Collectors.toList());
+  }
+
+  public TicTacToe playNextTurn() {
+    if (isGameOver())
+      return new TicTacToe(getCurrentPlayer(), getOtherPlayer(), board);
+    else
+      return gameWithTurnApplied();
+  }
+
+  private TicTacToe gameWithTurnApplied() {
+    return new TicTacToe(getCurrentPlayer(), getOtherPlayer(), boardWithTurnApplied())
+        .swapPlayers();
+  }
+
+  private Board boardWithTurnApplied() {
+    return this.board.markSquare(getCurrentPlayer().choosePositionToPlay(this), getCurrentPlayer().getMark());
+  }
+
+  private TicTacToe swapPlayers() {
+    currentPlayer = currentPlayer == 1 ? 2 : 1;
+    return this;
+  }
+
+  public boolean isGameOver() {
+    return isTied() || isWon(playerOne) || isWon(playerTwo);
+  }
+
+  public boolean isTied() {
+    return listOpenPositions().size() == 0 && !(isWon(playerOne) || isWon(playerTwo));
+  }
+
+  public boolean isWon(Player player) {
+    return board
+        .listPossibleWinningSquares()
+        .stream()
+        .anyMatch(wc -> isWiningCombination(wc, player.getMark()));
+  }
+
+  private boolean isWiningCombination(List<Square> possibleWinningCombination, Mark mark) {
+    return possibleWinningCombination.get(0).getMark().equals(mark)
+        && possibleWinningCombination.get(1).getMark().equals(mark)
+        && possibleWinningCombination.get(2).getMark().equals(mark);
+  }
+
+  public GameReport generateGameReport() {
+    GameReport report = new GameReport();
+    report.setCurrentBoard(board);
+    report.setCurrentPlayer(getCurrentPlayer());
+    report.setLastPlayer(getOtherPlayer());
+    report.setCurrentState(getGameState());
+    report.setResult(isTied(), isWon(playerOne) || isWon(playerTwo));
+    return report;
   }
 
   @Override
@@ -54,12 +115,14 @@ public class TicTacToe {
     if (o == null || getClass() != o.getClass())
       return false;
     TicTacToe ticTacToe = (TicTacToe) o;
-    return Objects.equals(userInterface, ticTacToe.userInterface) &&
-        Objects.equals(game, ticTacToe.game);
+    return currentPlayer == ticTacToe.currentPlayer &&
+        Objects.equals(playerOne, ticTacToe.playerOne) &&
+        Objects.equals(playerTwo, ticTacToe.playerTwo) &&
+        Objects.equals(board, ticTacToe.board);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userInterface, game);
+    return Objects.hash(playerOne, playerTwo, board, currentPlayer);
   }
 }

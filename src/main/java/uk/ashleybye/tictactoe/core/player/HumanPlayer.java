@@ -1,11 +1,8 @@
 package uk.ashleybye.tictactoe.core.player;
 
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.Game;
-import uk.ashleybye.tictactoe.core.HumanTurnPublisher;
-import uk.ashleybye.tictactoe.core.HumanTurnSubscriber;
-import uk.ashleybye.tictactoe.core.Mark;
-import uk.ashleybye.tictactoe.core.Player;
+import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.board.Mark;
 
 public class HumanPlayer implements Player, HumanTurnSubscriber {
 
@@ -31,7 +28,7 @@ public class HumanPlayer implements Player, HumanTurnSubscriber {
   }
 
   @Override
-  public int choosePositionToPlay(Game game) {
+  public int choosePositionToPlay(TicTacToe ticTacToe) {
     positionToPlay = null;
     publisher.subscribeToTurnNotifications(this);
     while (true)

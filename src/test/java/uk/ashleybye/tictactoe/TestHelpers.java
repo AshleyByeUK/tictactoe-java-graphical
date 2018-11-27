@@ -1,6 +1,6 @@
 package uk.ashleybye.tictactoe;
 
-import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.board.Board;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;

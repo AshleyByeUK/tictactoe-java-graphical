@@ -18,7 +18,7 @@ dependencies {
 }
 
 run {
-    mainClassName = 'uk.ashleybye.tictactoe.ConsoleApplication'
+    mainClassName = 'uk.ashleybye.tictactoe.Application'
     standardInput = System.in
 }
 
@@ -26,7 +26,7 @@ jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'uk.ashleybye.tictactoe.ConsoleApplication'
+                'Main-Class': 'uk.ashleybye.tictactoe.Application'
         )
     }
     destinationDir = file("$rootDir/out")

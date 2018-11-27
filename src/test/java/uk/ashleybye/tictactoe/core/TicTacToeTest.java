@@ -1,115 +1,227 @@
 package uk.ashleybye.tictactoe.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.TestHelpers;
+import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
+import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
-import uk.ashleybye.tictactoe.ui.console.MockGameConsole;
-import uk.ashleybye.tictactoe.ui.console.MockPlayerFactory;
 
-class TicTacToeTest {
+public class TicTacToeTest {
 
-  private MockGameConsole console;
-  private MockGame game;
+  private MockPlayer playerOne;
+  private MockPlayer playerTwo;
   private TicTacToe ticTacToe;
 
   @BeforeEach
   void setUp() {
-    console = new MockGameConsole();
-    game = new MockGame();
-    ticTacToe = new TicTacToe(game, console);
+    playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
+    playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
+    ticTacToe = new TicTacToe(playerOne, playerTwo, new MockEmptyMark());
   }
 
   @Test
-  void testStopsRunningWhenGameIsOver() {
-    game.addIsGameOver(true);
-
-    ticTacToe.play();
-
-    assertEquals(1, game.getNumberOfTimesIsGameOverCalled());
-    assertEquals(1, game.getNumberOfTimesGenerateGameReportCalled());
-    assertEquals(1, console.getNumberOfTimesRenderGameWasCalled());
+  void testNewGameIsCorrectlySetup() {
+    Assertions.assertEquals(TestHelpers.generateBoard("- - - - - - - - -"), ticTacToe.getBoard());
+    assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9), ticTacToe.listOpenPositions());
+    assertEquals(playerOne, ticTacToe.getCurrentPlayer());
+    assertEquals(playerTwo, ticTacToe.getOtherPlayer());
+    Assertions.assertEquals(GameState.READY, ticTacToe.getGameState());
+    assertFalse(ticTacToe.isWon(playerOne));
+    assertFalse(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
   }
 
   @Test
-  void testKeepsRunningUntilGameIsOver() {
-    game.addIsGameOver(false);
-    game.addIsGameOver(true);
+  void testAfterValidFirstTurnPlayerTwoIsCurrentPlayer() {
+    playerOne.setNextPositionToPlay(1);
 
-    ticTacToe.play();
+    ticTacToe = ticTacToe.playNextTurn();
 
-    assertEquals(2, game.getNumberOfTimesIsGameOverCalled());
-    assertEquals(2, game.getNumberOfTimesGenerateGameReportCalled());
-    assertEquals(2, console.getNumberOfTimesRenderGameWasCalled());
+    Assertions.assertEquals(TestHelpers.generateBoard("X - - - - - - - -"), ticTacToe.getBoard());
+    assertEquals(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9), ticTacToe.listOpenPositions());
+    assertEquals(playerTwo, ticTacToe.getCurrentPlayer());
+    assertEquals(playerOne, ticTacToe.getOtherPlayer());
+    assertEquals(GameState.PLAYING, ticTacToe.getGameState());
+    assertFalse(ticTacToe.isWon(playerOne));
+    assertFalse(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
   }
 
   @Test
-  void testTurnIsNotValidAfterInvalidSquareNumberGiven() {
-    game.addIsGameOver(false);
-    game.addIsGameOver(false);
-    game.addIsGameOver(true);
-    game.setThrowInvalidSquareNumber();
+  void testAfterValidPlayerOneAndPlayerTwoTurnsPlayerOneIsCurrentPlayer() {
+    playerOne.setNextPositionToPlay(1);
+    playerTwo.setNextPositionToPlay(2);
 
-    ticTacToe.play();
+    ticTacToe = ticTacToe.playNextTurn();
+    ticTacToe = ticTacToe.playNextTurn();
 
-    assertEquals(3, game.getNumberOfTimesIsGameOverCalled());
-    assertEquals(3, game.getNumberOfTimesGenerateGameReportCalled());
-    assertEquals(3, console.getNumberOfTimesRenderGameWasCalled());
+    Assertions.assertEquals(TestHelpers.generateBoard("X O - - - - - - -"), ticTacToe.getBoard());
+    assertEquals(Arrays.asList(3, 4, 5, 6, 7, 8, 9), ticTacToe.listOpenPositions());
+    assertEquals(playerOne, ticTacToe.getCurrentPlayer());
+    assertEquals(playerTwo, ticTacToe.getOtherPlayer());
+    assertEquals(GameState.PLAYING, ticTacToe.getGameState());
+    assertFalse(ticTacToe.isWon(playerOne));
+    assertFalse(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
   }
 
   @Test
-  void testTurnIsNotValidAfterUnavailableSquareGiven() {
-    game.addIsGameOver(false);
-    game.addIsGameOver(false);
-    game.addIsGameOver(true);
-    game.setThrowSquareUnavailable();
+  void testGameDoesNotChangeWhenChoosingPreviouslyMarkedSquare() {
+    Board board = TestHelpers.generateBoard("X - - - - - - - -");
+    playerOne.setNextPositionToPlay(1);
+    ticTacToe = new TicTacToe(playerOne, playerTwo, board);
 
-    ticTacToe.play();
+    final TicTacToe[] ticTacToeAfterBadTurn = new TicTacToe[1];
+    Throwable exception = assertThrows(SquareUnavailable.class, () -> ticTacToeAfterBadTurn[0] = ticTacToe.playNextTurn());
 
-    assertEquals(3, game.getNumberOfTimesIsGameOverCalled());
-    assertEquals(3, game.getNumberOfTimesGenerateGameReportCalled());
-    assertEquals(3, console.getNumberOfTimesRenderGameWasCalled());
+    assertEquals("square has already been marked", exception.getMessage());
+    assertNull(ticTacToeAfterBadTurn[0]);
   }
 
   @Test
-  void testCreatesNewGame() {
-    PlayerFactory playerFactory = new MockPlayerFactory();
-    GameConfiguration gameConfiguration = new MockGameConfiguration();
-    UserInterface userInterface = new MockGameConsole();
+  void testGameDoesNotChangeWhenChoosingInvalidSquareNumber() {
+    playerOne.setNextPositionToPlay(999);
 
-    Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
-    Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
-    Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
-    TicTacToe expected = new TicTacToe(game, userInterface);
+    final TicTacToe[] ticTacToeAfterBadTurn = new TicTacToe[1];
+    Throwable exception = assertThrows(InvalidSquareNumber.class, () -> ticTacToeAfterBadTurn[0] = ticTacToe.playNextTurn());
 
-    TicTacToe actual = TicTacToe.create(playerFactory, gameConfiguration, userInterface);
+    assertEquals("invalid square number provided", exception.getMessage());
+    assertNull(ticTacToeAfterBadTurn[0]);
+  }
 
-    assertEquals(expected, actual);
+  @Test
+  void testFullBoardNoWinnerResultsInTiedGame() {
+    Board board = TestHelpers.generateBoard("X X O O X X X O O");
+
+    ticTacToe = new TicTacToe(playerOne, playerTwo, board);
+
+    assertEquals(Collections.emptyList(), ticTacToe.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, ticTacToe.getGameState());
+    assertFalse(ticTacToe.isWon(playerOne));
+    assertFalse(ticTacToe.isWon(playerTwo));
+    assertTrue(ticTacToe.isTied());
+  }
+
+  @Test
+  void testPlayerOneHasWon() {
+    Board board = TestHelpers.generateBoard("X X X O O - - - -");
+
+    ticTacToe = new TicTacToe(playerOne, playerTwo, board);
+
+    assertEquals(Arrays.asList(6, 7, 8, 9), ticTacToe.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, ticTacToe.getGameState());
+    assertTrue(ticTacToe.isWon(playerOne));
+    assertFalse(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
+  }
+
+  @Test
+  void testPlayerTwoHasWon() {
+    Board board = TestHelpers.generateBoard("X X - O O O X - -");
+
+    ticTacToe = new TicTacToe(playerOne, playerTwo, board);
+
+    assertEquals(Arrays.asList(3, 8, 9), ticTacToe.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, ticTacToe.getGameState());
+    assertFalse(ticTacToe.isWon(playerOne));
+    assertTrue(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
+  }
+
+  @Test
+  void testWinForPlayerOneOnFinalTurnIsNotATie() {
+    Board board = TestHelpers.generateBoard("O X X X O X O O -");
+    playerOne.setNextPositionToPlay(9);
+
+    ticTacToe = new TicTacToe(playerOne, playerTwo, board);
+    ticTacToe = ticTacToe.playNextTurn();
+
+    assertEquals(Collections.emptyList(), ticTacToe.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, ticTacToe.getGameState());
+    assertTrue(ticTacToe.isWon(playerOne));
+    assertFalse(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
+  }
+
+  @Test
+  void testWinForPlayerTwoOnFinalTurnIsNotATie() {
+    Board board = TestHelpers.generateBoard("O O X X O X X X -");
+    playerTwo.setNextPositionToPlay(9);
+
+    ticTacToe = new TicTacToe(playerTwo, playerOne, board);
+    ticTacToe = ticTacToe.playNextTurn();
+
+    assertEquals(Collections.emptyList(), ticTacToe.listOpenPositions());
+    assertEquals(GameState.GAME_OVER, ticTacToe.getGameState());
+    assertFalse(ticTacToe.isWon(playerOne));
+    assertTrue(ticTacToe.isWon(playerTwo));
+    assertFalse(ticTacToe.isTied());
+  }
+
+  @Test
+  void testWhenGameIsOverPlayingATurnHasNoEffect() {
+    Board board = TestHelpers.generateBoard("O X X X O X O O X");
+    playerOne.setNextPositionToPlay(9);
+
+    ticTacToe = new TicTacToe(playerOne, playerTwo, board);
+    TicTacToe unchangedTicTacToe = ticTacToe.playNextTurn();
+
+    assertEquals(ticTacToe, unchangedTicTacToe);
+  }
+
+  @Test
+  void testGeneratesGameReportWithCorrectDetails() {
+    Mark empty = new MockEmptyMark();
+    Map<Integer, Mark> boardRepresentation = new HashMap<>();
+    boardRepresentation.put(1, empty);
+    boardRepresentation.put(2, empty);
+    boardRepresentation.put(3, empty);
+    boardRepresentation.put(4, empty);
+    boardRepresentation.put(5, empty);
+    boardRepresentation.put(6, empty);
+    boardRepresentation.put(7, empty);
+    boardRepresentation.put(8, empty);
+    boardRepresentation.put(9, empty);
+
+    GameReport report = ticTacToe.generateGameReport();
+
+    assertEquals(boardRepresentation, report.getCurrentBoard());
+    assertEquals(playerOne.getName(), report.getCurrentPlayer());
+    assertEquals("", report.getLastPlayer());
+    assertEquals("ready", report.getCurrentState());
+    assertEquals("", report.getResult());
+    assertEquals("", report.getWinner());
   }
 
   @Test
   void testEquality() {
-    PlayerFactory playerFactory = new MockPlayerFactory();
-    GameConfiguration gameConfiguration = new MockGameConfiguration();
-    UserInterface userInterface = new MockGameConsole();
-    TicTacToe ticTacToe = TicTacToe.create(playerFactory, gameConfiguration, userInterface);
-
-    Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Not Player 1");
-    Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Not Player 2");
-    Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
-    TicTacToe other = new TicTacToe(game, userInterface);
+    TicTacToe ticTacToe = new TicTacToe(playerOne, playerTwo, new MockEmptyMark());
+    TicTacToe otherTicTacToe = new TicTacToe(playerTwo, playerOne, new MockPlayerOneMark());
 
     assertEquals(ticTacToe, ticTacToe);
-    assertEquals(ticTacToe, TicTacToe.create(playerFactory, gameConfiguration, userInterface));
-    assertEquals(ticTacToe.hashCode(), (TicTacToe.create(playerFactory, gameConfiguration, userInterface)).hashCode());
-    assertNotEquals(ticTacToe, other);
-    assertNotEquals(game, "not TicTacToe");
-    assertNotEquals(game, null);
-    assertNotEquals(game.hashCode(), other.hashCode());
+    assertEquals(ticTacToe, new TicTacToe(playerOne, playerTwo, new MockEmptyMark()));
+    assertEquals(ticTacToe.hashCode(), (new TicTacToe(playerOne, playerTwo, new MockEmptyMark())).hashCode());
+    assertNotEquals(ticTacToe, otherTicTacToe);
+    assertNotEquals(ticTacToe, "not a ticTacToe");
+    assertNotEquals(ticTacToe, null);
+    assertNotEquals(ticTacToe.hashCode(), otherTicTacToe.hashCode());
   }
 }

@@ -1,0 +1,49 @@
+package uk.ashleybye.tictactoe.console.view;
+
+import java.util.List;
+import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.core.PlayerFactory;
+
+public class SetPlayerTypeView extends View {
+  private static final String SELECT_PLAYER_TYPE = "Select a player type for %s:";
+
+  private final int player;
+  private PlayerFactory playerFactory;
+
+  SetPlayerTypeView(
+      View previousMenu, ConsoleGameConfiguration configuration, int player, PlayerFactory playerFactory) {
+    super(previousMenu, configuration);
+    this.player = player;
+    this.playerFactory = playerFactory;
+  }
+
+  @Override
+  public String launch() {
+    return String.format(SELECT_PLAYER_TYPE, String.format(PLAYER_HEADING, player)) + "\n\n"
+        + textForPlayerTypes() + "\n"
+        + PROMPT;
+  }
+
+  private String textForPlayerTypes() {
+    List<String> playerTypes = playerFactory.listPlayerTypes();
+    String text = "";
+    for (int i = 0; i < playerTypes.size(); i++)
+      text += String.format("%d. %s\n", i + 1, textForPlayerType(playerTypes.get(i)));
+    return text;
+  }
+
+  @Override
+  public View handleInput(String input) {
+    try {
+      String option = playerFactory.listPlayerTypes().get(Integer.parseInt(input) - 1);
+      ConsolePlayerConfiguration playerConfiguration = configuration.getPlayerConfiguration(player);
+      playerConfiguration.setPlayerType(option);
+      configuration.setPlayerConfiguration(player, playerConfiguration);
+      return previousMenu;
+    } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
+      throw new InvalidMenuOption();
+    }
+  }
+}

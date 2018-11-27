@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.TestHelpers;
-import uk.ashleybye.tictactoe.core.Mark;
 import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;

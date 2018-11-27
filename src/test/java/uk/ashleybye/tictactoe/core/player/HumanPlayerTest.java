@@ -3,14 +3,12 @@ package uk.ashleybye.tictactoe.core.player;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.core.Game;
-import uk.ashleybye.tictactoe.core.HumanTurnPublisher;
-import uk.ashleybye.tictactoe.core.MockGame;
-import uk.ashleybye.tictactoe.core.MockHumanTurnPublisher;
-import uk.ashleybye.tictactoe.core.Player;
-import uk.ashleybye.tictactoe.ui.console.MockGameConsole;
+import uk.ashleybye.tictactoe.core.MockTicTacToe;
+import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
 
 public class HumanPlayerTest {
 
@@ -19,20 +17,21 @@ public class HumanPlayerTest {
     HumanTurnPublisher turnPublisher = new MockHumanTurnPublisher(1, 0L);
     Player player = new HumanPlayer(new MockPlayerOneMark(), "Player", turnPublisher);
 
-    Game game = new MockGame();
+    TicTacToe ticTacToe = new MockTicTacToe();
 
-    assertEquals(1, player.choosePositionToPlay(game));
+    assertEquals(1, player.choosePositionToPlay(ticTacToe));
   }
 
+  @Disabled
   @Test
   @Tag("slow")
   void testCanGetAMoveWhenThereIsADelay() {
     HumanTurnPublisher turnPublisher = new MockHumanTurnPublisher(1, 10000L);
     Player player = new HumanPlayer(new MockPlayerOneMark(), "Player", turnPublisher);
 
-    Game game = new MockGame();
+    TicTacToe ticTacToe = new MockTicTacToe();
 
-    assertEquals(1, player.choosePositionToPlay(game));
+    assertEquals(1, player.choosePositionToPlay(ticTacToe));
   }
 
   @Test
