@@ -3,7 +3,9 @@ package uk.ashleybye.tictactoe.core;
 import java.util.HashMap;
 import java.util.Map;
 import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.board.Square;
+import uk.ashleybye.tictactoe.core.player.Player;
 
 public class GameReport {
 

@@ -8,7 +8,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import uk.ashleybye.tictactoe.core.Mark;
 
 public class Board implements Iterable<Square> {
 

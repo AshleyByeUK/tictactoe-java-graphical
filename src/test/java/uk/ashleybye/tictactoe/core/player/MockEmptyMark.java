@@ -1,7 +1,7 @@
 package uk.ashleybye.tictactoe.core.player;
 
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.Mark;
+import uk.ashleybye.tictactoe.core.board.Mark;
 
 public class MockEmptyMark implements Mark {
 

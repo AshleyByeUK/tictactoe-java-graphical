@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.TestHelpers;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
