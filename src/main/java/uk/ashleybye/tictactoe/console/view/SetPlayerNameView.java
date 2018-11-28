@@ -1,5 +1,6 @@
 package uk.ashleybye.tictactoe.console.view;
 
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 
@@ -9,15 +10,19 @@ public class SetPlayerNameView extends View {
 
   private final int player;
 
-  SetPlayerNameView(View previousMenu, ConsoleGameConfiguration configuration, int player) {
-    super(previousMenu, configuration);
+  SetPlayerNameView(View previousMenu,
+      ConsoleGameConfiguration configuration,
+      int player,
+      IOWrapper ioWrapper) {
+    super(previousMenu, configuration, ioWrapper);
     this.player = player;
   }
 
   @Override
-  public String launch() {
-    return String.format(ENTER_PLAYER_NAME, String.format(PLAYER_HEADING, player)) + "\n\n"
-        + PROMPT;
+  public void render() {
+    ioWrapper.render(String.format("%s\n\n%s",
+        String.format(ENTER_PLAYER_NAME, String.format(PLAYER_HEADING, player)),
+        PROMPT));
   }
 
   @Override

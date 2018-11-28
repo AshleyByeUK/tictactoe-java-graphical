@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static uk.ashleybye.tictactoe.TestHelpers.colourisedMark;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,11 +29,11 @@ public class ConsoleClientTest {
     playerOneConfiguration = new ConsolePlayerConfiguration();
     playerTwoConfiguration = new ConsolePlayerConfiguration();
 
-    playerOneConfiguration.setPlayerMark("X");
+    playerOneConfiguration.setPlayerMark(new ConsoleMark("X"));
     playerOneConfiguration.setPlayerName("Player 1");
     playerOneConfiguration.setPlayerType("human");
 
-    playerTwoConfiguration.setPlayerMark("O");
+    playerTwoConfiguration.setPlayerMark(new ConsoleMark("O"));
     playerTwoConfiguration.setPlayerName("Player 2");
     playerTwoConfiguration.setPlayerType("easy");
 
@@ -48,12 +49,13 @@ public class ConsoleClientTest {
 
     PlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
 
-    MainView mainMenu = new MainView(gameConfiguration);
-    ConfigurePlayerView configurePlayerOneMenuItem = new ConfigurePlayerView(mainMenu, gameConfiguration, 1,
-        playerFactory);
-    ConfigurePlayerView configurePlayerTwoMenuItem = new ConfigurePlayerView(mainMenu, gameConfiguration, 2,
-        playerFactory);
-    PlayGameView playGameMenuItem = new PlayGameView(mainMenu, gameConfiguration, playerFactory, gameConsole);
+    MainView mainMenu = new MainView(gameConfiguration, ioWrapper);
+    ConfigurePlayerView configurePlayerOneMenuItem = new ConfigurePlayerView(
+        mainMenu, gameConfiguration, 1, playerFactory, ioWrapper);
+    ConfigurePlayerView configurePlayerTwoMenuItem = new ConfigurePlayerView(
+        mainMenu, gameConfiguration, 2, playerFactory, ioWrapper);
+    PlayGameView playGameMenuItem = new PlayGameView(
+        mainMenu, gameConfiguration, playerFactory, gameConsole, ioWrapper);
     mainMenu.setConfigurePlayerOneView(configurePlayerOneMenuItem);
     mainMenu.setConfigurePlayerTwoView(configurePlayerTwoMenuItem);
     mainMenu.setPlayGameView(playGameMenuItem);
@@ -68,19 +70,19 @@ public class ConsoleClientTest {
 
     String renderedText = ioWrapper.getRenderedText();
     assertTrue(renderedText.contains(MainView.MAIN_TITLE));
-    assertTrue(renderedText.contains("Current gameClient options:"));
+    assertTrue(renderedText.contains("Current game options:"));
     assertTrue(renderedText.contains("Player 1:"));
     assertTrue(renderedText.contains("Type: User"));
     assertTrue(renderedText.contains("Name: Player 1"));
-    assertTrue(renderedText.contains("Mark: X"));
+    assertTrue(renderedText.contains("Mark: " + colourisedMark("X", "[37m", "[37m")));
     assertTrue(renderedText.contains("Player 2:"));
     assertTrue(renderedText.contains("Type: Easy Computer"));
     assertTrue(renderedText.contains("Name: Player 2"));
-    assertTrue(renderedText.contains("Mark: O"));
+    assertTrue(renderedText.contains("Mark: " + colourisedMark("O", "[37m", "[37m")));
     assertTrue(renderedText.contains("Select an option below:"));
     assertTrue(renderedText.contains("1. Configure Player 1"));
     assertTrue(renderedText.contains("2. Configure Player 2"));
-    assertTrue(renderedText.contains("3. Play a gameClient"));
+    assertTrue(renderedText.contains("3. Play a game"));
     assertTrue(renderedText.contains("4. Quit"));
     assertTrue(renderedText.contains("> "));
     assertEquals(2, ioWrapper.getNumberOfTimesRenderWasCalled());

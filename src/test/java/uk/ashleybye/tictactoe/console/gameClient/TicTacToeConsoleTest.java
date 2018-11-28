@@ -61,7 +61,7 @@ public class TicTacToeConsoleTest {
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
-    assertTrue(renderedText.contains("Great, let's play a gameClient of Tic Tac Toe!\n\n"));
+    assertTrue(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 "));
     assertFalse(renderedText.contains("played in position"));
     assertTrue(renderedText.contains("Player 1's turn > "));
@@ -119,7 +119,7 @@ public class TicTacToeConsoleTest {
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("Player 2's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
-    assertTrue(renderedText.contains("TicTacToe over"));
+    assertTrue(renderedText.contains("Game over"));
     assertTrue(renderedText.contains("It's a draw"));
   }
 
@@ -140,7 +140,7 @@ public class TicTacToeConsoleTest {
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("Player 2's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
-    assertTrue(renderedText.contains("TicTacToe over"));
+    assertTrue(renderedText.contains("Game over"));
     assertTrue(renderedText.contains("Player 1 won"));
   }
 
@@ -161,7 +161,7 @@ public class TicTacToeConsoleTest {
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("Player 2's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
-    assertTrue(renderedText.contains("TicTacToe over"));
+    assertTrue(renderedText.contains("Game over"));
     assertTrue(renderedText.contains("Player 2 won"));
   }
 }

@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static uk.ashleybye.tictactoe.TestHelpers.colourisedMark;
 
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.TestHelpers;
+import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark.ConsoleColour;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
 class ConsoleMarkTest {
@@ -14,14 +17,14 @@ class ConsoleMarkTest {
   void testReturnsCorrectStringRepresentation() {
     Mark mark = new ConsoleMark("X");
 
-    assertEquals("X", mark.toString());
+    assertEquals(colourisedMark("X", "[37m", "[37m"), mark.toString());
   }
 
   @Test
   void testMarksWithMultipleCharactersUseFirstCharacter() {
     Mark mark = new ConsoleMark("ABC");
 
-    assertEquals("A", mark.toString());
+    assertEquals(colourisedMark("A", "[37m", "[37m"), mark.toString());
   }
 
   @Test
@@ -35,21 +38,21 @@ class ConsoleMarkTest {
   void testRemovesLeadingAndTrailingWhitespaceFromNonEmptyMarks() {
     Mark mark = new ConsoleMark(" ABC ");
 
-    assertEquals("A", mark.toString());
+    assertEquals(colourisedMark("A", "[37m", "[37m"), mark.toString());
   }
 
   @Test
   void testMarksWithOnlyMultipleSpacesAreValidForEmptyMark() {
     Mark mark = new ConsoleMark("   ");
 
-    assertEquals(ConsoleMark.emptyMark().toString(), mark.toString());
+    assertEquals(colourisedMark(" ", "[37m", "[37m"), mark.toString());
   }
 
   @Test
   void testLowercaseMarksAreConvertedToUppercase() {
     Mark mark = new ConsoleMark(" abc ");
 
-    assertEquals("A", mark.toString());
+    assertEquals(colourisedMark("A", "[37m", "[37m"), mark.toString());
   }
 
   @Test
@@ -64,6 +67,27 @@ class ConsoleMarkTest {
     Mark mark = new ConsoleMark("X");
 
     assertFalse(mark.isEmpty());
+  }
+
+  @Test
+  void testMarkCanBeCyan() {
+    Mark mark = new ConsoleMark("X", ConsoleColour.CYAN);
+
+    assertEquals(TestHelpers.colourisedMark("X", "[36m", "[37m"), mark.toString());
+  }
+
+  @Test
+  void testMarkCanBeYellow() {
+    Mark mark = new ConsoleMark("X", ConsoleColour.YELLOW);
+
+    assertEquals(TestHelpers.colourisedMark("X", "[33m", "[37m"), mark.toString());
+  }
+
+  @Test
+  void testMarkCanBeWhite() {
+    Mark mark = new ConsoleMark("X", ConsoleColour.WHITE);
+
+    assertEquals(TestHelpers.colourisedMark("X", "[37m", "[37m"), mark.toString());
   }
 
   @Test

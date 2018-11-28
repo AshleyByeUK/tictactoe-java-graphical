@@ -1,6 +1,7 @@
 package uk.ashleybye.tictactoe.console.view;
 
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
@@ -16,16 +17,20 @@ public class ConfigurePlayerView extends View {
   private PlayerFactory playerFactory;
 
   public ConfigurePlayerView(
-      View previousMenu, ConsoleGameConfiguration configuration, int player, PlayerFactory playerFactory) {
-    super(previousMenu, configuration);
+      View previousMenu,
+      ConsoleGameConfiguration configuration,
+      int player,
+      PlayerFactory playerFactory,
+      IOWrapper ioWrapper) {
+    super(previousMenu, configuration, ioWrapper);
     this.player = player;
     this.playerFactory = playerFactory;
   }
 
   @Override
-  public String launch() {
+  public void render() {
     ConsolePlayerConfiguration playerConfiguration = configuration.getPlayerConfiguration(player);
-    return configurePlayerMenu(playerConfiguration);
+    ioWrapper.render(configurePlayerMenu(playerConfiguration));
   }
 
   private String configurePlayerMenu(ConsolePlayerConfiguration playerConfiguration) {
@@ -41,11 +46,11 @@ public class ConfigurePlayerView extends View {
   public View handleInput(String input) {
     switch (input) {
       case "1":
-        return new SetPlayerNameView(this, configuration, player);
+        return new SetPlayerNameView(this, configuration, player, ioWrapper);
       case "2":
-        return new SetPlayerMarkView(this, configuration, player);
+        return new SetPlayerMarkView(this, configuration, player, ioWrapper);
       case "3":
-        return new SetPlayerTypeView(this, configuration, player, playerFactory);
+        return new SetPlayerTypeView(this, configuration, player, playerFactory, ioWrapper);
       case "4":
         return previousMenu;
       default:

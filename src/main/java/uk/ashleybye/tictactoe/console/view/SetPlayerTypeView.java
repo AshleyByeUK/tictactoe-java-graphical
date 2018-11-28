@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.console.view;
 
 import java.util.List;
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
@@ -13,17 +14,22 @@ public class SetPlayerTypeView extends View {
   private PlayerFactory playerFactory;
 
   SetPlayerTypeView(
-      View previousMenu, ConsoleGameConfiguration configuration, int player, PlayerFactory playerFactory) {
-    super(previousMenu, configuration);
+      View previousMenu,
+      ConsoleGameConfiguration configuration,
+      int player,
+      PlayerFactory playerFactory,
+      IOWrapper ioWrapper) {
+    super(previousMenu, configuration, ioWrapper);
     this.player = player;
     this.playerFactory = playerFactory;
   }
 
   @Override
-  public String launch() {
-    return String.format(SELECT_PLAYER_TYPE, String.format(PLAYER_HEADING, player)) + "\n\n"
-        + textForPlayerTypes() + "\n"
-        + PROMPT;
+  public void render() {
+    ioWrapper.render(String.format("%s\n\n%s\n%s",
+        String.format(SELECT_PLAYER_TYPE, String.format(PLAYER_HEADING, player)),
+        textForPlayerTypes(),
+        PROMPT));
   }
 
   private String textForPlayerTypes() {

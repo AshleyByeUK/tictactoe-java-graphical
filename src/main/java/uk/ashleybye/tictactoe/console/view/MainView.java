@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.console.view;
 
 import java.util.Arrays;
 import java.util.List;
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
@@ -16,18 +17,18 @@ public class MainView extends View {
           "   | |  | | (__| | (_| | (__| | (_) |  __/ \n" +
           "   |_|  |_|\\___|_|\\__,_|\\___|_|\\___/ \\___| \n\n\n";
 
-  private static final String CURRENT_GAME_OPTIONS = "Current gameClient options:";
+  private static final String CURRENT_GAME_OPTIONS = "Current game options:";
   private static final String MAIN_MENU_HEADING = "Select an option below:";
   private static final String MAIN_MENU_CONFIGURE_PLAYER = "Configure %s";
-  private static final String MAIN_MENU_PLAY = "Play a gameClient";
+  private static final String MAIN_MENU_PLAY = "Play a game";
   private static final String MAIN_MENU_QUIT = "Quit";
 
   private View configurePlayerOneView;
   private View configurePlayerTwoView;
   private View playGameView;
 
-  public MainView(ConsoleGameConfiguration gameConfiguration) {
-    super(gameConfiguration);
+  public MainView(ConsoleGameConfiguration gameConfiguration, IOWrapper ioWrapper) {
+    super(gameConfiguration, ioWrapper);
   }
 
   public void setConfigurePlayerOneView(View view) {
@@ -43,17 +44,19 @@ public class MainView extends View {
   }
 
   @Override
-  public String launch() {
-    return MAIN_TITLE
-        + textForCurrentGameOptions() + "\n"
-        + textForMainMenu() + "\n"
-        + PROMPT;
+  public void render() {
+    ioWrapper.render(String.format("%s%s\n%s\n%s",
+        MAIN_TITLE,
+        textForCurrentGameOptions(),
+        textForMainMenu(),
+        PROMPT));
   }
 
   private String textForCurrentGameOptions() {
-    return CURRENT_GAME_OPTIONS + "\n\n"
-        + textForCurrentPlayerOptions(1) + "\n"
-        + textForCurrentPlayerOptions(2);
+    return String.format("%s\n\n%s\n%s",
+        CURRENT_GAME_OPTIONS,
+            textForCurrentPlayerOptions(1),
+            textForCurrentPlayerOptions(2));
   }
 
   private String textForCurrentPlayerOptions(int playerNumber) {
@@ -68,8 +71,7 @@ public class MainView extends View {
 
 
   private String textForMainMenu() {
-    return MAIN_MENU_HEADING + "\n\n"
-        + textForMainMenuOptions();
+    return String.format("%s\n\n%s", MAIN_MENU_HEADING, textForMainMenuOptions());
   }
 
   private String textForMainMenuOptions() {
