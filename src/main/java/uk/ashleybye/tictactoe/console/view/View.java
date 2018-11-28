@@ -1,5 +1,6 @@
 package uk.ashleybye.tictactoe.console.view;
 
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 
 public abstract class View {
@@ -16,19 +17,21 @@ public abstract class View {
   protected static final String PLAYER_TYPE_HUMAN = "User";
   protected static final String PROMPT = "> ";
   protected final ConsoleGameConfiguration configuration;
+  protected final IOWrapper ioWrapper;
   protected View previousMenu;
 
-  public View(View previousMenu, ConsoleGameConfiguration gameConfiguration) {
+  public View(View previousMenu, ConsoleGameConfiguration gameConfiguration, IOWrapper ioWrapper) {
     this.previousMenu = previousMenu;
     configuration = gameConfiguration;
+    this.ioWrapper = ioWrapper;
   }
 
-  protected View(ConsoleGameConfiguration gameConfiguration) {
-    this(null, gameConfiguration);
-    this.previousMenu = new QuitView();
+  protected View(ConsoleGameConfiguration gameConfiguration, IOWrapper ioWrapper) {
+    this(null, gameConfiguration, ioWrapper);
+    this.previousMenu = new QuitView(ioWrapper);
   }
 
-  abstract public String launch();
+  abstract public void render();
 
   public abstract View handleInput(String input);
 
@@ -61,14 +64,14 @@ public abstract class View {
 
     private boolean hasQuit = false;
 
-    private QuitView() {
-      super(null, null);
+    private QuitView(IOWrapper ioWrapper) {
+      super(null, null, ioWrapper);
     }
 
     @Override
-    public String launch() {
+    public void render() {
       hasQuit = true;
-      return GOOD_BYE + "\n\n";
+      ioWrapper.render(String.format("%s\n\n", GOOD_BYE));
     }
 
     @Override

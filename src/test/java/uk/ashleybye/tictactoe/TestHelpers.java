@@ -33,4 +33,8 @@ public class TestHelpers {
     }
     return mark;
   }
+
+  public static String colourisedMark(String mark, String markColour, String terminalColour) {
+    return (char) 27 + markColour + mark + (char) 27 + terminalColour;
+  }
 }

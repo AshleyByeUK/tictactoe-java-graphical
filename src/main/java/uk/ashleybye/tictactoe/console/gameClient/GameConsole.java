@@ -15,14 +15,14 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
 
   private static final String DRAW = "It's a draw.";
   private static final String EMPTY_STRING = "";
-  private static final String GAME_OVER = "TicTacToe over!";
+  private static final String GAME_OVER = "Game over!";
   private static final String INVALID_SQUARE = "That square is not available, try again %s %s";
   private static final String LAST_POSITION = "%s played in position %d";
   private static final String PLAYERS_TURN = "%s's turn %s";
   private static final String PROMPT = "> ";
   private static final String ROW_SPACER = "-----------";
   private static final String SQUARE_DELIMITER = "|";
-  private static final String WELCOME = "Great, let's play a gameClient of Tic Tac Toe!";
+  private static final String WELCOME = "Great, let's play a game of Tic Tac Toe!";
   private static final String WON = "won.";
 
   private final IOWrapper ioWrapper;
@@ -54,10 +54,11 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
 
   @Override
   public void renderGame(GameReport gameReport) {
-    String text = getTextForGameReadySection(gameReport) + "\n\n"
-        + getTextForGameBoardSection(gameReport)
-        + getTextForMessageSection(gameReport)
-        + getTextForGameOverSection(gameReport);
+    String text = String.format("%s\n\n%s%s%s",
+        getTextForGameReadySection(gameReport),
+        getTextForGameBoardSection(gameReport),
+        getTextForMessageSection(gameReport),
+        getTextForGameOverSection(gameReport));
     history.add(gameReport);
     ioWrapper.clearScreen();
     ioWrapper.render(text);

@@ -1,5 +1,6 @@
 package uk.ashleybye.tictactoe.console.view;
 
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.TicTacToeRunner;
 import uk.ashleybye.tictactoe.core.ClientInterface;
@@ -11,17 +12,20 @@ public class PlayGameView extends View {
   private final PlayerFactory playerFactory;
   private final ClientInterface clientInterface;
 
-  public PlayGameView(View previousMenu, ConsoleGameConfiguration configuration, PlayerFactory playerFactory,
-      ClientInterface clientInterface) {
-    super(previousMenu, configuration);
+  public PlayGameView(View previousMenu,
+      ConsoleGameConfiguration configuration,
+      PlayerFactory playerFactory,
+      ClientInterface clientInterface,
+      IOWrapper ioWrapper) {
+    super(previousMenu, configuration, ioWrapper);
     this.playerFactory = playerFactory;
     this.clientInterface = clientInterface;
   }
 
   @Override
-  public String launch() {
+  public void render() {
     playGame();
-    return "\n\n" + RETURN_TO_MAIN_MENU;
+    ioWrapper.render(String.format("\n\n%s", RETURN_TO_MAIN_MENU));
   }
 
   private void playGame() {

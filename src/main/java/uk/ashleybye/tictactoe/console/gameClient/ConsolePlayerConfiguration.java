@@ -32,7 +32,7 @@ public class ConsolePlayerConfiguration implements PlayerConfiguration {
     return playerMark;
   }
 
-  public void setPlayerMark(String playerMark) {
-    this.playerMark = new ConsoleMark(playerMark);
+  public void setPlayerMark(Mark playerMark) {
+    this.playerMark = playerMark;
   }
 }

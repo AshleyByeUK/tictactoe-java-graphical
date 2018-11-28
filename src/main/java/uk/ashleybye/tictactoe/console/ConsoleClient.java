@@ -27,7 +27,7 @@ public class ConsoleClient {
   }
 
   private void handleMenuItem() {
-    ioWrapper.render(view.launch());
+    view.render();
     if (!view.willQuit()) {
       String input = getInput();
       view = view.handleInput(input);
