@@ -18,10 +18,12 @@ public class MockEmptyMark implements Mark {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     MockEmptyMark that = (MockEmptyMark) o;
     return Objects.equals(mark, that.mark);
   }

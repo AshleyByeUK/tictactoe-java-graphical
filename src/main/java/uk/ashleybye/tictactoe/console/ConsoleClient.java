@@ -14,8 +14,9 @@ public class ConsoleClient {
   }
 
   public void start() {
-    while (!view.hasQuit())
+    while (!view.hasQuit()) {
       run();
+    }
   }
 
   private void run() {

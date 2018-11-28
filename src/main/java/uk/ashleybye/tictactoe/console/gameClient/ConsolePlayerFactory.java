@@ -2,13 +2,13 @@ package uk.ashleybye.tictactoe.console.gameClient;
 
 import java.util.Arrays;
 import java.util.List;
-import uk.ashleybye.tictactoe.core.player.HumanTurnPublisher;
-import uk.ashleybye.tictactoe.core.board.Mark;
-import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
 import uk.ashleybye.tictactoe.core.player.HardPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
+import uk.ashleybye.tictactoe.core.player.HumanTurnPublisher;
+import uk.ashleybye.tictactoe.core.player.Player;
 
 public class ConsolePlayerFactory implements PlayerFactory {
 

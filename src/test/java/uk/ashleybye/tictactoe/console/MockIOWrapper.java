@@ -44,16 +44,18 @@ public class MockIOWrapper extends IOWrapper {
   }
 
   public String getRenderedText() {
-    if (retainAllRenderedText)
+    if (retainAllRenderedText) {
       return allRenderedText();
-    else
+    } else {
       return renderedText.get(numberOfTimesRenderWasCalled - 1);
+    }
   }
 
   private String allRenderedText() {
     String text = "";
-    for (String str : renderedText)
+    for (String str : renderedText) {
       text += str;
+    }
     return text;
   }
 }

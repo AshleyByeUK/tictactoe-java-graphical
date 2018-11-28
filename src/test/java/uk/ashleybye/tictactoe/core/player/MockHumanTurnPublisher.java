@@ -1,8 +1,5 @@
 package uk.ashleybye.tictactoe.core.player;
 
-import uk.ashleybye.tictactoe.core.player.HumanTurnPublisher;
-import uk.ashleybye.tictactoe.core.player.HumanTurnSubscriber;
-
 public class MockHumanTurnPublisher implements HumanTurnPublisher {
 
   private final int positionToReturn;

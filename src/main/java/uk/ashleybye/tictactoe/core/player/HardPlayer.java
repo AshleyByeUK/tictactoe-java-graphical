@@ -3,8 +3,8 @@ package uk.ashleybye.tictactoe.core.player;
 import java.util.List;
 import java.util.Objects;
 import uk.ashleybye.tictactoe.core.TicTacToe;
-import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.board.Mark;
 
 public class HardPlayer implements Player {
 
@@ -52,13 +52,15 @@ public class HardPlayer implements Player {
   }
 
   private int minimax(TicTacToe ticTacToe, int depth, boolean maximising, int alpha, int beta) {
-    if (ticTacToe.isGameOver() || depth >= 5)
+    if (ticTacToe.isGameOver() || depth >= 5) {
       return score(ticTacToe, depth);
+    }
 
-    if (maximising)
+    if (maximising) {
       return maximise(ticTacToe, depth, maximising, alpha, beta);
-    else
+    } else {
       return minimise(ticTacToe, depth, maximising, alpha, beta);
+    }
   }
 
   private int maximise(TicTacToe ticTacToe, int depth, boolean maximising, int alpha, int beta) {
@@ -71,8 +73,9 @@ public class HardPlayer implements Player {
       int score = minimax(updatedTicTacToe, depth + 1, !maximising, alpha, beta);
       maxScore = Math.max(maxScore, score);
       alpha = Math.max(maxScore, alpha);
-      if (beta <= alpha)
+      if (beta <= alpha) {
         break;
+      }
     }
 
     return maxScore;
@@ -88,28 +91,32 @@ public class HardPlayer implements Player {
       int score = minimax(updatedTicTacToe, depth + 1, !maximising, alpha, beta);
       minScore = Math.min(minScore, score);
       beta = Math.max(minScore, beta);
-      if (beta <= alpha)
+      if (beta <= alpha) {
         break;
+      }
     }
 
     return minScore;
   }
 
   private int score(TicTacToe ticTacToe, int depth) {
-    if (ticTacToe.isWon(this))
+    if (ticTacToe.isWon(this)) {
       return 100 - depth;
-    else if (ticTacToe.isWon(opponent))
+    } else if (ticTacToe.isWon(opponent)) {
       return -100 + depth;
-    else
+    } else {
       return 0;
+    }
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     HardPlayer that = (HardPlayer) o;
     return Objects.equals(mark, that.mark) &&
         Objects.equals(name, that.name);

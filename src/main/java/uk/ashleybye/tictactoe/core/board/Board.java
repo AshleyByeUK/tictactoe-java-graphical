@@ -22,8 +22,9 @@ public class Board implements Iterable<Square> {
 
   private Board(Board board) {
     this.squares = new ArrayList<>();
-    for (Square square : board)
+    for (Square square : board) {
       this.squares.add(new Square(square.getPosition(), square.getMark()));
+    }
   }
 
   public List<Square> listUnmarkedSquares() {
@@ -42,10 +43,12 @@ public class Board implements Iterable<Square> {
   }
 
   private void throwExceptionIfInvalid(int squareNumber) {
-    if (squareNumber < 1 || squareNumber > squares.size())
+    if (squareNumber < 1 || squareNumber > squares.size()) {
       throw new InvalidSquareNumber();
-    if (listUnmarkedSquares().size() == 0 || squares.get(squareNumber - 1).isMarked())
+    }
+    if (listUnmarkedSquares().size() == 0 || squares.get(squareNumber - 1).isMarked()) {
       throw new SquareUnavailable();
+    }
   }
 
   public List<List<Square>> listPossibleWinningSquares() {
@@ -78,10 +81,12 @@ public class Board implements Iterable<Square> {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     Board board = (Board) o;
     return Objects.equals(squares, board.squares);
   }
@@ -121,8 +126,9 @@ public class Board implements Iterable<Square> {
 
     @Override
     public Square next() {
-      if (!hasNext())
+      if (!hasNext()) {
         throw new NoSuchElementException("attempting to access non-existing square on board");
+      }
       return squares.get(currentIteration++);
     }
 

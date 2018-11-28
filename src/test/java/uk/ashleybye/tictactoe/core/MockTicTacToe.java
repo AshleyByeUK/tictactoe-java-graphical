@@ -32,10 +32,12 @@ public class MockTicTacToe extends TicTacToe {
 
   @Override
   public TicTacToe playNextTurn() {
-    if (throwInvalidSquareNumber)
+    if (throwInvalidSquareNumber) {
       throw new InvalidSquareNumber();
-    if (throwSquareUnavailable)
+    }
+    if (throwSquareUnavailable) {
       throw new SquareUnavailable();
+    }
     return this;
   }
 

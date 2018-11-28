@@ -90,7 +90,8 @@ public class TicTacToeTest {
     ticTacToe = new TicTacToe(playerOne, playerTwo, board);
 
     final TicTacToe[] ticTacToeAfterBadTurn = new TicTacToe[1];
-    Throwable exception = assertThrows(SquareUnavailable.class, () -> ticTacToeAfterBadTurn[0] = ticTacToe.playNextTurn());
+    Throwable exception = assertThrows(SquareUnavailable.class,
+        () -> ticTacToeAfterBadTurn[0] = ticTacToe.playNextTurn());
 
     assertEquals("square has already been marked", exception.getMessage());
     assertNull(ticTacToeAfterBadTurn[0]);
@@ -101,7 +102,8 @@ public class TicTacToeTest {
     playerOne.setNextPositionToPlay(999);
 
     final TicTacToe[] ticTacToeAfterBadTurn = new TicTacToe[1];
-    Throwable exception = assertThrows(InvalidSquareNumber.class, () -> ticTacToeAfterBadTurn[0] = ticTacToe.playNextTurn());
+    Throwable exception = assertThrows(InvalidSquareNumber.class,
+        () -> ticTacToeAfterBadTurn[0] = ticTacToe.playNextTurn());
 
     assertEquals("invalid square number provided", exception.getMessage());
     assertNull(ticTacToeAfterBadTurn[0]);

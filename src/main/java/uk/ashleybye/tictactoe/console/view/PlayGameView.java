@@ -1,10 +1,10 @@
 package uk.ashleybye.tictactoe.console.view;
 
 import uk.ashleybye.tictactoe.console.IOWrapper;
+import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.TicTacToeRunner;
-import uk.ashleybye.tictactoe.core.ClientInterface;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 
 public class PlayGameView extends View {
 

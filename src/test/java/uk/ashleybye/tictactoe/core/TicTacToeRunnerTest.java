@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
+import uk.ashleybye.tictactoe.console.gameClient.MockPlayerFactory;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 import uk.ashleybye.tictactoe.core.player.Player;
-import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
-import uk.ashleybye.tictactoe.console.gameClient.MockPlayerFactory;
 
 class TicTacToeRunnerTest {
 
@@ -107,7 +107,8 @@ class TicTacToeRunnerTest {
 
     assertEquals(runner, runner);
     assertEquals(runner, TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface));
-    assertEquals(runner.hashCode(), (TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
+    assertEquals(runner.hashCode(),
+        (TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
     assertNotEquals(runner, other);
     assertNotEquals(ticTacToe, "not TicTacToeRunner");
     assertNotEquals(ticTacToe, null);

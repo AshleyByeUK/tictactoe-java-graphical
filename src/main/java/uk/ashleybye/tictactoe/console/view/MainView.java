@@ -2,10 +2,10 @@ package uk.ashleybye.tictactoe.console.view;
 
 import java.util.Arrays;
 import java.util.List;
-import uk.ashleybye.tictactoe.console.IOWrapper;
-import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 
 public class MainView extends View {
 
@@ -55,8 +55,8 @@ public class MainView extends View {
   private String textForCurrentGameOptions() {
     return String.format("%s\n\n%s\n%s",
         CURRENT_GAME_OPTIONS,
-            textForCurrentPlayerOptions(1),
-            textForCurrentPlayerOptions(2));
+        textForCurrentPlayerOptions(1),
+        textForCurrentPlayerOptions(2));
   }
 
   private String textForCurrentPlayerOptions(int playerNumber) {
@@ -82,8 +82,9 @@ public class MainView extends View {
         MAIN_MENU_QUIT);
 
     String text = "";
-    for (int i = 0; i < menuItems.size(); i++)
+    for (int i = 0; i < menuItems.size(); i++) {
       text += String.format("%d. %s\n", i + 1, menuItems.get(i));
+    }
     return text;
   }
 

@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
 import uk.ashleybye.tictactoe.core.MockTicTacToe;
 import uk.ashleybye.tictactoe.core.TicTacToe;
-import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
 
 public class HumanPlayerTest {
 

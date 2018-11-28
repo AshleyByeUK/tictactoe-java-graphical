@@ -7,12 +7,12 @@ import static uk.ashleybye.tictactoe.TestHelpers.colourisedMark;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.MockIOWrapper;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark;
-import uk.ashleybye.tictactoe.console.gameClient.MockPlayerFactory;
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
+import uk.ashleybye.tictactoe.console.MockIOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark;
 import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.console.gameClient.MockPlayerFactory;
 import uk.ashleybye.tictactoe.console.view.SetPlayerMarkView.DuplicateMark;
 
 class ConfigurePlayerViewTest extends View {
@@ -123,7 +123,7 @@ class ConfigurePlayerViewTest extends View {
 
     String text = ioWrapper.getRenderedText();
     assertTrue(text.contains("Enter a new mark for Player 2"));
-        assertEquals(
+    assertEquals(
         colourisedMark("B", "[37m", "[37m"),
         gameConfiguration.getPlayerConfiguration(2).getPlayerMark().toString());
   }

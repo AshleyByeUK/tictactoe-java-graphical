@@ -28,10 +28,12 @@ public class Square {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     Square square = (Square) o;
     return marked == square.marked &&
         Objects.equals(mark, square.mark);

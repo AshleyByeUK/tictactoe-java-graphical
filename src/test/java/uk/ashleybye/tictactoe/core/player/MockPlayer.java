@@ -41,10 +41,12 @@ public class MockPlayer implements Player {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     MockPlayer that = (MockPlayer) o;
     return Objects.equals(mark, that.mark) &&
         Objects.equals(name, that.name);

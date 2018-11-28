@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uk.ashleybye.tictactoe.console.IOWrapper;
+import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.GameReport;
+import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.HumanTurnPublisher;
 import uk.ashleybye.tictactoe.core.player.HumanTurnSubscriber;
-import uk.ashleybye.tictactoe.core.board.Mark;
-import uk.ashleybye.tictactoe.core.ClientInterface;
-import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 
 public class GameConsole implements HumanTurnPublisher, ClientInterface {
 
@@ -65,10 +65,11 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
   }
 
   private String getTextForGameReadySection(GameReport gameReport) {
-    if (history.size() == 0 && gameReport.getCurrentState().equals("ready"))
+    if (history.size() == 0 && gameReport.getCurrentState().equals("ready")) {
       return WELCOME;
-    else
+    } else {
       return "";
+    }
   }
 
   private String getTextForGameBoardSection(GameReport gameReport) {
@@ -78,15 +79,17 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
 
   private String getTextForRows(Map<Integer, Mark> board) {
     String text = "";
-    for (int row = 0; row < 3; row++)
+    for (int row = 0; row < 3; row++) {
       text += String.format("%s\n%s\n", getTextForRow(board, row), getTextForSpacerRow(row));
+    }
     return text;
   }
 
   private String getTextForRow(Map<Integer, Mark> board, int row) {
     String text = "";
-    for (int col = 0; col < 3; col++)
+    for (int col = 0; col < 3; col++) {
       text += getTextForColumn(board, row, col);
+    }
     return text;
   }
 
@@ -94,8 +97,9 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
     int squareNumber = (3 * row) + (col + 1);
     Mark mark = board.get(squareNumber);
     String content = mark.toString();
-    if (mark.isEmpty())
+    if (mark.isEmpty()) {
       content = String.valueOf(squareNumber);
+    }
     String squareDelimiter = col < 2 ? SQUARE_DELIMITER : EMPTY_STRING;
     return String.format(" %s %s", content, squareDelimiter);
   }
@@ -105,14 +109,15 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
   }
 
   private String getTextForMessageSection(GameReport gameReport) {
-    if (thisTurnSameAsLastTurn(gameReport))
+    if (thisTurnSameAsLastTurn(gameReport)) {
       return String.format(INVALID_SQUARE, gameReport.getCurrentPlayer(), PROMPT);
-    else if (!gameReport.getCurrentState().equals("game_over"))
+    } else if (!gameReport.getCurrentState().equals("game_over")) {
       return String.format("%s%s",
           getTextForLastPositionPlayed(gameReport),
           String.format(PLAYERS_TURN, gameReport.getCurrentPlayer(), PROMPT));
-    else
+    } else {
       return getTextForLastPositionPlayed(gameReport);
+    }
   }
 
   private boolean thisTurnSameAsLastTurn(GameReport gameReport) {
@@ -122,10 +127,11 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
   }
 
   private String getTextForLastPositionPlayed(GameReport gameReport) {
-    if (history.size() == 0)
+    if (history.size() == 0) {
       return "";
-    else
+    } else {
       return String.format(LAST_POSITION, gameReport.getLastPlayer(), getLastPositionPlayed(gameReport)) + "\n\n";
+    }
 
   }
 
@@ -134,23 +140,26 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
     Map<Integer, Mark> lastTurn = history.get(history.size() - 1).getCurrentBoard();
     Map<Integer, Mark> thisTurn = gameReport.getCurrentBoard();
     for (int position : lastTurn.keySet()) {
-      if (!lastTurn.get(position).equals(thisTurn.get(position)))
+      if (!lastTurn.get(position).equals(thisTurn.get(position))) {
         lastPosition = position;
+      }
     }
     return lastPosition;
   }
 
   private String getTextForGameOverSection(GameReport gameReport) {
-    if (gameReport.getCurrentState().equals("game_over"))
+    if (gameReport.getCurrentState().equals("game_over")) {
       return getTextForGameOver(gameReport);
-    else
+    } else {
       return EMPTY_STRING;
+    }
   }
 
   private String getTextForGameOver(GameReport gameReport) {
-    if (gameReport.getResult().equals("won"))
+    if (gameReport.getResult().equals("won")) {
       return GAME_OVER + " " + gameReport.getWinner() + " " + WON;
-    else
+    } else {
       return GAME_OVER + " " + DRAW;
+    }
   }
 }

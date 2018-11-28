@@ -8,6 +8,7 @@ import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 
 public class SetPlayerTypeView extends View {
+
   private static final String SELECT_PLAYER_TYPE = "Select a player type for %s:";
 
   private final int player;
@@ -35,8 +36,9 @@ public class SetPlayerTypeView extends View {
   private String textForPlayerTypes() {
     List<String> playerTypes = playerFactory.listPlayerTypes();
     String text = "";
-    for (int i = 0; i < playerTypes.size(); i++)
+    for (int i = 0; i < playerTypes.size(); i++) {
       text += String.format("%d. %s\n", i + 1, textForPlayerType(playerTypes.get(i)));
+    }
     return text;
   }
 

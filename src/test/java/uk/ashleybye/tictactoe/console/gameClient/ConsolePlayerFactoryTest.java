@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
 import uk.ashleybye.tictactoe.core.player.HardPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
+import uk.ashleybye.tictactoe.core.player.Player;
 
 class ConsolePlayerFactoryTest {
 

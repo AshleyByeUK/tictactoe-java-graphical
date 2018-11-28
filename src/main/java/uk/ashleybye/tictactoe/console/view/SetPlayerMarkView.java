@@ -4,7 +4,6 @@ import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark;
 import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
-import uk.ashleybye.tictactoe.core.board.Mark;
 
 public class SetPlayerMarkView extends View {
 
@@ -47,10 +46,11 @@ public class SetPlayerMarkView extends View {
 
   private View applyChangeIfNotDuplicateMark(ConsolePlayerConfiguration playerConfiguration) {
     ConsolePlayerConfiguration otherPlayerConfiguration = configuration.getPlayerConfiguration(otherPlayer);
-    if (playerConfiguration.getPlayerMark().equals(otherPlayerConfiguration.getPlayerMark()))
+    if (playerConfiguration.getPlayerMark().equals(otherPlayerConfiguration.getPlayerMark())) {
       return handleDuplicateMark();
-    else
+    } else {
       return previousMenu;
+    }
   }
 
   private View handleDuplicateMark() {
@@ -60,10 +60,11 @@ public class SetPlayerMarkView extends View {
 
   @Override
   public String handleBadInput() {
-    if (duplicateMark)
+    if (duplicateMark) {
       return textForDuplicateMark();
-    else
+    } else {
       return super.handleBadInput();
+    }
   }
 
   private String textForDuplicateMark() {
@@ -71,5 +72,7 @@ public class SetPlayerMarkView extends View {
     return String.format(DUPLICATE_MARK, configuration.getPlayerConfiguration(otherPlayer).getPlayerName()) + "\n\n";
   }
 
-  public static class DuplicateMark extends RuntimeException {}
+  public static class DuplicateMark extends RuntimeException {
+
+  }
 }

@@ -10,7 +10,7 @@ public class MockGameConfiguration implements GameConfiguration {
 
   @Override
   public PlayerConfiguration getPlayerConfiguration(int player) {
-    if (player == 1)
+    if (player == 1) {
       return new PlayerConfiguration() {
         @Override
         public String getPlayerType() {
@@ -27,7 +27,7 @@ public class MockGameConfiguration implements GameConfiguration {
           return new MockPlayerOneMark();
         }
       };
-    else
+    } else {
       return new PlayerConfiguration() {
         @Override
         public String getPlayerType() {
@@ -44,6 +44,7 @@ public class MockGameConfiguration implements GameConfiguration {
           return new MockPlayerTwoMark();
         }
       };
+    }
   }
 
   @Override

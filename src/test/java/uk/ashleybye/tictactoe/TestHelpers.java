@@ -1,7 +1,7 @@
 package uk.ashleybye.tictactoe;
 
-import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.board.Board;
+import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
@@ -11,8 +11,9 @@ public class TestHelpers {
   public static Board generateBoard(String boardRepresentation) {
     Board board = new Board(new MockEmptyMark());
     String[] marks = boardRepresentation.split(" ");
-    for (int i = 0; i < marks.length; i++)
+    for (int i = 0; i < marks.length; i++) {
       board = board.markSquare(i + 1, getMarkFor(marks[i]));
+    }
     return board;
   }
 

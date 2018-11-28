@@ -28,8 +28,9 @@ public class GameReport {
   }
 
   void setCurrentBoard(Board board) {
-    for (Square square : board)
+    for (Square square : board) {
       currentBoard.put(square.getPosition(), square.getMark());
+    }
   }
 
   public String getCurrentPlayer() {
@@ -41,10 +42,11 @@ public class GameReport {
   }
 
   public String getLastPlayer() {
-    if (currentState.equals(READY))
+    if (currentState.equals(READY)) {
       return EMPTY;
-    else
+    } else {
       return lastPlayer;
+    }
   }
 
   void setLastPlayer(Player player) {
@@ -70,12 +72,13 @@ public class GameReport {
   }
 
   public String getResult() {
-    if (tied)
+    if (tied) {
       return TIED_GAME;
-    else if (won)
+    } else if (won) {
       return WON_GAME;
-    else
+    } else {
       return EMPTY;
+    }
   }
 
   void setResult(boolean tied, boolean won) {
@@ -84,9 +87,10 @@ public class GameReport {
   }
 
   public String getWinner() {
-    if (won)
+    if (won) {
       return getLastPlayer();
-    else
+    } else {
       return EMPTY;
+    }
   }
 }

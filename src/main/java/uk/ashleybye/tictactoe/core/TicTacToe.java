@@ -39,12 +39,14 @@ public class TicTacToe {
   }
 
   public GameState getGameState() {
-    if (isGameOver())
+    if (isGameOver()) {
       return GameState.GAME_OVER;
-    if (listOpenPositions().size() < 9)
+    }
+    if (listOpenPositions().size() < 9) {
       return GameState.PLAYING;
-    else
+    } else {
       return GameState.READY;
+    }
   }
 
   public List<Integer> listOpenPositions() {
@@ -57,10 +59,11 @@ public class TicTacToe {
   }
 
   public TicTacToe playNextTurn() {
-    if (isGameOver())
+    if (isGameOver()) {
       return new TicTacToe(getCurrentPlayer(), getOtherPlayer(), board);
-    else
+    } else {
       return gameWithTurnApplied();
+    }
   }
 
   private TicTacToe gameWithTurnApplied() {
@@ -110,10 +113,12 @@ public class TicTacToe {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     TicTacToe ticTacToe = (TicTacToe) o;
     return currentPlayer == ticTacToe.currentPlayer &&
         Objects.equals(playerOne, ticTacToe.playerOne) &&

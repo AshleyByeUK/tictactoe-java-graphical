@@ -31,9 +31,11 @@ public class HumanPlayer implements Player, HumanTurnSubscriber {
   public int choosePositionToPlay(TicTacToe ticTacToe) {
     positionToPlay = null;
     publisher.subscribeToTurnNotifications(this);
-    while (true)
-      if (positionToPlay != null)
+    while (true) {
+      if (positionToPlay != null) {
         return positionToPlay;
+      }
+    }
   }
 
   @Override
@@ -43,10 +45,12 @@ public class HumanPlayer implements Player, HumanTurnSubscriber {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     HumanPlayer that = (HumanPlayer) o;
     return Objects.equals(mark, that.mark) &&
         Objects.equals(name, that.name);
