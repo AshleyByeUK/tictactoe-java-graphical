@@ -2,20 +2,20 @@ package uk.ashleybye.tictactoe.console.gameClient;
 
 import java.util.Arrays;
 import java.util.List;
+import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
 import uk.ashleybye.tictactoe.core.player.HardPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
-import uk.ashleybye.tictactoe.core.player.HumanTurnPublisher;
 import uk.ashleybye.tictactoe.core.player.Player;
 
 public class ConsolePlayerFactory implements PlayerFactory {
 
-  private final HumanTurnPublisher turnPublisher;
+  private final ClientInterface clientInterface;
 
-  public ConsolePlayerFactory(HumanTurnPublisher turnPublisher) {
-    this.turnPublisher = turnPublisher;
+  public ConsolePlayerFactory(ClientInterface clientInterface) {
+    this.clientInterface = clientInterface;
   }
 
   @Override
@@ -27,7 +27,7 @@ public class ConsolePlayerFactory implements PlayerFactory {
   public Player make(String playerType, String playerName, Mark playerMark) {
     switch (playerType) {
       case "human":
-        return new HumanPlayer(playerMark, playerName, turnPublisher);
+        return new HumanPlayer(playerMark, playerName, clientInterface);
       case "easy":
         return new EasyPlayer(playerMark, playerName);
       case "hard":

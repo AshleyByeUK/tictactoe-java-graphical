@@ -1,7 +1,7 @@
 package uk.ashleybye.tictactoe.core.player;
 
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
 public class MockPlayer implements Player {
@@ -26,7 +26,7 @@ public class MockPlayer implements Player {
   }
 
   @Override
-  public int choosePositionToPlay(TicTacToe ticTacToe) {
+  public int takeTurn(Game game) {
     return nextPositionToPlay;
   }
 

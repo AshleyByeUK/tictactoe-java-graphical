@@ -6,24 +6,24 @@ import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
 
-public class TicTacToeRunner {
+public class GameRunner {
 
   private final ClientInterface clientInterface;
-  private TicTacToe ticTacToe;
+  private Game game;
 
-  TicTacToeRunner(TicTacToe ticTacToe, ClientInterface clientInterface) {
-    this.ticTacToe = ticTacToe;
+  public GameRunner(Game game, ClientInterface clientInterface) {
+    this.game = game;
     this.clientInterface = clientInterface;
   }
 
-  public static TicTacToeRunner create(
+  public static GameRunner create(
       PlayerFactory playerFactory, GameConfiguration gameConfiguration, ClientInterface clientInterface) {
     Player playerOne = makePlayer(1, playerFactory, gameConfiguration);
     Player playerTwo = makePlayer(2, playerFactory, gameConfiguration);
 
-    TicTacToe ticTacToe = new TicTacToe(playerOne, playerTwo, gameConfiguration.getEmptyMark());
+    Game game = new Game(playerOne, playerTwo, gameConfiguration.getEmptyMark());
 
-    return new TicTacToeRunner(ticTacToe, clientInterface);
+    return new GameRunner(game, clientInterface);
   }
 
   private static Player makePlayer(int player, PlayerFactory playerFactory, GameConfiguration gameConfiguration) {
@@ -35,16 +35,16 @@ public class TicTacToeRunner {
   }
 
   public void play() {
-    while (!ticTacToe.isGameOver()) {
+    while (!game.isGameOver()) {
       playGame();
     }
-    clientInterface.renderGame(ticTacToe.generateGameReport());
+    clientInterface.renderGame(game.generateGameReport());
   }
 
   private void playGame() {
     try {
-      clientInterface.renderGame(ticTacToe.generateGameReport());
-      ticTacToe = ticTacToe.playNextTurn();
+      clientInterface.renderGame(game.generateGameReport());
+      game = game.playNextTurn();
     } catch (InvalidSquareNumber | SquareUnavailable ex) {
       // Do nothing.
     }
@@ -58,13 +58,13 @@ public class TicTacToeRunner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TicTacToeRunner runner = (TicTacToeRunner) o;
+    GameRunner runner = (GameRunner) o;
     return Objects.equals(clientInterface, runner.clientInterface) &&
-        Objects.equals(ticTacToe, runner.ticTacToe);
+        Objects.equals(game, runner.game);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientInterface, ticTacToe);
+    return Objects.hash(clientInterface, game);
   }
 }

@@ -1,27 +1,30 @@
 package uk.ashleybye.tictactoe.core.player;
 
-public class MockHumanTurnPublisher implements HumanTurnPublisher {
+import uk.ashleybye.tictactoe.core.ClientInterface;
+import uk.ashleybye.tictactoe.core.GameReport;
+
+public class MockClientInterface implements ClientInterface {
 
   private final int positionToReturn;
   private final long delayInMs;
 
-  public MockHumanTurnPublisher(int positionToReturn, long delayInMs) {
+  public MockClientInterface(int positionToReturn, long delayInMs) {
     this.positionToReturn = positionToReturn;
     this.delayInMs = delayInMs;
   }
 
   @Override
-  public void subscribeToTurnNotifications(HumanTurnSubscriber humanPlayer) {
+  public int getPlayersMove() {
     try {
       Thread.sleep(delayInMs);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    humanPlayer.notifyMoveMade(positionToReturn);
+    return positionToReturn;
   }
 
   @Override
-  public void handleMoveMade(int position) {
+  public void renderGame(GameReport gameReport) {
 
   }
 }

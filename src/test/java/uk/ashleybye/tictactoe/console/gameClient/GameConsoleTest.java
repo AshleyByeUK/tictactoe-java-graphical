@@ -11,47 +11,43 @@ import uk.ashleybye.tictactoe.console.MockIOWrapper;
 import uk.ashleybye.tictactoe.core.GameReport;
 import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 
-public class TicTacToeConsoleTest {
+public class GameConsoleTest {
 
   private MockIOWrapper ioWrapper;
   private GameConsole gameConsole;
-  private MockHumanTurnSubscriber turnSubscriber;
 
   @BeforeEach
   void setUp() {
     ioWrapper = new MockIOWrapper();
     gameConsole = new GameConsole(ioWrapper);
-    turnSubscriber = new MockHumanTurnSubscriber();
   }
 
   @Test
   void testCorrectlyNotifiesSubscriberWhenMoveMade() {
     ioWrapper.addMockInput("1");
 
-    gameConsole.subscribeToTurnNotifications(turnSubscriber);
-
-    assertEquals(1, turnSubscriber.valueOfMoveNotification());
+    assertEquals(1, gameConsole.getPlayersMove());
   }
 
   @Test
   void testDoesNotAcceptEmptyStringAsValidInput() {
     ioWrapper.addMockInput("");
 
-    assertThrows(InvalidSquareNumber.class, () -> gameConsole.subscribeToTurnNotifications(turnSubscriber));
+    assertThrows(InvalidSquareNumber.class, () -> gameConsole.getPlayersMove());
   }
 
   @Test
   void testDoesNotAcceptNonTextAsValidInput() {
     ioWrapper.addMockInput("a string of text");
 
-    assertThrows(InvalidSquareNumber.class, () -> gameConsole.subscribeToTurnNotifications(turnSubscriber));
+    assertThrows(InvalidSquareNumber.class, () -> gameConsole.getPlayersMove());
   }
 
   @Test
   void testDoesNotAcceptFloatingPointNumbersAsValidInput() {
     ioWrapper.addMockInput("3.14");
 
-    assertThrows(InvalidSquareNumber.class, () -> gameConsole.subscribeToTurnNotifications(turnSubscriber));
+    assertThrows(InvalidSquareNumber.class, () -> gameConsole.getPlayersMove());
   }
 
   @Test
@@ -66,7 +62,7 @@ public class TicTacToeConsoleTest {
     assertFalse(renderedText.contains("played in position"));
     assertTrue(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
-    assertFalse(renderedText.contains("TicTacToe over"));
+    assertFalse(renderedText.contains("Game over"));
   }
 
   @Test
@@ -82,7 +78,7 @@ public class TicTacToeConsoleTest {
     assertFalse(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
     assertTrue(renderedText.contains("That square is not available, try again Player 1 > "));
-    assertFalse(renderedText.contains("TicTacToe over"));
+    assertFalse(renderedText.contains("Game over"));
   }
 
   @Test
@@ -99,7 +95,7 @@ public class TicTacToeConsoleTest {
     assertTrue(renderedText.contains("played in position"));
     assertTrue(renderedText.contains("Player 1's turn > "));
     assertFalse(renderedText.contains("That square is not available, try again Player 1 > "));
-    assertFalse(renderedText.contains("TicTacToe over"));
+    assertFalse(renderedText.contains("Game over"));
   }
 
   @Test

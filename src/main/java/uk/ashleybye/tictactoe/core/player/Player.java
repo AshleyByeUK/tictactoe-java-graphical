@@ -1,6 +1,6 @@
 package uk.ashleybye.tictactoe.core.player;
 
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
 public interface Player {
@@ -9,5 +9,5 @@ public interface Player {
 
   String getName();
 
-  int choosePositionToPlay(TicTacToe ticTacToe);
+  int takeTurn(Game game);
 }

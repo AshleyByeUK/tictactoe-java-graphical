@@ -11,7 +11,7 @@ import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 
-public class MockTicTacToe extends TicTacToe {
+public class MockGame extends Game {
 
   private MockPlayer playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
   private MockPlayer playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
@@ -21,7 +21,7 @@ public class MockTicTacToe extends TicTacToe {
   private boolean throwInvalidSquareNumber = false;
   private boolean throwSquareUnavailable = false;
 
-  public MockTicTacToe() {
+  public MockGame() {
     super(null, null, new MockEmptyMark());
   }
 
@@ -31,7 +31,7 @@ public class MockTicTacToe extends TicTacToe {
   }
 
   @Override
-  public TicTacToe playNextTurn() {
+  public Game playNextTurn() {
     if (throwInvalidSquareNumber) {
       throw new InvalidSquareNumber();
     }

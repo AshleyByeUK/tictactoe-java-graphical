@@ -8,18 +8,18 @@ import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.board.Square;
 import uk.ashleybye.tictactoe.core.player.Player;
 
-public class TicTacToe {
+public class Game {
 
   private final Player playerOne;
   private final Player playerTwo;
   private Board board;
   private int currentPlayer;
 
-  public TicTacToe(Player playerOne, Player playerTwo, Mark emptyMark) {
+  public Game(Player playerOne, Player playerTwo, Mark emptyMark) {
     this(playerOne, playerTwo, new Board(emptyMark));
   }
 
-  public TicTacToe(Player playerOne, Player playerTwo, Board board) {
+  public Game(Player playerOne, Player playerTwo, Board board) {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.board = board;
@@ -58,24 +58,24 @@ public class TicTacToe {
         .collect(Collectors.toList());
   }
 
-  public TicTacToe playNextTurn() {
+  public Game playNextTurn() {
     if (isGameOver()) {
-      return new TicTacToe(getCurrentPlayer(), getOtherPlayer(), board);
+      return new Game(getCurrentPlayer(), getOtherPlayer(), board);
     } else {
       return gameWithTurnApplied();
     }
   }
 
-  private TicTacToe gameWithTurnApplied() {
-    return new TicTacToe(getCurrentPlayer(), getOtherPlayer(), boardWithTurnApplied())
+  private Game gameWithTurnApplied() {
+    return new Game(getCurrentPlayer(), getOtherPlayer(), boardWithTurnApplied())
         .swapPlayers();
   }
 
   private Board boardWithTurnApplied() {
-    return this.board.markSquare(getCurrentPlayer().choosePositionToPlay(this), getCurrentPlayer().getMark());
+    return this.board.markSquare(getCurrentPlayer().takeTurn(this), getCurrentPlayer().getMark());
   }
 
-  private TicTacToe swapPlayers() {
+  private Game swapPlayers() {
     currentPlayer = currentPlayer == 1 ? 2 : 1;
     return this;
   }
@@ -119,11 +119,11 @@ public class TicTacToe {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TicTacToe ticTacToe = (TicTacToe) o;
-    return currentPlayer == ticTacToe.currentPlayer &&
-        Objects.equals(playerOne, ticTacToe.playerOne) &&
-        Objects.equals(playerTwo, ticTacToe.playerTwo) &&
-        Objects.equals(board, ticTacToe.board);
+    Game game = (Game) o;
+    return currentPlayer == game.currentPlayer &&
+        Objects.equals(playerOne, game.playerOne) &&
+        Objects.equals(playerTwo, game.playerTwo) &&
+        Objects.equals(board, game.board);
   }
 
   @Override

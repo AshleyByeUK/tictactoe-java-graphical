@@ -13,17 +13,17 @@ import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 import uk.ashleybye.tictactoe.core.player.Player;
 
-class TicTacToeRunnerTest {
+class GameRunnerTest {
 
   private MockGameConsole console;
-  private MockTicTacToe game;
-  private TicTacToeRunner runner;
+  private MockGame game;
+  private GameRunner runner;
 
   @BeforeEach
   void setUp() {
     console = new MockGameConsole();
-    game = new MockTicTacToe();
-    runner = new TicTacToeRunner(game, console);
+    game = new MockGame();
+    runner = new GameRunner(game, console);
   }
 
   @Test
@@ -85,10 +85,10 @@ class TicTacToeRunnerTest {
 
     Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
     Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
-    TicTacToe ticTacToe = new TicTacToe(playerOne, playerTwo, new MockEmptyMark());
-    TicTacToeRunner expected = new TicTacToeRunner(ticTacToe, clientInterface);
+    Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
+    GameRunner expected = new GameRunner(game, clientInterface);
 
-    TicTacToeRunner actual = TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface);
+    GameRunner actual = GameRunner.create(playerFactory, gameConfiguration, clientInterface);
 
     assertEquals(expected, actual);
   }
@@ -98,20 +98,20 @@ class TicTacToeRunnerTest {
     PlayerFactory playerFactory = new MockPlayerFactory();
     GameConfiguration gameConfiguration = new MockGameConfiguration();
     ClientInterface clientInterface = new MockGameConsole();
-    TicTacToeRunner runner = TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface);
+    GameRunner runner = GameRunner.create(playerFactory, gameConfiguration, clientInterface);
 
     Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Not Player 1");
     Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Not Player 2");
-    TicTacToe ticTacToe = new TicTacToe(playerOne, playerTwo, new MockEmptyMark());
-    TicTacToeRunner other = new TicTacToeRunner(ticTacToe, clientInterface);
+    Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
+    GameRunner other = new GameRunner(game, clientInterface);
 
     assertEquals(runner, runner);
-    assertEquals(runner, TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface));
+    assertEquals(runner, GameRunner.create(playerFactory, gameConfiguration, clientInterface));
     assertEquals(runner.hashCode(),
-        (TicTacToeRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
+        (GameRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
     assertNotEquals(runner, other);
-    assertNotEquals(ticTacToe, "not TicTacToeRunner");
-    assertNotEquals(ticTacToe, null);
-    assertNotEquals(ticTacToe.hashCode(), other.hashCode());
+    assertNotEquals(game, "not GameRunner");
+    assertNotEquals(game, null);
+    assertNotEquals(game.hashCode(), other.hashCode());
   }
 }

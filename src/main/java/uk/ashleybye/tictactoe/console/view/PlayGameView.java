@@ -3,8 +3,8 @@ package uk.ashleybye.tictactoe.console.view;
 import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
 import uk.ashleybye.tictactoe.core.ClientInterface;
+import uk.ashleybye.tictactoe.core.GameRunner;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
-import uk.ashleybye.tictactoe.core.TicTacToeRunner;
 
 public class PlayGameView extends View {
 
@@ -29,7 +29,7 @@ public class PlayGameView extends View {
   }
 
   private void playGame() {
-    TicTacToeRunner runner = TicTacToeRunner.create(playerFactory, configuration, clientInterface);
+    GameRunner runner = GameRunner.create(playerFactory, configuration, clientInterface);
     runner.play();
   }
 

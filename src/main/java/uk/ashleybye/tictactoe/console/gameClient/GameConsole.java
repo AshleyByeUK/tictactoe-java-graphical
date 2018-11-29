@@ -8,10 +8,8 @@ import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.GameReport;
 import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.board.Mark;
-import uk.ashleybye.tictactoe.core.player.HumanTurnPublisher;
-import uk.ashleybye.tictactoe.core.player.HumanTurnSubscriber;
 
-public class GameConsole implements HumanTurnPublisher, ClientInterface {
+public class GameConsole implements ClientInterface {
 
   private static final String DRAW = "It's a draw.";
   private static final String EMPTY_STRING = "";
@@ -27,21 +25,14 @@ public class GameConsole implements HumanTurnPublisher, ClientInterface {
 
   private final IOWrapper ioWrapper;
   private final List<GameReport> history = new ArrayList<>();
-  private HumanTurnSubscriber subscriber;
 
   public GameConsole(IOWrapper ioWrapper) {
     this.ioWrapper = ioWrapper;
   }
 
   @Override
-  public void subscribeToTurnNotifications(HumanTurnSubscriber humanPlayer) {
-    this.subscriber = humanPlayer;
-    handleMoveMade(getMoveFromUser());
-  }
-
-  @Override
-  public void handleMoveMade(int position) {
-    subscriber.notifyMoveMade(position);
+  public int getPlayersMove() {
+    return getMoveFromUser();
   }
 
   private int getMoveFromUser() {
