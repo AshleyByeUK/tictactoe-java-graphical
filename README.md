@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/AshleyByeUK/tictactoe.svg?branch=master)](https://travis-ci.org/AshleyByeUK/tictactoe-java)
-[![codecov](https://codecov.io/gh/AshleyByeUK/tictactoe/branch/master/graph/badge.svg)](https://codecov.io/gh/AshleyByeUK/tictactoe-java)
+[![Build Status](https://travis-ci.org/AshleyByeUK/game.svg?branch=master)](https://travis-ci.org/AshleyByeUK/game-java)
+[![codecov](https://codecov.io/gh/AshleyByeUK/game/branch/master/graph/badge.svg)](https://codecov.io/gh/AshleyByeUK/game-java)
 
-# tictactoe-java-core
+# game-java-core
 
 ## Introduction
 
@@ -24,7 +24,7 @@ has not been tested with older versions of Java, you may find that versions as o
 
 There are several ways that you can play TicTacToe. First, you'll need to clone this repository:
 
-`git clone git@github.com:AshleyByeUK/tictactoe-java-core.git`
+`git clone git@github.com:AshleyByeUK/game-java-core.git`
 
 You can then use Gradle to run the game or to build a JAR file. The following sections explain how to do this and
 assume you are in the root directory of the project.
@@ -46,7 +46,7 @@ To build a JAR file, execute the following command:
 
 This will build a JAR file in the root directory of the project. You can then run the JAR file as follows:
 
-`java -jar out/tictactoe.jar`
+`java -jar out/game.jar`
 
 Game play using this method is much smoother.
 

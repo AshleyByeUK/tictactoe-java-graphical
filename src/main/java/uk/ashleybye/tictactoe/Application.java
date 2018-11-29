@@ -12,7 +12,7 @@ import uk.ashleybye.tictactoe.console.view.ConfigurePlayerView;
 import uk.ashleybye.tictactoe.console.view.MainView;
 import uk.ashleybye.tictactoe.console.view.PlayGameView;
 import uk.ashleybye.tictactoe.core.PlayerFactory;
-import uk.ashleybye.tictactoe.graphical.GuiMain;
+import uk.ashleybye.tictactoe.graphical.GameClient;
 
 public class Application {
 
@@ -54,7 +54,7 @@ public class Application {
       ConsoleClient consoleClient = new ConsoleClient(mainMenu, ioWrapper);
       consoleClient.start();
     } else {
-      GuiMain.startApp();
+      GameClient.startApp();
     }
   }
 }
