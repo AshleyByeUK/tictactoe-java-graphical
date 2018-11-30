@@ -2,7 +2,7 @@ package uk.ashleybye.tictactoe.graphical.view;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.scene.layout.HBox;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.GameReport;
@@ -11,7 +11,7 @@ import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.graphical.component.JFXGame;
 import uk.ashleybye.tictactoe.graphical.component.JFXMark;
 
-public class GameView extends HBox {
+public class GameView extends Parent {
 
   private JFXGame jfxGame;
 
@@ -27,7 +27,7 @@ public class GameView extends HBox {
 
   public Task<Void> getGameRunner() {
     Player playerOne = new HumanPlayer(new JFXMark("X"), "Player 1", jfxGame);
-    Player playerTwo = new HumanPlayer(new JFXMark("O"), "Player 1", jfxGame);
+    Player playerTwo = new HumanPlayer(new JFXMark("O"), "Player 2", jfxGame);
 
     return new Task<>() {
       @Override

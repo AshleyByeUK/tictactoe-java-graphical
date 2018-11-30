@@ -14,7 +14,7 @@ public class GameClient extends Application {
   @Override
   public void start(Stage stage) {
     GameView gameView = new GameView(stage);
-    Scene scene = new Scene(gameView, 100, 100);
+    Scene scene = new Scene(gameView, 100, 130);
     stage.setScene(scene);
     stage.show();
     gameView.run(gameView.getGameRunner());

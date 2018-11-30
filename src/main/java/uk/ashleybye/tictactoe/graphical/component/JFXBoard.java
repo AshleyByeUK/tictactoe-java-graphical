@@ -30,8 +30,9 @@ public class JFXBoard extends GridPane {
   }
 
   private void initialiseBoard(int row, int col) {
-    int position = (3 * row) + (col + 1);
+    int position = positionFor(row, col);
     JFXSquare square = new JFXSquare(position, this);
+    square.setId(String.format("%s-%d", "square", position));
     square.setMinSize(30, 30);
     square.setMaxSize(30, 30);
     square.setMark(new JFXMark(" "));
@@ -39,9 +40,14 @@ public class JFXBoard extends GridPane {
   }
 
   private void initialisePositions(int row, int col) {
-    int position = (3 * row) + (col + 1);
     Coordinate coordinate = new Coordinate(row, col);
-    positions.put(position, coordinate);
+    positions.put(positionFor(row, col), coordinate);
+  }
+
+  private int positionFor(int row, int col) {
+    int rowBaseNumber = 3 * row;
+    int columnOffsetByOne = col + 1;
+    return rowBaseNumber + columnOffsetByOne;
   }
 
   JFXSquare getSquare(int square) {
