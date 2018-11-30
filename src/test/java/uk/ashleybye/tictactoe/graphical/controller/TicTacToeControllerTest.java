@@ -29,7 +29,7 @@ public class TicTacToeControllerTest extends JFXTest {
     Player playerOne = new HumanPlayer(new GraphicalMark("X"), "Player 1", controller);
     Player playerTwo = new HumanPlayer(new GraphicalMark("O"), "Player 2", controller);
     Game game = new Game(playerOne, playerTwo, new GraphicalMark(" "));
-    controller.setupGame(game);
+    controller.playGame(game);
     stage.show();
   }
 

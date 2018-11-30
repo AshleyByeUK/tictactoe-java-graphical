@@ -2,6 +2,7 @@ package uk.ashleybye.tictactoe.graphical.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import javafx.scene.control.Label;
 import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
@@ -26,13 +27,17 @@ public class TicTacToeController implements ClientInterface {
   public Label status = null;
   private List<GraphicalSquare> squares;
 
-  public void setupGame(Game game) {
+  public void playGame(Game game) {
     this.game = game;
-    squares = Arrays.asList(square1, square2, square3, square4, square5, square6, square7, square8, square9);
-    for (int square = 0; square < squares.size(); square++) {
-      final int position = square + 1;
-      squares.get(square).setOnAction(click -> handleClick(position));
-    }
+    setupSquares();
+  }
+
+  private void setupSquares() {
+    squares = Arrays.asList(
+        square1, square2, square3, square4, square5, square6, square7, square8, square9);
+    IntStream
+        .range(1, 10)
+        .forEach(position -> squares.get(position - 1).setOnAction(click -> handleClick(position)));
   }
 
   private void handleClick(int square) {
@@ -52,10 +57,18 @@ public class TicTacToeController implements ClientInterface {
 
   @Override
   public void renderGame(GameReport gameReport) {
+    renderBoard(gameReport);
+    renderStatus(gameReport);
+  }
+
+  private void renderBoard(GameReport gameReport) {
     var marks = gameReport.getCurrentBoard();
-    for (int square = 0; square < squares.size(); square++) {
-      squares.get(square).setMark((GraphicalMark) marks.get(square + 1));
-    }
+    IntStream
+        .range(1, 10)
+        .forEach(position -> squares.get(position - 1).setMark((GraphicalMark) marks.get(position)));
+  }
+
+  private void renderStatus(GameReport gameReport) {
     if (gameReport.getCurrentState().equals("game_over")) {
       if (gameReport.getResult().equals("won")) {
         status.setText(String.format("Game over!\n%s won!",gameReport.getWinner()));
