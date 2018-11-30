@@ -9,27 +9,26 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
-import uk.ashleybye.tictactoe.core.Game;
-import uk.ashleybye.tictactoe.core.player.HumanPlayer;
-import uk.ashleybye.tictactoe.core.player.Player;
-import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
-import uk.ashleybye.tictactoe.graphical.JFXTest;
+import uk.ashleybye.tictactoe.graphical.ClientContext;
+import uk.ashleybye.tictactoe.graphical.JavaFXTest;
 
-public class TicTacToeControllerTest extends JFXTest {
+public class TicTacToeControllerTest extends JavaFXTest {
 
   @Start
   void onStart(Stage stage) throws Exception {
     FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../fxml/MainMenu.fxml"));
+    ClientContext.setMainMenuView(new Scene(loader.load()), loader.getController());
+    ClientContext.getMainMenuController().initialise(stage);
+
+    loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../fxml/TicTacToe.fxml"));
+    ClientContext.setGameView(new Scene(loader.load()), loader.getController());
 
-    Scene scene = new Scene(loader.load());
-    stage.setScene(scene);
 
-    TicTacToeController controller = loader.getController();
-    Player playerOne = new HumanPlayer(new GraphicalMark("X"), "Player 1", controller);
-    Player playerTwo = new HumanPlayer(new GraphicalMark("O"), "Player 2", controller);
-    Game game = new Game(playerOne, playerTwo, new GraphicalMark(" "));
-    controller.playGame(game);
+    ClientContext.getTictacToeController().initialise(stage);
+    ClientContext.getTictacToeController().startGame();
+    stage.setScene(ClientContext.getTicTacToeScene());
     stage.show();
   }
 
@@ -125,5 +124,50 @@ public class TicTacToeControllerTest extends JFXTest {
     verifyThat("#square7", hasText("X"));
 
     verifyThat("#status", hasText("Game over!\nIt's a tie."));
+  }
+
+  @Test
+  void testCanRestartGameDuringGamePlay(FxRobot robot) {
+    robot.clickOn("#square1");
+    verifyThat("#square1", hasText("X"));
+
+    robot.clickOn("#restart");
+    verifyThat("#status", hasText(" "));
+    verifyThat("#square1", hasText(" "));
+
+    robot.clickOn("#square1");
+    verifyThat("#square1", hasText("X"));
+  }
+
+  @Test
+  void testCanRestartGameAfterGameHasEnded(FxRobot robot) {
+    robot.clickOn("#square1");
+    verifyThat("#square1", hasText("X"));
+
+    robot.clickOn("#square4");
+    verifyThat("#square4", hasText("O"));
+
+    robot.clickOn("#square2");
+    verifyThat("#square2", hasText("X"));
+
+    robot.clickOn("#square5");
+    verifyThat("#square5", hasText("O"));
+
+    robot.clickOn("#square3");
+    verifyThat("#square3", hasText("X"));
+
+    robot.clickOn("#restart");
+    verifyThat("#status", hasText(" "));
+    verifyThat("#square1", hasText(" "));
+
+    robot.clickOn("#square1");
+    verifyThat("#square1", hasText("X"));
+  }
+
+  @Test
+  void testCanReturnToMainMenu(FxRobot robot) {
+    robot.clickOn("#mainMenu");
+
+    verifyThat("#play", hasText("Play"));
   }
 }

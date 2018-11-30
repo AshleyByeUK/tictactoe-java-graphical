@@ -8,7 +8,7 @@
 <VBox xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="uk.ashleybye.tictactoe.graphical.controller.TicTacToeController"
-  prefHeight="160.0" prefWidth="120.0">
+  prefHeight="220.0" prefWidth="120.0">
   <children>
     <GridPane>
       <children>
@@ -71,6 +71,24 @@
   </children>
   <children>
     <Label fx:id="status"
-      text=""/>
+      text=" "
+      minHeight="40"
+      minWidth="120"/>
+  </children>
+  <children>
+    <VBox>
+      <children>
+        <Button fx:id="restart"
+          text="Restart"
+          minWidth="120"
+          minHeight="20"/>
+      </children>
+      <children>
+        <Button fx:id="mainMenu"
+          text="Main Menu"
+          minWidth="120"
+          minHeight="20"/>
+      </children>
+    </VBox>
   </children>
 </VBox>

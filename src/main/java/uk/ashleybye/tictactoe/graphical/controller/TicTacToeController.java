@@ -1,13 +1,21 @@
 package uk.ashleybye.tictactoe.graphical.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.GameReport;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
+import uk.ashleybye.tictactoe.core.player.HumanPlayer;
+import uk.ashleybye.tictactoe.core.player.Player;
+import uk.ashleybye.tictactoe.graphical.ClientContext;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare;
 
@@ -15,6 +23,8 @@ public class TicTacToeController implements ClientInterface {
 
   private int nextMove;
   private Game game;
+  private Stage stage;
+  private List<GraphicalSquare> squares;
   public GraphicalSquare square1 = null;
   public GraphicalSquare square2 = null;
   public GraphicalSquare square3 = null;
@@ -25,11 +35,17 @@ public class TicTacToeController implements ClientInterface {
   public GraphicalSquare square8 = null;
   public GraphicalSquare square9 = null;
   public Label status = null;
-  private List<GraphicalSquare> squares;
+  public Button restart = null;
+  public Button mainMenu = null;
 
-  public void playGame(Game game) {
-    this.game = game;
+  public void initialise(Stage stage) {
+    setStage(stage);
     setupSquares();
+    setupButtons();
+  }
+
+  private void setStage(Stage stage) {
+    this.stage = stage;
   }
 
   private void setupSquares() {
@@ -48,6 +64,27 @@ public class TicTacToeController implements ClientInterface {
     } catch (SquareUnavailable ex) {
       // Do nothing.
     }
+  }
+
+  private void setupButtons() {
+    restart.setOnAction(click -> startGame());
+    mainMenu.setOnAction(click -> returnToMainMenu());
+  }
+
+  public void startGame() {
+    initialiseGame();
+    renderGame(game.generateGameReport());
+  }
+
+  private void returnToMainMenu() {
+    stage.setScene(ClientContext.getMainMenuScene());
+    stage.show();
+  }
+
+  private void initialiseGame() {
+    Player playerOne = new HumanPlayer(new GraphicalMark("X"), "Player 1", this);
+    Player playerTwo = new HumanPlayer(new GraphicalMark("O"), "Player 2", this);
+    game = new Game(playerOne, playerTwo, new GraphicalMark(" "));
   }
 
   @Override
@@ -71,10 +108,12 @@ public class TicTacToeController implements ClientInterface {
   private void renderStatus(GameReport gameReport) {
     if (gameReport.getCurrentState().equals("game_over")) {
       if (gameReport.getResult().equals("won")) {
-        status.setText(String.format("Game over!\n%s won!",gameReport.getWinner()));
+        status.setText(String.format("Game over!\n%s won!", gameReport.getWinner()));
       } else {
         status.setText("Game over!\nIt's a tie.");
       }
+    } else {
+      status.setText(" ");
     }
   }
 }
