@@ -15,7 +15,6 @@ repositories {
 
 dependencies {
     compile "org.openjfx:javafx-base:11"
-    compile "org.openjfx:javafx-fxml:11"
     compile "org.openjfx:javafx-base:11:mac"
     compile "org.openjfx:javafx-controls:11:win"
     compile "org.openjfx:javafx-controls:11:linux"
@@ -23,15 +22,15 @@ dependencies {
     compile "org.openjfx:javafx-graphics:11:win"
     compile "org.openjfx:javafx-graphics:11:linux"
     compile "org.openjfx:javafx-graphics:11:mac"
+    compile "org.openjfx:javafx-fxml:11"
     testCompile 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     testCompile "org.testfx:testfx-core:4.0.15-alpha"
     testCompile "org.testfx:testfx-junit5:4.0.15-alpha"
     testCompile "org.testfx:openjfx-monocle:jdk-11+26"
 }
 
-run {
+application {
     mainClassName = 'uk.ashleybye.tictactoe.Application'
-    standardInput = System.in
 }
 
 jar {
