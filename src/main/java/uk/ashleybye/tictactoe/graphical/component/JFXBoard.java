@@ -13,6 +13,10 @@ public class JFXBoard extends GridPane {
   private final JFXGame game;
   private Map<Integer, Coordinate> positions = new HashMap<>();
 
+  public JFXBoard() {
+    game = new JFXGame();
+  }
+
   public JFXBoard(JFXGame game) {
     super();
     this.game = game;

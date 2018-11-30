@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import uk.ashleybye.tictactoe.graphical.component.JFXBoard?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="uk.ashleybye.tictactoe.graphical.controller.TicTacToeController"
+  prefHeight="400.0" prefWidth="600.0">
+  <children>
+    <GridPane>
+      <children>
+        <Button fx:id="square-1"
+          text=" "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="0"/>
+        <Button fx:id="square-2"
+          text=" "
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="0"/>
+        <Button fx:id="square-3"
+          text=" "
+          GridPane.columnIndex="2"
+          GridPane.rowIndex="0"/>
+        <Button fx:id="square-4"
+          text=" "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="1"/>
+        <Button fx:id="square-5"
+          text=" "
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="1"/>
+        <Button fx:id="square-6"
+          text=" "
+          GridPane.columnIndex="2"
+          GridPane.rowIndex="1"/>
+        <Button fx:id="square-7"
+          text=" "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="2"/>
+        <Button fx:id="square-8"
+          text=" "
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="2"/>
+        <Button fx:id="square-9"
+          text=" "
+          GridPane.columnIndex="2"
+          GridPane.rowIndex="2"/>
+      </children>
+    </GridPane>
+    <Label fx:id="status"
+      text=""/>
+  </children>
+
+</AnchorPane>

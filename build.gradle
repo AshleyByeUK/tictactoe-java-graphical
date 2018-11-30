@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     compile "org.openjfx:javafx-base:11"
+    compile "org.openjfx:javafx-fxml:11"
     compile "org.openjfx:javafx-base:11:mac"
     compile "org.openjfx:javafx-controls:11:win"
     compile "org.openjfx:javafx-controls:11:linux"
