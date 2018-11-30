@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare?>
+<VBox xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="uk.ashleybye.tictactoe.graphical.controller.TicTacToeController"
+  prefHeight="160.0" prefWidth="120.0">
+  <children>
+    <GridPane>
+      <children>
+        <GraphicalSquare fx:id="square1"
+          text=" "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="0"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square2"
+          text=" "
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="0"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square3"
+          text=" "
+          GridPane.columnIndex="2"
+          GridPane.rowIndex="0"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square4"
+          text=" "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="1"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square5"
+          text=" "
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="1"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square6"
+          text=" "
+          GridPane.columnIndex="2"
+          GridPane.rowIndex="1"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square7"
+          text=" "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="2"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square8"
+          text=" "
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="2"
+          minWidth="40"
+          minHeight="40"/>
+        <GraphicalSquare fx:id="square9"
+          text=" "
+          GridPane.columnIndex="2"
+          GridPane.rowIndex="2"
+          minWidth="40"
+          minHeight="40"/>
+      </children>
+    </GridPane>
+  </children>
+  <children>
+    <Label fx:id="status"
+      text=""/>
+  </children>
+</VBox>

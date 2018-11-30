@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.graphical.component;
+package uk.ashleybye.tictactoe.graphical;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;

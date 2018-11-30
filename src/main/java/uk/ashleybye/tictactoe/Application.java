@@ -54,7 +54,7 @@ public class Application {
       ConsoleClient consoleClient = new ConsoleClient(mainMenu, ioWrapper);
       consoleClient.start();
     } else {
-      GameClient.startApp();
+      GameClient.startGameClient();
     }
   }
 }

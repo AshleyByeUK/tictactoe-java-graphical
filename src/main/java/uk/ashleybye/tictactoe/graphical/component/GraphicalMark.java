@@ -4,9 +4,9 @@ import java.util.Objects;
 import javafx.scene.control.Label;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
-public class JFXMark extends Label implements Mark {
+public class GraphicalMark extends Label implements Mark {
 
-  public JFXMark(String mark) {
+  public GraphicalMark(String mark) {
     super(mark, null);
   }
 
@@ -23,7 +23,7 @@ public class JFXMark extends Label implements Mark {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JFXMark that = (JFXMark) o;
+    GraphicalMark that = (GraphicalMark) o;
     return Objects.equals(getText(), that.getText());
   }
 
