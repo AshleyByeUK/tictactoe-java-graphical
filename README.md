@@ -5,8 +5,8 @@
 
 ## Introduction
 
-A game of TicTacToe that can be played in the console. Features include Human vs Human, Human vs Computer and
-Computer vs Computer modes. The computer player can be configured for easy and hard difficulties.
+A game of TicTacToe that can be played in the console r graphical user interface. Features include Human vs Human,
+Human vs Computer and Computer vs Computer modes. The computer player can be configured for easy and hard difficulties.
 
 ![Game Play Screenshot](images/screenshot.png)
 
@@ -33,7 +33,7 @@ assume you are in the root directory of the project.
 
 To run with Gradle, execute the following command:
 
-`./gradlew --console plain run`
+`./gradlew --console plain run console`
 
 You can omit the `--console plain` flag, but you will have to put up with Gradle build information being displayed
 in the user interface. This is also quite slow and game play is jittery.
@@ -46,7 +46,7 @@ To build a JAR file, execute the following command:
 
 This will build a JAR file in the root directory of the project. You can then run the JAR file as follows:
 
-`java -jar out/game.jar`
+`java -jar out/game.jar [console]`
 
 Game play using this method is much smoother.
 
