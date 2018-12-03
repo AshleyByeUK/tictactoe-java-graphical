@@ -10,4 +10,6 @@ public interface Player {
   String getName();
 
   int takeTurn(Game game);
+
+  PlayerType getType();
 }

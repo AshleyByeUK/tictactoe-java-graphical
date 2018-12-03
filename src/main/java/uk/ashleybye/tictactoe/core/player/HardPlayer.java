@@ -33,6 +33,11 @@ public class HardPlayer implements Player {
     return findBestPosition(game);
   }
 
+  @Override
+  public PlayerType getType() {
+    return PlayerType.COMPUTER;
+  }
+
   private int findBestPosition(Game game) {
     int bestScore = Integer.MIN_VALUE;
     int bestPosition = Integer.MIN_VALUE;

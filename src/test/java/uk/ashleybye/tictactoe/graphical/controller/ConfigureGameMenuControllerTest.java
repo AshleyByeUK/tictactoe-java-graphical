@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
 import uk.ashleybye.tictactoe.core.GameConfiguration;
-import uk.ashleybye.tictactoe.graphical.ViewManager;
-import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.JavaFXTest;
+import uk.ashleybye.tictactoe.graphical.ViewManager;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 
 class ConfigureGameMenuControllerTest extends JavaFXTest {
 
@@ -38,10 +38,12 @@ class ConfigureGameMenuControllerTest extends JavaFXTest {
   void testShowsDefaultConfigurationValues(FxRobot robot) {
     assertEquals("Player 1", robot.lookup("#playerOneName").queryTextInputControl().getText());
     assertEquals("X", robot.lookup("#playerOneMark").queryTextInputControl().getText());
-    assertEquals("User", robot.lookup("#playerOneType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
+    assertEquals("User",
+        robot.lookup("#playerOneType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
     assertEquals("Player 2", robot.lookup("#playerTwoName").queryTextInputControl().getText());
     assertEquals("O", robot.lookup("#playerTwoMark").queryTextInputControl().getText());
-    assertEquals("User", robot.lookup("#playerTwoType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
+    assertEquals("User",
+        robot.lookup("#playerTwoType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
   }
 
   @Test
@@ -100,7 +102,8 @@ class ConfigureGameMenuControllerTest extends JavaFXTest {
     robot.clickOn("#mainMenu");
     robot.clickOn("#configure");
 
-    assertEquals("Easy Computer", robot.lookup("#playerOneType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
+    assertEquals("Easy Computer",
+        robot.lookup("#playerOneType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
   }
 
   @Test
@@ -109,6 +112,7 @@ class ConfigureGameMenuControllerTest extends JavaFXTest {
     robot.clickOn("#mainMenu");
     robot.clickOn("#configure");
 
-    assertEquals("Hard Computer", robot.lookup("#playerOneType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
+    assertEquals("Hard Computer",
+        robot.lookup("#playerOneType").queryComboBox().getSelectionModel().selectedItemProperty().getValue());
   }
 }

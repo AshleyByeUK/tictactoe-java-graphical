@@ -5,89 +5,89 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare?>
-<VBox xmlns="http://javafx.com/javafx"
-  xmlns:fx="http://javafx.com/fxml"
-  fx:controller="uk.ashleybye.tictactoe.graphical.controller.GameController"
-  prefHeight="220.0" prefWidth="120.0">
+<VBox xmlns:fx="http://javafx.com/fxml"
+  prefHeight="220.0"
+  prefWidth="120.0"
+  xmlns="http://javafx.com/javafx" fx:controller="uk.ashleybye.tictactoe.graphical.controller.GameController">
   <children>
     <GridPane>
       <children>
-        <GraphicalSquare fx:id="square1"
-          text=" "
-          GridPane.columnIndex="0"
+        <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="0"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square2"
           text=" "
-          GridPane.columnIndex="1"
+          fx:id="square1"/>
+        <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="0"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square3"
           text=" "
-          GridPane.columnIndex="2"
+          fx:id="square2"/>
+        <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="0"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square4"
           text=" "
-          GridPane.columnIndex="0"
+          fx:id="square3"/>
+        <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="1"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square5"
           text=" "
-          GridPane.columnIndex="1"
+          fx:id="square4"/>
+        <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="1"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square6"
           text=" "
-          GridPane.columnIndex="2"
+          fx:id="square5"/>
+        <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="1"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square7"
           text=" "
-          GridPane.columnIndex="0"
+          fx:id="square6"/>
+        <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="2"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square8"
           text=" "
-          GridPane.columnIndex="1"
+          fx:id="square7"/>
+        <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="2"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
-        <GraphicalSquare fx:id="square9"
           text=" "
-          GridPane.columnIndex="2"
+          fx:id="square8"/>
+        <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="2"
+          minHeight="40"
           minWidth="40"
-          minHeight="40"/>
+          text=" "
+          fx:id="square9"/>
       </children>
     </GridPane>
   </children>
   <children>
-    <Label fx:id="status"
+    <Label minHeight="40"
+      minWidth="120"
       text=" "
-      minHeight="40"
-      minWidth="120"/>
+      fx:id="status"/>
   </children>
   <children>
     <VBox>
       <children>
-        <Button fx:id="restart"
-          text="Restart"
+        <Button minHeight="20"
           minWidth="120"
-          minHeight="20"/>
+          text="Restart"
+          fx:id="restart"/>
       </children>
       <children>
-        <Button fx:id="mainMenu"
-          text="Main Menu"
+        <Button minHeight="20"
           minWidth="120"
-          minHeight="20"/>
+          text="Main Menu"
+          fx:id="mainMenu"/>
       </children>
     </VBox>
   </children>

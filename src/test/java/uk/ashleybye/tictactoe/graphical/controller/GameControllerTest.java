@@ -1,5 +1,6 @@
 package uk.ashleybye.tictactoe.graphical.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
@@ -7,9 +8,9 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
+import uk.ashleybye.tictactoe.graphical.JavaFXTest;
 import uk.ashleybye.tictactoe.graphical.ViewManager;
 import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
-import uk.ashleybye.tictactoe.graphical.JavaFXTest;
 
 public class GameControllerTest extends JavaFXTest {
 
@@ -163,5 +164,16 @@ public class GameControllerTest extends JavaFXTest {
     robot.clickOn("#mainMenu");
 
     verifyThat("#play", hasText("Play"));
+  }
+
+  @Test
+  void testComputerVsComputerGamePlay(FxRobot robot) {
+    GraphicalGameConfiguration configuration = GraphicalGameConfiguration.getCurrentConfiguration();
+    configuration.setPlayerType(1, "easy");
+    configuration.setPlayerType(2, "easy");
+    robot.clickOn("#restart");
+
+    String status = robot.lookup("#status").queryLabeled().getText();
+    assertEquals("Game over!", status.split("\n")[0]);
   }
 }

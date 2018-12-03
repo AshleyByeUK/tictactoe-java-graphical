@@ -8,14 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
 import uk.ashleybye.tictactoe.graphical.ViewManager;
-import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 
 public class ConfigureGameMenuController {
 
-  private GraphicalGameConfiguration configuration;
-  private ObservableList<String> playerTypeOptions = FXCollections.observableArrayList(
-      "Easy Computer", "Hard Computer", "User");
   public TextField playerOneName = null;
   public TextField playerOneMark = null;
   public ComboBox<String> playerOneType = null;
@@ -23,6 +20,9 @@ public class ConfigureGameMenuController {
   public TextField playerTwoMark = null;
   public ComboBox<String> playerTwoType = null;
   public Button mainMenu = null;
+  private GraphicalGameConfiguration configuration;
+  private ObservableList<String> playerTypeOptions = FXCollections.observableArrayList(
+      "Easy Computer", "Hard Computer", "User");
 
   public void initialise(Stage stage) {
     loadCurrentConfiguration();
@@ -62,7 +62,7 @@ public class ConfigureGameMenuController {
   }
 
   private void configureChangeListeners(Stage stage) {
-    mainMenu.setOnAction(click-> handleClickOnMainMenu(stage));
+    mainMenu.setOnAction(click -> handleClickOnMainMenu(stage));
     configureComponentChangeListenersForPlayer(1, playerOneName, playerOneMark, playerOneType);
     configureComponentChangeListenersForPlayer(2, playerTwoName, playerTwoMark, playerTwoType);
   }

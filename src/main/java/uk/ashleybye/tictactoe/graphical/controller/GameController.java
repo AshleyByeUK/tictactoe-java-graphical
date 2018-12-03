@@ -10,21 +10,18 @@ import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.GameConfiguration;
 import uk.ashleybye.tictactoe.core.GameReport;
+import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
-import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
 import uk.ashleybye.tictactoe.graphical.ViewManager;
-import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalPlayerFactory;
 
 public class GameController implements ClientInterface {
 
-  private int nextMove;
-  private Game game;
-  private Stage stage;
-  private List<GraphicalSquare> squares;
   public GraphicalSquare square1 = null;
   public GraphicalSquare square2 = null;
   public GraphicalSquare square3 = null;
@@ -37,15 +34,13 @@ public class GameController implements ClientInterface {
   public Label status = null;
   public Button restart = null;
   public Button mainMenu = null;
+  private int nextMove;
+  private Game game;
+  private List<GraphicalSquare> squares;
 
   public void initialise(Stage stage) {
-    setStage(stage);
     setupSquares();
-    setupButtons();
-  }
-
-  private void setStage(Stage stage) {
-    this.stage = stage;
+    setupButtons(stage);
   }
 
   private void setupSquares() {
@@ -53,42 +48,49 @@ public class GameController implements ClientInterface {
         square1, square2, square3, square4, square5, square6, square7, square8, square9);
     IntStream
         .range(1, 10)
-        .forEach(position -> squares.get(position - 1).setOnAction(click -> handleClick(position)));
+        .forEach(position -> squares.get(position - 1).setOnAction(click -> handleSquareClicked(position)));
   }
 
-  private void handleClick(int square) {
+  private void handleSquareClicked(int square) {
     try {
       nextMove = square;
       game = game.playNextTurn();
+      if (game.computerHasNextTurn()) {
+        game = game.playNextTurn();
+      }
       renderGame(game.generateGameReport());
     } catch (SquareUnavailable ex) {
       // Do nothing.
     }
   }
 
-  private void setupButtons() {
+  private void setupButtons(Stage stage) {
     restart.setOnAction(click -> startGame());
-    mainMenu.setOnAction(click -> returnToMainMenu());
+    mainMenu.setOnAction(click -> returnToMainMenu(stage));
   }
 
   public void startGame() {
     initialiseGame();
+    while (game.computerHasNextTurn()) {
+      game = game.playNextTurn();
+    }
     renderGame(game.generateGameReport());
-  }
-
-  private void returnToMainMenu() {
-    ViewManager viewManager = ViewManager.getViewManager();
-    stage.setScene(viewManager.getMainMenuScene());
-    stage.show();
   }
 
   private void initialiseGame() {
     GameConfiguration configuration = GraphicalGameConfiguration.getCurrentConfiguration();
     PlayerConfiguration p1Config = configuration.getPlayerConfiguration(1);
     PlayerConfiguration p2Config = configuration.getPlayerConfiguration(2);
-    Player playerOne = new HumanPlayer(p1Config.getPlayerMark(), p1Config.getPlayerName(), this);
-    Player playerTwo = new HumanPlayer(p2Config.getPlayerMark(), p2Config.getPlayerName(), this);
+    PlayerFactory playerFactory = new GraphicalPlayerFactory(this);
+    Player playerOne = playerFactory.make(p1Config.getPlayerType(), p1Config.getPlayerName(), p1Config.getPlayerMark());
+    Player playerTwo = playerFactory.make(p2Config.getPlayerType(), p2Config.getPlayerName(), p2Config.getPlayerMark());
     game = new Game(playerOne, playerTwo, configuration.getEmptyMark());
+  }
+
+  private void returnToMainMenu(Stage stage) {
+    ViewManager viewManager = ViewManager.getViewManager();
+    stage.setScene(viewManager.getMainMenuScene());
+    stage.show();
   }
 
   @Override

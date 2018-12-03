@@ -6,9 +6,9 @@ import uk.ashleybye.tictactoe.graphical.ViewManager;
 
 public class MainMenuController {
 
-  private Stage stage;
   public Button play = null;
   public Button configure = null;
+  private Stage stage;
   private ViewManager viewManager;
 
   public void initialise(Stage stage) {

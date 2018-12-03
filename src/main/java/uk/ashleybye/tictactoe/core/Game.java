@@ -7,6 +7,7 @@ import uk.ashleybye.tictactoe.core.board.Board;
 import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.board.Square;
 import uk.ashleybye.tictactoe.core.player.Player;
+import uk.ashleybye.tictactoe.core.player.PlayerType;
 
 public class Game {
 
@@ -56,6 +57,10 @@ public class Game {
         .filter(square -> !square.isMarked())
         .map(square -> square.getPosition())
         .collect(Collectors.toList());
+  }
+
+  public boolean computerHasNextTurn() {
+    return !isGameOver() && getCurrentPlayer().getType().equals(PlayerType.COMPUTER);
   }
 
   public Game playNextTurn() {

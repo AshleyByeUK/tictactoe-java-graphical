@@ -30,6 +30,11 @@ public class EasyPlayer implements Player {
   }
 
   @Override
+  public PlayerType getType() {
+    return PlayerType.COMPUTER;
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;

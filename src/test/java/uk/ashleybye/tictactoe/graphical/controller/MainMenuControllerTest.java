@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
-import uk.ashleybye.tictactoe.graphical.ViewManager;
 import uk.ashleybye.tictactoe.graphical.JavaFXTest;
+import uk.ashleybye.tictactoe.graphical.ViewManager;
 import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 
 public class MainMenuControllerTest extends JavaFXTest {

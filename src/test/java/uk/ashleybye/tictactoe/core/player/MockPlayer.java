@@ -30,6 +30,11 @@ public class MockPlayer implements Player {
     return nextPositionToPlay;
   }
 
+  @Override
+  public PlayerType getType() {
+    return PlayerType.USER;
+  }
+
   public void setNextPositionToPlay(int position) {
     this.nextPositionToPlay = position;
   }

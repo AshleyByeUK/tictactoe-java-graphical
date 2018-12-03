@@ -5,60 +5,60 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx"
-  xmlns:fx="http://javafx.com/fxml"
-  fx:controller="uk.ashleybye.tictactoe.graphical.controller.ConfigureGameMenuController"
-  prefHeight="400.0" prefWidth="120.0">
+<VBox xmlns:fx="http://javafx.com/fxml"
+  prefHeight="400.0"
+  prefWidth="120.0"
+  xmlns="http://javafx.com/javafx" fx:controller="uk.ashleybye.tictactoe.graphical.controller.ConfigureGameMenuController">
   <children>
-    <Label fx:id="title"
+    <Label minHeight="40"
+      minWidth="120"
       text="Configure Game"
-      minWidth="120"
-      minHeight="40"/>
+      fx:id="title"/>
   </children>
   <children>
-    <Label text="Player 1"
+    <Label minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      text="Player 1"/>
   </children>
   <children>
-    <TextField fx:id="playerOneName"
+    <TextField minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      fx:id="playerOneName"/>
   </children>
   <children>
-    <TextField fx:id="playerOneMark"
+    <TextField minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      fx:id="playerOneMark"/>
   </children>
   <children>
-    <ComboBox fx:id="playerOneType"
+    <ComboBox minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      fx:id="playerOneType"/>
   </children>
   <children>
-    <Label text="Player 2"
+    <Label minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      text="Player 2"/>
   </children>
   <children>
-    <TextField fx:id="playerTwoName"
+    <TextField minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      fx:id="playerTwoName"/>
   </children>
   <children>
-    <TextField fx:id="playerTwoMark"
+    <TextField minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      fx:id="playerTwoMark"/>
   </children>
   <children>
-    <ComboBox fx:id="playerTwoType"
+    <ComboBox minHeight="40"
       minWidth="120"
-      minHeight="40"/>
+      fx:id="playerTwoType"/>
   </children>
   <children>
-    <Button fx:id="mainMenu"
+    <Button minHeight="40"
+      minWidth="120"
       text="Main Menu"
-      minWidth="120"
-      minHeight="40"/>
+      fx:id="mainMenu"/>
   </children>
 </VBox>

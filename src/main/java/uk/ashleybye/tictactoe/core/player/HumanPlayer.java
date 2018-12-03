@@ -33,6 +33,11 @@ public class HumanPlayer implements Player {
   }
 
   @Override
+  public PlayerType getType() {
+    return PlayerType.USER;
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;

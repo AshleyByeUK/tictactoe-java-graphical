@@ -15,6 +15,12 @@ public class ViewManager {
   private Map<ContextElement, Object> scenes = new HashMap<>();
   private Map<ContextElement, Object> controllers = new HashMap<>();
 
+  private ViewManager() throws IOException {
+    loadElementFromFXML(ContextElement.MAIN_MENU, "fxml/MainMenu.fxml");
+    loadElementFromFXML(ContextElement.PLAY_GAME, "fxml/Game.fxml");
+    loadElementFromFXML(ContextElement.CONFIGURE_GAME, "fxml/ConfigureGameMenu.fxml");
+  }
+
   public static void initialiseViewManager() throws IOException {
     if (viewManager == null) {
       viewManager = new ViewManager();
@@ -26,12 +32,6 @@ public class ViewManager {
       throw new RuntimeException("ViewManager has not been initialised");
     }
     return viewManager;
-  }
-
-  private ViewManager() throws IOException {
-    loadElementFromFXML(ContextElement.MAIN_MENU, "fxml/MainMenu.fxml");
-    loadElementFromFXML(ContextElement.PLAY_GAME, "fxml/Game.fxml");
-    loadElementFromFXML(ContextElement.CONFIGURE_GAME, "fxml/ConfigureGameMenu.fxml");
   }
 
   private void loadElementFromFXML(ContextElement element, String path) throws IOException {

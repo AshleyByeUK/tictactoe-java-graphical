@@ -12,6 +12,10 @@ public class GraphicalGameConfiguration implements GameConfiguration {
   private final GraphicalPlayerConfiguration playerOneConfiguration = new GraphicalPlayerConfiguration();
   private final GraphicalPlayerConfiguration playerTwoConfiguration = new GraphicalPlayerConfiguration();
 
+  private GraphicalGameConfiguration() {
+    initialisePlayerConfigurations();
+  }
+
   public static GraphicalGameConfiguration getCurrentConfiguration() {
     if (configuration == null) {
       configuration = new GraphicalGameConfiguration();
@@ -22,10 +26,6 @@ public class GraphicalGameConfiguration implements GameConfiguration {
   // For testing purposes.
   public static void resetToDefaults() {
     configuration = new GraphicalGameConfiguration();
-  }
-
-  private GraphicalGameConfiguration() {
-    initialisePlayerConfigurations();
   }
 
   private void initialisePlayerConfigurations() {
@@ -86,5 +86,6 @@ public class GraphicalGameConfiguration implements GameConfiguration {
   }
 
   class InvalidPlayerNumber extends RuntimeException {
+
   }
 }
