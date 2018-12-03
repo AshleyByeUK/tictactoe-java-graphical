@@ -69,6 +69,7 @@ public class ConfigureGameMenuController {
 
   private void handleClickOnMainMenu(Stage stage) {
     ViewManager viewManager = ViewManager.getViewManager();
+    viewManager.getMainMenuController().initialise(stage);
     stage.setScene(viewManager.getMainMenuScene());
     stage.show();
   }

@@ -89,6 +89,7 @@ public class GameController implements ClientInterface {
 
   private void returnToMainMenu(Stage stage) {
     ViewManager viewManager = ViewManager.getViewManager();
+    viewManager.getMainMenuController().initialise(stage);
     stage.setScene(viewManager.getMainMenuScene());
     stage.show();
   }
