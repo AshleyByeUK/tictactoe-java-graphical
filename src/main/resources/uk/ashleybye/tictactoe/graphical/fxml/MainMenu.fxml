@@ -21,4 +21,10 @@
       minHeight="20"
       minWidth="120"/>
   </children>
+  <children>
+    <Button fx:id="configure"
+      text="Configure Game"
+      minHeight="20"
+      minWidth="120"/>
+  </children>
 </VBox>

@@ -1,25 +1,25 @@
 package uk.ashleybye.tictactoe.graphical.controller;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
+import uk.ashleybye.tictactoe.core.GameConfiguration;
 import uk.ashleybye.tictactoe.core.GameReport;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 import uk.ashleybye.tictactoe.core.player.Player;
+import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
 import uk.ashleybye.tictactoe.graphical.ClientContext;
+import uk.ashleybye.tictactoe.graphical.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare;
 
-public class TicTacToeController implements ClientInterface {
+public class GameController implements ClientInterface {
 
   private int nextMove;
   private Game game;
@@ -82,9 +82,12 @@ public class TicTacToeController implements ClientInterface {
   }
 
   private void initialiseGame() {
-    Player playerOne = new HumanPlayer(new GraphicalMark("X"), "Player 1", this);
-    Player playerTwo = new HumanPlayer(new GraphicalMark("O"), "Player 2", this);
-    game = new Game(playerOne, playerTwo, new GraphicalMark(" "));
+    GameConfiguration configuration = GraphicalGameConfiguration.getCurrentConfiguration();
+    PlayerConfiguration p1Config = configuration.getPlayerConfiguration(1);
+    PlayerConfiguration p2Config = configuration.getPlayerConfiguration(2);
+    Player playerOne = new HumanPlayer(p1Config.getPlayerMark(), p1Config.getPlayerName(), this);
+    Player playerTwo = new HumanPlayer(p2Config.getPlayerMark(), p2Config.getPlayerName(), this);
+    game = new Game(playerOne, playerTwo, configuration.getEmptyMark());
   }
 
   @Override

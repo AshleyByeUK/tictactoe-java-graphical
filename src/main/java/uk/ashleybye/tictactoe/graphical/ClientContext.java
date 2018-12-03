@@ -1,39 +1,55 @@
 package uk.ashleybye.tictactoe.graphical;
 
 import javafx.scene.Scene;
+import uk.ashleybye.tictactoe.graphical.controller.ConfigureGameMenuController;
 import uk.ashleybye.tictactoe.graphical.controller.MainMenuController;
-import uk.ashleybye.tictactoe.graphical.controller.TicTacToeController;
+import uk.ashleybye.tictactoe.graphical.controller.GameController;
 
 public class ClientContext {
 
-  private static Scene mainMenuScene;
+  private static ConfigureGameMenuController configureGameMenuController;
+  private static Scene configureGameMenuScene;
+  private static GameController gameController;
+  private static Scene gameScene;
   private static MainMenuController mainMenuController;
-  private static Scene ticTacToeScene;
-  private static TicTacToeController tictacToeController;
+  private static Scene mainMenuScene;
 
-  public static void setMainMenuView(Scene scene, MainMenuController controller) {
-    ClientContext.mainMenuScene = scene;
-    ClientContext.mainMenuController = controller;
+  public static ConfigureGameMenuController getConfigureGameMenuController() {
+    return configureGameMenuController;
   }
 
-  public static Scene getMainMenuScene() {
-    return mainMenuScene;
+  public static Scene getConfigureGameMenuScene() {
+    return configureGameMenuScene;
+  }
+
+  public static void setConfigureGameMenuView(Scene scene, ConfigureGameMenuController controller) {
+    configureGameMenuScene = scene;
+    configureGameMenuController = controller;
+  }
+
+  public static GameController getGameController() {
+    return gameController;
+  }
+
+  public static Scene getGameScene() {
+    return gameScene;
+  }
+
+  public static void setGameView(Scene scene, GameController controller) {
+    ClientContext.gameScene = scene;
+    ClientContext.gameController = controller;
   }
 
   public static MainMenuController getMainMenuController() {
     return mainMenuController;
   }
 
-  public static void setGameView(Scene scene, TicTacToeController controller) {
-    ClientContext.ticTacToeScene = scene;
-    ClientContext.tictacToeController = controller;
+  public static Scene getMainMenuScene() {
+    return mainMenuScene;
   }
 
-  public static Scene getTicTacToeScene() {
-    return ticTacToeScene;
-  }
-
-  public static TicTacToeController getTictacToeController() {
-    return tictacToeController;
+  public static void setMainMenuView(Scene scene, MainMenuController controller) {
+    ClientContext.mainMenuScene = scene;
+    ClientContext.mainMenuController = controller;
   }
 }

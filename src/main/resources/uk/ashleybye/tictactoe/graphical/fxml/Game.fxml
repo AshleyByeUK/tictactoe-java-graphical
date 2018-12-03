@@ -7,7 +7,7 @@
 <?import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare?>
 <VBox xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
-  fx:controller="uk.ashleybye.tictactoe.graphical.controller.TicTacToeController"
+  fx:controller="uk.ashleybye.tictactoe.graphical.controller.GameController"
   prefHeight="220.0" prefWidth="120.0">
   <children>
     <GridPane>

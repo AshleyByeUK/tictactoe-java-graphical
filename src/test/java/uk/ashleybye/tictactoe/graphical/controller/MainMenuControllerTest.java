@@ -22,8 +22,12 @@ public class MainMenuControllerTest extends JavaFXTest {
     ClientContext.getMainMenuController().initialise(stage);
 
     loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/TicTacToe.fxml"));
+    loader.setLocation(getClass().getResource("../fxml/Game.fxml"));
     ClientContext.setGameView(new Scene(loader.load()), loader.getController());
+
+    loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../fxml/ConfigureGameMenu.fxml"));
+    ClientContext.setConfigureGameMenuView(new Scene(loader.load()), loader.getController());
 
     ClientContext.getMainMenuController().initialise(stage);
     stage.setScene(ClientContext.getMainMenuScene());
@@ -37,5 +41,12 @@ public class MainMenuControllerTest extends JavaFXTest {
     robot.clickOn("#square1");
 
     verifyThat("#square1", hasText("X"));
+  }
+
+  @Test
+  void testCanLaunchGameConfigurationMenu(FxRobot robot) {
+    robot.clickOn("#configure");
+
+    verifyThat("#title", hasText("Configure Game"));
   }
 }

@@ -15,8 +15,12 @@ public class GraphicalClient extends Application {
     ClientContext.setMainMenuView(new Scene(loader.load()), loader.getController());
 
     loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("fxml/TicTacToe.fxml"));
+    loader.setLocation(getClass().getResource("fxml/Game.fxml"));
     ClientContext.setGameView(new Scene(loader.load()), loader.getController());
+
+    loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("fxml/ConfigureGameMenu.fxml"));
+    ClientContext.setConfigureGameMenuView(new Scene(loader.load()), loader.getController());
   }
 
   public static void launchClient() {

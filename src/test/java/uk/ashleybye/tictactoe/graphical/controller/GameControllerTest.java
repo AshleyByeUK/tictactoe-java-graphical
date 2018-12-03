@@ -6,13 +6,15 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
 import uk.ashleybye.tictactoe.graphical.ClientContext;
+import uk.ashleybye.tictactoe.graphical.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.JavaFXTest;
 
-public class TicTacToeControllerTest extends JavaFXTest {
+public class GameControllerTest extends JavaFXTest {
 
   @Start
   void onStart(Stage stage) throws Exception {
@@ -22,14 +24,19 @@ public class TicTacToeControllerTest extends JavaFXTest {
     ClientContext.getMainMenuController().initialise(stage);
 
     loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/TicTacToe.fxml"));
+    loader.setLocation(getClass().getResource("../fxml/Game.fxml"));
     ClientContext.setGameView(new Scene(loader.load()), loader.getController());
 
 
-    ClientContext.getTictacToeController().initialise(stage);
-    ClientContext.getTictacToeController().startGame();
-    stage.setScene(ClientContext.getTicTacToeScene());
+    ClientContext.getGameController().initialise(stage);
+    stage.setScene(ClientContext.getGameScene());
     stage.show();
+  }
+
+  @BeforeEach
+  void setUp() {
+    GraphicalGameConfiguration.resetToDefaults();
+    ClientContext.getGameController().startGame();
   }
 
   @Test
