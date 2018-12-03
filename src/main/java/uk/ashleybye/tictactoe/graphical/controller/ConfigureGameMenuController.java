@@ -7,8 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
-import uk.ashleybye.tictactoe.graphical.ClientContext;
-import uk.ashleybye.tictactoe.graphical.GraphicalGameConfiguration;
+import uk.ashleybye.tictactoe.graphical.ViewManager;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 
 public class ConfigureGameMenuController {
@@ -68,7 +68,8 @@ public class ConfigureGameMenuController {
   }
 
   private void handleClickOnMainMenu(Stage stage) {
-    stage.setScene(ClientContext.getMainMenuScene());
+    ViewManager viewManager = ViewManager.getViewManager();
+    stage.setScene(viewManager.getMainMenuScene());
     stage.show();
   }
 

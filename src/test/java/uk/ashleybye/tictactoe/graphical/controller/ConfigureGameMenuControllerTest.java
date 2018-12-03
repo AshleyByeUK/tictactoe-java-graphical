@@ -4,16 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
 import uk.ashleybye.tictactoe.core.GameConfiguration;
-import uk.ashleybye.tictactoe.graphical.ClientContext;
-import uk.ashleybye.tictactoe.graphical.GraphicalGameConfiguration;
+import uk.ashleybye.tictactoe.graphical.ViewManager;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.JavaFXTest;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 
@@ -21,21 +19,11 @@ class ConfigureGameMenuControllerTest extends JavaFXTest {
 
   @Start
   void onStart(Stage stage) throws Exception {
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/MainMenu.fxml"));
-    ClientContext.setMainMenuView(new Scene(loader.load()), loader.getController());
-    ClientContext.getMainMenuController().initialise(stage);
-
-    loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/Game.fxml"));
-    ClientContext.setGameView(new Scene(loader.load()), loader.getController());
-
-    loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/ConfigureGameMenu.fxml"));
-    ClientContext.setConfigureGameMenuView(new Scene(loader.load()), loader.getController());
-
-    ClientContext.getConfigureGameMenuController().initialise(stage);
-    stage.setScene(ClientContext.getConfigureGameMenuScene());
+    GraphicalGameConfiguration.resetToDefaults();
+    ViewManager.initialiseViewManager();
+    ViewManager viewManager = ViewManager.getViewManager();
+    viewManager.getConfigureGameMenuController().initialise(stage);
+    stage.setScene(viewManager.getConfigureGameMenuScene());
     stage.show();
   }
 

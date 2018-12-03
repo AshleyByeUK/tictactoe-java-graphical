@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.graphical;
+package uk.ashleybye.tictactoe.graphical.game;
 
 import uk.ashleybye.tictactoe.core.GameConfiguration;
 import uk.ashleybye.tictactoe.core.board.Mark;

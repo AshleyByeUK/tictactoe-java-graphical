@@ -3,34 +3,23 @@ package uk.ashleybye.tictactoe.graphical.controller;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
-import uk.ashleybye.tictactoe.graphical.ClientContext;
+import uk.ashleybye.tictactoe.graphical.ViewManager;
 import uk.ashleybye.tictactoe.graphical.JavaFXTest;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 
 public class MainMenuControllerTest extends JavaFXTest {
 
   @Start
   void onStart(Stage stage) throws Exception {
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/MainMenu.fxml"));
-    ClientContext.setMainMenuView(new Scene(loader.load()), loader.getController());
-    ClientContext.getMainMenuController().initialise(stage);
-
-    loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/Game.fxml"));
-    ClientContext.setGameView(new Scene(loader.load()), loader.getController());
-
-    loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../fxml/ConfigureGameMenu.fxml"));
-    ClientContext.setConfigureGameMenuView(new Scene(loader.load()), loader.getController());
-
-    ClientContext.getMainMenuController().initialise(stage);
-    stage.setScene(ClientContext.getMainMenuScene());
+    GraphicalGameConfiguration.resetToDefaults();
+    ViewManager.initialiseViewManager();
+    ViewManager viewManager = ViewManager.getViewManager();
+    viewManager.getMainMenuController().initialise(stage);
+    stage.setScene(viewManager.getMainMenuScene());
     stage.show();
   }
 

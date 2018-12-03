@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.graphical;
+package uk.ashleybye.tictactoe.graphical.game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.core.GameConfiguration;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
-import uk.ashleybye.tictactoe.graphical.GraphicalGameConfiguration.InvalidPlayerNumber;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration.InvalidPlayerNumber;
+import uk.ashleybye.tictactoe.graphical.JavaFXTest;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 
 class GraphicalGameConfigurationTest extends JavaFXTest {

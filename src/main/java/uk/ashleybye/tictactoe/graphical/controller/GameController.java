@@ -14,8 +14,8 @@ import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
-import uk.ashleybye.tictactoe.graphical.ClientContext;
-import uk.ashleybye.tictactoe.graphical.GraphicalGameConfiguration;
+import uk.ashleybye.tictactoe.graphical.ViewManager;
+import uk.ashleybye.tictactoe.graphical.game.GraphicalGameConfiguration;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare;
 
@@ -77,7 +77,8 @@ public class GameController implements ClientInterface {
   }
 
   private void returnToMainMenu() {
-    stage.setScene(ClientContext.getMainMenuScene());
+    ViewManager viewManager = ViewManager.getViewManager();
+    stage.setScene(viewManager.getMainMenuScene());
     stage.show();
   }
 
