@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.MockGame;
 import uk.ashleybye.tictactoe.core.MockGameConfiguration;

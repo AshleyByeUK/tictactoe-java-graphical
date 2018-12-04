@@ -5,7 +5,6 @@ import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
 import uk.ashleybye.tictactoe.console.game.ConsoleGameRunner;
 import uk.ashleybye.tictactoe.console.game.ConsolePlayerFactory;
 import uk.ashleybye.tictactoe.console.game.GameConsole;
-import uk.ashleybye.tictactoe.core.ClientInterface;
 
 public class PlayGameView extends View {
 

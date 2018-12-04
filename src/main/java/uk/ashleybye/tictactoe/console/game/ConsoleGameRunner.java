@@ -1,7 +1,6 @@
 package uk.ashleybye.tictactoe.console.game;
 
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;

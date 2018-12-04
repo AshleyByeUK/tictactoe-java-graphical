@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare?>
-<?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-  stylesheets="@../css/stylesheet.css"
-  minHeight="600"
-  minWidth="400"
   maxHeight="600"
   maxWidth="400"
+  minHeight="600"
+  minWidth="400"
   styleClass="board-container"
+  stylesheets="@../css/stylesheet.css"
   xmlns="http://javafx.com/javafx" fx:controller="uk.ashleybye.tictactoe.graphical.controller.GameController">
   <children>
     <GridPane>
@@ -21,76 +21,88 @@
           GridPane.rowIndex="0"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square1"
-          styleClass="graphical-square"/>
+          fx:id="square1"/>
         <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="0"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square2"
-          styleClass="graphical-square"/>
+          fx:id="square2"/>
         <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="0"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square3"
-          styleClass="graphical-square"/>
+          fx:id="square3"/>
         <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="1"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square4"
-          styleClass="graphical-square"/>
+          fx:id="square4"/>
         <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="1"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square5"
-          styleClass="graphical-square"/>
+          fx:id="square5"/>
         <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="1"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square6"
-          styleClass="graphical-square"/>
+          fx:id="square6"/>
         <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="2"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square7"
-          styleClass="graphical-square"/>
+          fx:id="square7"/>
         <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="2"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square8"
-          styleClass="graphical-square"/>
+          fx:id="square8"/>
         <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="2"
           minHeight="120"
           minWidth="120"
+          styleClass="graphical-square"
           text=" "
-          fx:id="square9"
-          styleClass="graphical-square"/>
+          fx:id="square9"/>
       </children>
     </GridPane>
   </children>
   <children>
-    <VBox><VBox.margin><Insets><bottom>10</bottom></Insets></VBox.margin></VBox>
+    <VBox>
+      <VBox.margin>
+        <Insets>
+          <bottom>10</bottom>
+        </Insets>
+      </VBox.margin>
+    </VBox>
     <Label minHeight="80"
       minWidth="360"
+      styleClass="game-status"
       text=" "
-      fx:id="status"
-    styleClass="game-status"/>
-    <VBox><VBox.margin><Insets><bottom>10</bottom></Insets></VBox.margin></VBox>
+      fx:id="status"/>
+    <VBox>
+      <VBox.margin>
+        <Insets>
+          <bottom>10</bottom>
+        </Insets>
+      </VBox.margin>
+    </VBox>
   </children>
   <children>
     <VBox>

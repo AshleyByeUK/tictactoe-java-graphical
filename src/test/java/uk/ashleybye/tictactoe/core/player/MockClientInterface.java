@@ -1,7 +1,6 @@
 package uk.ashleybye.tictactoe.core.player;
 
 import uk.ashleybye.tictactoe.core.ClientInterface;
-import uk.ashleybye.tictactoe.core.GameReport;
 
 public class MockClientInterface implements ClientInterface {
 
