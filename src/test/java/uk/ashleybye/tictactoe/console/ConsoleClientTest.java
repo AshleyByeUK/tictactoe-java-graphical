@@ -6,15 +6,15 @@ import static uk.ashleybye.tictactoe.TestHelpers.colourisedMark;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark;
-import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
-import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerFactory;
-import uk.ashleybye.tictactoe.console.gameClient.GameConsole;
+import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsoleMark;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerFactory;
+import uk.ashleybye.tictactoe.console.game.GameConsole;
 import uk.ashleybye.tictactoe.console.view.ConfigurePlayerView;
 import uk.ashleybye.tictactoe.console.view.MainView;
 import uk.ashleybye.tictactoe.console.view.PlayGameView;
-import uk.ashleybye.tictactoe.core.PlayerFactory;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 public class ConsoleClientTest {
 

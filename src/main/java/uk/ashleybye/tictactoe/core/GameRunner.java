@@ -4,7 +4,7 @@ import java.util.Objects;
 import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.Player;
-import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 public class GameRunner {
 
@@ -18,20 +18,12 @@ public class GameRunner {
 
   public static GameRunner create(
       PlayerFactory playerFactory, GameConfiguration gameConfiguration, ClientInterface clientInterface) {
-    Player playerOne = makePlayer(1, playerFactory, gameConfiguration);
-    Player playerTwo = makePlayer(2, playerFactory, gameConfiguration);
+    Player playerOne = playerFactory.make(gameConfiguration.getPlayerConfiguration(1));
+    Player playerTwo = playerFactory.make(gameConfiguration.getPlayerConfiguration(2));
 
     Game game = new Game(playerOne, playerTwo, gameConfiguration.getEmptyMark());
 
     return new GameRunner(game, clientInterface);
-  }
-
-  private static Player makePlayer(int player, PlayerFactory playerFactory, GameConfiguration gameConfiguration) {
-    PlayerConfiguration configuration = gameConfiguration.getPlayerConfiguration(player);
-    return playerFactory.make(
-        configuration.getPlayerType(),
-        configuration.getPlayerName(),
-        configuration.getPlayerMark());
   }
 
   public void play() {

@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console.gameClient;
+package uk.ashleybye.tictactoe.console.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,7 +8,7 @@ import static uk.ashleybye.tictactoe.TestHelpers.colourisedMark;
 
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.TestHelpers;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark.ConsoleColour;
+import uk.ashleybye.tictactoe.console.game.ConsoleMark.ConsoleColour;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
 class ConsoleMarkTest {

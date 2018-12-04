@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
-import uk.ashleybye.tictactoe.console.gameClient.MockPlayerFactory;
+import uk.ashleybye.tictactoe.console.game.MockGameConsole;
+import uk.ashleybye.tictactoe.console.game.MockPlayerFactory;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 import uk.ashleybye.tictactoe.core.player.Player;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 class GameRunnerTest {
 

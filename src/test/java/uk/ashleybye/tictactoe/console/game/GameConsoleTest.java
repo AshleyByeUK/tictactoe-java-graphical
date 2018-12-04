@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console.gameClient;
+package uk.ashleybye.tictactoe.console.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -73,7 +73,7 @@ public class GameConsoleTest {
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
-    assertFalse(renderedText.contains("Great, let's play a gameClient of Tic Tac Toe!\n\n"));
+    assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 "));
     assertFalse(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
@@ -90,7 +90,7 @@ public class GameConsoleTest {
     gameConsole.renderGame(inProgressReport);
 
     String renderedText = ioWrapper.getRenderedText();
-    assertFalse(renderedText.contains("Great, let's play a gameClient of Tic Tac Toe!\n\n"));
+    assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | O | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 "));
     assertTrue(renderedText.contains("played in position"));
     assertTrue(renderedText.contains("Player 1's turn > "));
@@ -109,7 +109,7 @@ public class GameConsoleTest {
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
-    assertFalse(renderedText.contains("Great, let's play a gameClient of Tic Tac Toe!\n\n"));
+    assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | X | O \n-----------\n O | X | X \n-----------\n X | O | O "));
     assertTrue(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
@@ -130,7 +130,7 @@ public class GameConsoleTest {
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
-    assertFalse(renderedText.contains("Great, let's play a gameClient of Tic Tac Toe!\n\n"));
+    assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | X | X \n-----------\n O | O | 6 \n-----------\n 7 | 8 | 9 "));
     assertTrue(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));
@@ -151,7 +151,7 @@ public class GameConsoleTest {
     gameConsole.renderGame(report);
 
     String renderedText = ioWrapper.getRenderedText();
-    assertFalse(renderedText.contains("Great, let's play a gameClient of Tic Tac Toe!\n\n"));
+    assertFalse(renderedText.contains("Great, let's play a game of Tic Tac Toe!\n\n"));
     assertTrue(renderedText.contains(" X | X | 3 \n-----------\n O | O | O \n-----------\n 7 | 8 | X "));
     assertTrue(renderedText.contains("played in position"));
     assertFalse(renderedText.contains("Player 1's turn > "));

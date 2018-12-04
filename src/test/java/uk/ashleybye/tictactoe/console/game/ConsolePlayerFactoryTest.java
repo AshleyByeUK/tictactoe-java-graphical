@@ -1,15 +1,15 @@
-package uk.ashleybye.tictactoe.console.gameClient;
+package uk.ashleybye.tictactoe.console.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.player.EasyPlayer;
 import uk.ashleybye.tictactoe.core.player.HardPlayer;
 import uk.ashleybye.tictactoe.core.player.HumanPlayer;
 import uk.ashleybye.tictactoe.core.player.Player;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 class ConsolePlayerFactoryTest {
 
@@ -32,7 +32,12 @@ class ConsolePlayerFactoryTest {
   @Test
   void testCreatesHumanPlayer() {
     Player expected = new HumanPlayer(new ConsoleMark("X"), "Player 1", console);
-    Player player = factory.make("human", "Player 1", new ConsoleMark("X"));
+    ConsolePlayerConfiguration playerConfiguration = new ConsolePlayerConfiguration();
+    playerConfiguration.setPlayerName("Player 1");
+    playerConfiguration.setPlayerMark(new ConsoleMark("X"));
+    playerConfiguration.setPlayerType("human");
+
+    Player player = factory.make(playerConfiguration);
 
     assertEquals(expected, player);
   }
@@ -40,7 +45,12 @@ class ConsolePlayerFactoryTest {
   @Test
   void testCreatesEasyPlayer() {
     Player expected = new EasyPlayer(new ConsoleMark("X"), "Player 1");
-    Player player = factory.make("easy", "Player 1", new ConsoleMark("X"));
+    ConsolePlayerConfiguration playerConfiguration = new ConsolePlayerConfiguration();
+    playerConfiguration.setPlayerName("Player 1");
+    playerConfiguration.setPlayerMark(new ConsoleMark("X"));
+    playerConfiguration.setPlayerType("easy");
+
+    Player player = factory.make(playerConfiguration);
 
     assertEquals(expected, player);
   }
@@ -48,14 +58,24 @@ class ConsolePlayerFactoryTest {
   @Test
   void testCreatesHardPlayer() {
     Player expected = new HardPlayer(new ConsoleMark("X"), "Player 1");
-    Player player = factory.make("hard", "Player 1", new ConsoleMark("X"));
+    ConsolePlayerConfiguration playerConfiguration = new ConsolePlayerConfiguration();
+    playerConfiguration.setPlayerName("Player 1");
+    playerConfiguration.setPlayerMark(new ConsoleMark("X"));
+    playerConfiguration.setPlayerType("hard");
+
+    Player player = factory.make(playerConfiguration);
 
     assertEquals(expected, player);
   }
 
   @Test
   void testUnknownPlayerTypeThrowsException() {
+    ConsolePlayerConfiguration playerConfiguration = new ConsolePlayerConfiguration();
+    playerConfiguration.setPlayerName("Player");
+    playerConfiguration.setPlayerMark(new ConsoleMark("U"));
+    playerConfiguration.setPlayerType("unknown");
+
     assertThrows(IllegalArgumentException.class,
-        () -> factory.make("unknown", "Player", new ConsoleMark("U")));
+        () -> factory.make(playerConfiguration));
   }
 }

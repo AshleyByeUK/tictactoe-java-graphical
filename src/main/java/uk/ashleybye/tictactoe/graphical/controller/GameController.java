@@ -10,10 +10,9 @@ import uk.ashleybye.tictactoe.core.ClientInterface;
 import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.GameConfiguration;
 import uk.ashleybye.tictactoe.core.GameReport;
-import uk.ashleybye.tictactoe.core.PlayerFactory;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.Player;
-import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 import uk.ashleybye.tictactoe.graphical.ViewManager;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalMark;
 import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare;
@@ -79,11 +78,9 @@ public class GameController implements ClientInterface {
 
   private void initialiseGame() {
     GameConfiguration configuration = GraphicalGameConfiguration.getCurrentConfiguration();
-    PlayerConfiguration p1Config = configuration.getPlayerConfiguration(1);
-    PlayerConfiguration p2Config = configuration.getPlayerConfiguration(2);
     PlayerFactory playerFactory = new GraphicalPlayerFactory(this);
-    Player playerOne = playerFactory.make(p1Config.getPlayerType(), p1Config.getPlayerName(), p1Config.getPlayerMark());
-    Player playerTwo = playerFactory.make(p2Config.getPlayerType(), p2Config.getPlayerName(), p2Config.getPlayerMark());
+    Player playerOne = playerFactory.make(configuration.getPlayerConfiguration(1));
+    Player playerTwo = playerFactory.make(configuration.getPlayerConfiguration(2));
     game = new Game(playerOne, playerTwo, configuration.getEmptyMark());
   }
 

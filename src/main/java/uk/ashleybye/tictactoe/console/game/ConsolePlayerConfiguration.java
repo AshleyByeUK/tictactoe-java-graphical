@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console.gameClient;
+package uk.ashleybye.tictactoe.console.game;
 
 import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;

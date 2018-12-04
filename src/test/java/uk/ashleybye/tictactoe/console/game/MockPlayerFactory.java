@@ -1,13 +1,13 @@
-package uk.ashleybye.tictactoe.console.gameClient;
+package uk.ashleybye.tictactoe.console.game;
 
 import java.util.Arrays;
 import java.util.List;
-import uk.ashleybye.tictactoe.core.PlayerFactory;
-import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 import uk.ashleybye.tictactoe.core.player.Player;
+import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 public class MockPlayerFactory implements PlayerFactory {
 
@@ -17,11 +17,11 @@ public class MockPlayerFactory implements PlayerFactory {
   }
 
   @Override
-  public Player make(String playerType, String playerName, Mark playerMark) {
-    if (playerType.equals("1")) {
-      return new MockPlayer(new MockPlayerOneMark(), playerName);
+  public Player make(PlayerConfiguration playerConfiguration) {
+    if (playerConfiguration.getPlayerType().equals("1")) {
+      return new MockPlayer(new MockPlayerOneMark(), playerConfiguration.getPlayerName());
     } else {
-      return new MockPlayer(new MockPlayerTwoMark(), playerName);
+      return new MockPlayer(new MockPlayerTwoMark(), playerConfiguration.getPlayerName());
     }
   }
 }

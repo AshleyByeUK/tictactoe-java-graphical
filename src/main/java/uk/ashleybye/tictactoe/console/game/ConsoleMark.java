@@ -1,4 +1,4 @@
-package uk.ashleybye.tictactoe.console.gameClient;
+package uk.ashleybye.tictactoe.console.game;
 
 import java.util.Objects;
 import uk.ashleybye.tictactoe.core.board.Mark;
