@@ -43,7 +43,6 @@ public class GameConsole implements ClientInterface {
     }
   }
 
-  @Override
   public void renderGame(GameReport gameReport) {
     String text = String.format("%s\n\n%s%s%s",
         getTextForGameReadySection(gameReport),

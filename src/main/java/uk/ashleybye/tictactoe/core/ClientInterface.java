@@ -4,5 +4,4 @@ public interface ClientInterface {
 
   int getPlayersMove();
 
-  void renderGame(GameReport gameReport);
 }

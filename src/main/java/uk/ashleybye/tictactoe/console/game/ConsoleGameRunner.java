@@ -9,34 +9,34 @@ import uk.ashleybye.tictactoe.core.player.Player;
 
 public class ConsoleGameRunner {
 
-  private final ClientInterface clientInterface;
+  private final GameConsole gameConsole;
   private Game game;
 
-  public ConsoleGameRunner(Game game, ClientInterface clientInterface) {
+  public ConsoleGameRunner(Game game, GameConsole gameConsole) {
     this.game = game;
-    this.clientInterface = clientInterface;
+    this.gameConsole = gameConsole;
   }
 
   public static ConsoleGameRunner create(
-      ConsolePlayerFactory playerFactory, ConsoleGameConfiguration gameConfiguration, ClientInterface clientInterface) {
+      ConsolePlayerFactory playerFactory, ConsoleGameConfiguration gameConfiguration, GameConsole gameConsole) {
     Player playerOne = playerFactory.make(gameConfiguration.getPlayerConfiguration(1));
     Player playerTwo = playerFactory.make(gameConfiguration.getPlayerConfiguration(2));
 
     Game game = new Game(playerOne, playerTwo, gameConfiguration.getEmptyMark());
 
-    return new ConsoleGameRunner(game, clientInterface);
+    return new ConsoleGameRunner(game, gameConsole);
   }
 
   public void play() {
     while (!game.isGameOver()) {
       playGame();
     }
-    clientInterface.renderGame(game.generateGameReport());
+    gameConsole.renderGame(game.generateGameReport());
   }
 
   private void playGame() {
     try {
-      clientInterface.renderGame(game.generateGameReport());
+      gameConsole.renderGame(game.generateGameReport());
       game = game.playNextTurn();
     } catch (InvalidSquareNumber | SquareUnavailable ex) {
       // Do nothing.
@@ -52,12 +52,12 @@ public class ConsoleGameRunner {
       return false;
     }
     ConsoleGameRunner runner = (ConsoleGameRunner) o;
-    return Objects.equals(clientInterface, runner.clientInterface) &&
+    return Objects.equals(gameConsole, runner.gameConsole) &&
         Objects.equals(game, runner.game);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientInterface, game);
+    return Objects.hash(gameConsole, game);
   }
 }

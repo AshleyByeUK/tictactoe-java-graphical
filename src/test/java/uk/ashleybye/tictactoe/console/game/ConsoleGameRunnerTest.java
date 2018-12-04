@@ -83,14 +83,14 @@ class ConsoleGameRunnerTest {
   void testCreatesNewGame() {
     ConsolePlayerFactory playerFactory = new MockPlayerFactory();
     ConsoleGameConfiguration gameConfiguration = new MockGameConfiguration();
-    ClientInterface clientInterface = new MockGameConsole();
+    GameConsole gameConsole = new MockGameConsole();
 
     Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
     Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
     Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
-    ConsoleGameRunner expected = new ConsoleGameRunner(game, clientInterface);
+    ConsoleGameRunner expected = new ConsoleGameRunner(game, gameConsole);
 
-    ConsoleGameRunner actual = ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface);
+    ConsoleGameRunner actual = ConsoleGameRunner.create(playerFactory, gameConfiguration, gameConsole);
 
     assertEquals(expected, actual);
   }
@@ -99,18 +99,18 @@ class ConsoleGameRunnerTest {
   void testEquality() {
     ConsolePlayerFactory playerFactory = new MockPlayerFactory();
     ConsoleGameConfiguration gameConfiguration = new MockGameConfiguration();
-    ClientInterface clientInterface = new MockGameConsole();
-    ConsoleGameRunner runner = ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface);
+    GameConsole gameConsole = new MockGameConsole();
+    ConsoleGameRunner runner = ConsoleGameRunner.create(playerFactory, gameConfiguration, gameConsole);
 
     Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Not Player 1");
     Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Not Player 2");
     Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
-    ConsoleGameRunner other = new ConsoleGameRunner(game, clientInterface);
+    ConsoleGameRunner other = new ConsoleGameRunner(game, gameConsole);
 
     assertEquals(runner, runner);
-    assertEquals(runner, ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface));
+    assertEquals(runner, ConsoleGameRunner.create(playerFactory, gameConfiguration, gameConsole));
     assertEquals(runner.hashCode(),
-        (ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
+        (ConsoleGameRunner.create(playerFactory, gameConfiguration, gameConsole)).hashCode());
     assertNotEquals(runner, other);
     assertNotEquals(game, "not ConsoleGameRunner");
     assertNotEquals(game, null);

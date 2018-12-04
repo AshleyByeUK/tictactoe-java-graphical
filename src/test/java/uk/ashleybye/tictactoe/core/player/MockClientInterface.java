@@ -22,9 +22,4 @@ public class MockClientInterface implements ClientInterface {
     }
     return positionToReturn;
   }
-
-  @Override
-  public void renderGame(GameReport gameReport) {
-
-  }
 }

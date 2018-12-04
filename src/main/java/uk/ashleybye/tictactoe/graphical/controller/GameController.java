@@ -84,20 +84,7 @@ public class GameController implements ClientInterface {
     game = new Game(playerOne, playerTwo, configuration.getEmptyMark());
   }
 
-  private void returnToMainMenu(Stage stage) {
-    ViewManager viewManager = ViewManager.getViewManager();
-    viewManager.getMainMenuController().initialise(stage);
-    stage.setScene(viewManager.getMainMenuScene());
-    stage.show();
-  }
-
-  @Override
-  public int getPlayersMove() {
-    return nextMove;
-  }
-
-  @Override
-  public void renderGame(GameReport gameReport) {
+  private void renderGame(GameReport gameReport) {
     renderBoard(gameReport);
     renderStatus(gameReport);
   }
@@ -119,5 +106,17 @@ public class GameController implements ClientInterface {
     } else {
       status.setText(" ");
     }
+  }
+
+  private void returnToMainMenu(Stage stage) {
+    ViewManager viewManager = ViewManager.getViewManager();
+    viewManager.getMainMenuController().initialise(stage);
+    stage.setScene(viewManager.getMainMenuScene());
+    stage.show();
+  }
+
+  @Override
+  public int getPlayersMove() {
+    return nextMove;
   }
 }
