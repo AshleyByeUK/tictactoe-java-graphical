@@ -10,10 +10,12 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
+    maven { url "https://raw.githubusercontent.com/AshleyByeUK/maven-repo/master/" }
     mavenCentral()
 }
 
 dependencies {
+    compile "uk.ashleybye.tictactoe:tictactoe-core:1.0"
     compile "org.openjfx:javafx-base:11"
     compile "org.openjfx:javafx-base:11:mac"
     compile "org.openjfx:javafx-controls:11:win"
@@ -45,25 +47,14 @@ jar {
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
-    destinationDir = file("$rootDir/out")
+    destinationDir = file("$buildDir")
 }
 
 wrapper {
     gradleVersion = '4.10.2'
 }
 
-clean {
-    delete "${rootDir}/out"
-}
-
 test {
-    useJUnitPlatform {
-        excludeTags 'slow'
-    }
-    jvmArgs "-Dheadless=true"
-}
-
-task testSlow(type: Test) {
     useJUnitPlatform()
     jvmArgs "-Dheadless=true"
 }

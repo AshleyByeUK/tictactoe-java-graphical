@@ -7,12 +7,12 @@ import uk.ashleybye.tictactoe.graphical.controller.MainMenuController;
 
 public class GraphicalClient extends Application {
 
-  public GraphicalClient() throws IOException {
-    ViewManager.initialiseViewManager();
-  }
-
   public static void launchClient() {
     launch();
+  }
+
+  public GraphicalClient() throws IOException {
+    ViewManager.initialiseViewManager();
   }
 
   @Override
