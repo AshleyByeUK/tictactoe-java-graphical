@@ -1,14 +1,15 @@
-[![Build Status](https://travis-ci.org/AshleyByeUK/game.svg?branch=master)](https://travis-ci.org/AshleyByeUK/game-java)
-[![codecov](https://codecov.io/gh/AshleyByeUK/game/branch/master/graph/badge.svg)](https://codecov.io/gh/AshleyByeUK/game-java)
+[![Build Status](https://travis-ci.org/AshleyByeUK/tictactoe-java-core.svg?branch=master)](https://travis-ci.org/AshleyByeUK/tictactoe-java-core)
+[![codecov](https://codecov.io/gh/AshleyByeUK/tictactoe-java-core/branch/master/graph/badge.svg)](https://codecov.io/gh/AshleyByeUK/tictactoe-java-core)
 
-# game-java-core
+# tictactoe-java-core
 
 ## Introduction
 
 A game of TicTacToe that can be played in the console r graphical user interface. Features include Human vs Human,
 Human vs Computer and Computer vs Computer modes. The computer player can be configured for easy and hard difficulties.
 
-![Game Play Screenshot](images/screenshot.png)
+![Console Game Play Screenshot](images/console-screenshot.png)
+![Graphical Game Play Screenshot](images/graphical-screenshot.png)
 
 ## Requirements
 

@@ -4,24 +4,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-  prefHeight="200.0"
-  prefWidth="120.0"
+  stylesheets="@../css/stylesheet.css"
+  minHeight="600"
+  minWidth="400"
+  maxHeight="600"
+  maxWidth="400"
+  styleClass="main-menu-container"
   xmlns="http://javafx.com/javafx" fx:controller="uk.ashleybye.tictactoe.graphical.controller.MainMenuController">
   <children>
-    <Label minHeight="40"
-      minWidth="120"
-      text="Tic Tac Toe"/>
+    <Label minHeight="100"
+      minWidth="360"
+      text="Tic Tac Toe"
+      styleClass="main-menu-title"/>
   </children>
   <children>
-    <Button minHeight="20"
-      minWidth="120"
-      text="Play"
-      fx:id="play"/>
-  </children>
-  <children>
-    <Button minHeight="20"
-      minWidth="120"
-      text="Configure Game"
-      fx:id="configure"/>
+    <VBox minHeight="460"
+      minWidth="360"
+      styleClass="main-menu-buttons">
+      <children>
+        <Button minHeight="50"
+          minWidth="360"
+          text="Play"
+          fx:id="play"/>
+      </children>
+      <children>
+        <Button minHeight="50"
+          minWidth="360"
+          text="Configure Game"
+          fx:id="configure"/>
+      </children>
+    </VBox>
   </children>
 </VBox>

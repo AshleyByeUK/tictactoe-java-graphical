@@ -5,87 +5,104 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import uk.ashleybye.tictactoe.graphical.component.GraphicalSquare?>
+<?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-  prefHeight="220.0"
-  prefWidth="120.0"
+  stylesheets="@../css/stylesheet.css"
+  minHeight="600"
+  minWidth="400"
+  maxHeight="600"
+  maxWidth="400"
+  styleClass="board-container"
   xmlns="http://javafx.com/javafx" fx:controller="uk.ashleybye.tictactoe.graphical.controller.GameController">
   <children>
     <GridPane>
       <children>
         <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="0"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square1"/>
+          fx:id="square1"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="0"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square2"/>
+          fx:id="square2"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="0"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square3"/>
+          fx:id="square3"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="1"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square4"/>
+          fx:id="square4"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="1"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square5"/>
+          fx:id="square5"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="1"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square6"/>
+          fx:id="square6"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="0"
           GridPane.rowIndex="2"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square7"/>
+          fx:id="square7"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="1"
           GridPane.rowIndex="2"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square8"/>
+          fx:id="square8"
+          styleClass="graphical-square"/>
         <GraphicalSquare GridPane.columnIndex="2"
           GridPane.rowIndex="2"
-          minHeight="40"
-          minWidth="40"
+          minHeight="120"
+          minWidth="120"
           text=" "
-          fx:id="square9"/>
+          fx:id="square9"
+          styleClass="graphical-square"/>
       </children>
     </GridPane>
   </children>
   <children>
-    <Label minHeight="40"
-      minWidth="120"
+    <VBox><VBox.margin><Insets><bottom>10</bottom></Insets></VBox.margin></VBox>
+    <Label minHeight="80"
+      minWidth="360"
       text=" "
-      fx:id="status"/>
+      fx:id="status"
+    styleClass="game-status"/>
+    <VBox><VBox.margin><Insets><bottom>10</bottom></Insets></VBox.margin></VBox>
   </children>
   <children>
     <VBox>
       <children>
-        <Button minHeight="20"
-          minWidth="120"
+        <Button minHeight="50"
+          minWidth="360"
           text="Restart"
           fx:id="restart"/>
       </children>
       <children>
-        <Button minHeight="20"
-          minWidth="120"
+        <Button minHeight="50"
+          minWidth="360"
           text="Main Menu"
           fx:id="mainMenu"/>
       </children>

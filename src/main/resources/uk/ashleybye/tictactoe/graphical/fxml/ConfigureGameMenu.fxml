@@ -5,61 +5,155 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-  prefHeight="400.0"
-  prefWidth="120.0"
+  stylesheets="@../css/stylesheet.css"
+  minHeight="600"
+  minWidth="400"
+  maxHeight="600"
+  maxWidth="400"
+  styleClass="configure-menu-container"
   xmlns="http://javafx.com/javafx"
   fx:controller="uk.ashleybye.tictactoe.graphical.controller.ConfigureGameMenuController">
   <children>
-    <Label minHeight="40"
-      minWidth="120"
+    <Label minHeight="100"
+      minWidth="360"
       text="Configure Game"
-      fx:id="title"/>
+      fx:id="title"
+      styleClass="configure-menu-title"/>
   </children>
   <children>
-    <Label minHeight="40"
-      minWidth="120"
-      text="Player 1"/>
+    <VBox minHeight="190"
+      minWidth="360"
+      styleClass="configure-menu-player-section">
+      <children>
+        <Label minHeight="40"
+          minWidth="340"
+          text="Player 1:"
+          styleClass="configure-menu-player-section-heading"/>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              text="Name:"
+              styleClass="configure-menu-player-section-option"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              fx:id="playerOneName"
+              styleClass="configure-menu-player-section-option-field"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              text="Mark:"
+              styleClass="configure-menu-player-section-option"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              fx:id="playerOneMark"
+              styleClass="configure-menu-player-section-option-field"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              text="Type:"
+              styleClass="configure-menu-player-section-option"/>
+          </children>
+          <children>
+            <ComboBox minHeight="40"
+              minWidth="240"
+              fx:id="playerOneType"
+              styleClass="configure-menu-player-section-option-field"/>
+          </children>
+        </HBox>
+      </children>
+      <VBox.margin><Insets><bottom>10</bottom></Insets></VBox.margin>
+    </VBox>
   </children>
   <children>
-    <TextField minHeight="40"
-      minWidth="120"
-      fx:id="playerOneName"/>
+    <VBox minHeight="190"
+      minWidth="360"
+      styleClass="configure-menu-player-section">
+      <children>
+        <Label minHeight="40"
+          minWidth="340"
+          text="Player 2:"
+          styleClass="configure-menu-player-section-heading"/>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              text="Name:"
+              styleClass="configure-menu-player-section-option"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              fx:id="playerTwoName"
+              styleClass="configure-menu-player-section-option-field"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              text="Mark:"
+              styleClass="configure-menu-player-section-option"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              fx:id="playerTwoMark"
+              styleClass="configure-menu-player-section-option-field"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              text="Type:"
+              styleClass="configure-menu-player-section-option"/>
+          </children>
+          <children>
+            <ComboBox minHeight="40"
+              minWidth="240"
+              fx:id="playerTwoType"
+              styleClass="configure-menu-player-section-option-field"/>
+          </children>
+        </HBox>
+      </children>
+      <VBox.margin><Insets><bottom>10</bottom></Insets></VBox.margin>
+    </VBox>
   </children>
   <children>
-    <TextField minHeight="40"
-      minWidth="120"
-      fx:id="playerOneMark"/>
-  </children>
-  <children>
-    <ComboBox minHeight="40"
-      minWidth="120"
-      fx:id="playerOneType"/>
-  </children>
-  <children>
-    <Label minHeight="40"
-      minWidth="120"
-      text="Player 2"/>
-  </children>
-  <children>
-    <TextField minHeight="40"
-      minWidth="120"
-      fx:id="playerTwoName"/>
-  </children>
-  <children>
-    <TextField minHeight="40"
-      minWidth="120"
-      fx:id="playerTwoMark"/>
-  </children>
-  <children>
-    <ComboBox minHeight="40"
-      minWidth="120"
-      fx:id="playerTwoType"/>
-  </children>
-  <children>
-    <Button minHeight="40"
-      minWidth="120"
-      text="Main Menu"
-      fx:id="mainMenu"/>
+    <VBox minWidth="360"
+      styleClass="configure-menu-buttons">
+      <children>
+        <Button minHeight="50"
+          minWidth="360"
+          text="Main Menu"
+          fx:id="mainMenu"/>
+      </children>
+    </VBox>
   </children>
 </VBox>

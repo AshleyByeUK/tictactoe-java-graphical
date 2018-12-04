@@ -18,6 +18,7 @@ public class GraphicalClient extends Application {
   @Override
   public void start(Stage stage) {
     ViewManager context = ViewManager.getViewManager();
+    stage.setTitle("Tic Tac Toe");
     stage.setScene(context.getMainMenuScene());
     MainMenuController mainMenu = context.getMainMenuController();
     mainMenu.initialise(stage);

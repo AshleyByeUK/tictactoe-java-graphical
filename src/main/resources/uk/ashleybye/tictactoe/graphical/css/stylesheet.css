@@ -1,0 +1,67 @@
+.main-menu-container {
+    -fx-padding: 20 20 20 20;
+}
+
+.main-menu-title {
+    -fx-font: 64px "Sans-Serif";
+}
+
+.main-menu-buttons {
+    -fx-alignment: center;
+}
+
+.configure-menu-container {
+    -fx-padding: 20 20 20 20;
+}
+
+.configure-menu-title {
+    -fx-font: 48px "Sans-Serif";
+}
+
+.configure-menu-player-section {
+    -fx-padding: 10 10 10 10;
+    -fx-border-color: black;
+    -fx-border-width: 1 1 1 1;
+}
+
+.configure-menu-player-section-row {
+    -fx-padding: 0 0 5 0;
+}
+
+.configure-menu-player-section-heading {
+    -fx-font: 24px "Sans-Serif";
+}
+
+.configure-menu-player-section-option {
+    -fx-font: 18px "Sans-Serif";
+}
+
+.configure-menu-player-section-option-field {
+    -fx-font: 18px "Sans-Serif";
+}
+
+.configure-menu-buttons {
+    -fx-alignment: bottom-center;
+}
+
+.board-container {
+    -fx-padding: 20 20 20 20;
+}
+
+.graphical-square {
+    -fx-font: 64px "Sans-Serif";
+    -fx-padding: 10 10 10 10;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-background-insets: 0;
+}
+
+.game-status {
+    -fx-font: 32px "Sans-Serif";
+    -fx-margin: 10 0 10 0;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1 1 1 1;
+    -fx-alignment: center;
+}
