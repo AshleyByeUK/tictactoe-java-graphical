@@ -2,19 +2,19 @@ package uk.ashleybye.tictactoe.console.view;
 
 import uk.ashleybye.tictactoe.console.IOWrapper;
 import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsoleGameRunner;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerFactory;
 import uk.ashleybye.tictactoe.core.ClientInterface;
-import uk.ashleybye.tictactoe.core.GameRunner;
-import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 public class PlayGameView extends View {
 
   private static final String RETURN_TO_MAIN_MENU = "Press ENTER to return to the main view";
-  private final PlayerFactory playerFactory;
+  private final ConsolePlayerFactory playerFactory;
   private final ClientInterface clientInterface;
 
   public PlayGameView(View previousMenu,
       ConsoleGameConfiguration configuration,
-      PlayerFactory playerFactory,
+      ConsolePlayerFactory playerFactory,
       ClientInterface clientInterface,
       IOWrapper ioWrapper) {
     super(previousMenu, configuration, ioWrapper);
@@ -29,7 +29,7 @@ public class PlayGameView extends View {
   }
 
   private void playGame() {
-    GameRunner runner = GameRunner.create(playerFactory, configuration, clientInterface);
+    ConsoleGameRunner runner = ConsoleGameRunner.create(playerFactory, configuration, clientInterface);
     runner.play();
   }
 

@@ -14,7 +14,6 @@ import uk.ashleybye.tictactoe.console.game.GameConsole;
 import uk.ashleybye.tictactoe.console.view.ConfigurePlayerView;
 import uk.ashleybye.tictactoe.console.view.MainView;
 import uk.ashleybye.tictactoe.console.view.PlayGameView;
-import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 public class ConsoleClientTest {
 
@@ -47,7 +46,7 @@ public class ConsoleClientTest {
 
     GameConsole gameConsole = new GameConsole(ioWrapper);
 
-    PlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
+    ConsolePlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
 
     MainView mainMenu = new MainView(gameConfiguration, ioWrapper);
     ConfigurePlayerView configurePlayerOneMenuItem = new ConfigurePlayerView(

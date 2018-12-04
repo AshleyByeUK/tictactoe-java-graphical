@@ -1,30 +1,31 @@
-package uk.ashleybye.tictactoe.core;
+package uk.ashleybye.tictactoe.console.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.game.MockGameConsole;
-import uk.ashleybye.tictactoe.console.game.MockPlayerFactory;
+import uk.ashleybye.tictactoe.core.ClientInterface;
+import uk.ashleybye.tictactoe.core.Game;
+import uk.ashleybye.tictactoe.core.MockGame;
+import uk.ashleybye.tictactoe.core.MockGameConfiguration;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayer;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 import uk.ashleybye.tictactoe.core.player.Player;
-import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
-class GameRunnerTest {
+class ConsoleGameRunnerTest {
 
   private MockGameConsole console;
   private MockGame game;
-  private GameRunner runner;
+  private ConsoleGameRunner runner;
 
   @BeforeEach
   void setUp() {
     console = new MockGameConsole();
     game = new MockGame();
-    runner = new GameRunner(game, console);
+    runner = new ConsoleGameRunner(game, console);
   }
 
   @Test
@@ -80,38 +81,38 @@ class GameRunnerTest {
 
   @Test
   void testCreatesNewGame() {
-    PlayerFactory playerFactory = new MockPlayerFactory();
-    GameConfiguration gameConfiguration = new MockGameConfiguration();
+    ConsolePlayerFactory playerFactory = new MockPlayerFactory();
+    ConsoleGameConfiguration gameConfiguration = new MockGameConfiguration();
     ClientInterface clientInterface = new MockGameConsole();
 
     Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Player 1");
     Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Player 2");
     Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
-    GameRunner expected = new GameRunner(game, clientInterface);
+    ConsoleGameRunner expected = new ConsoleGameRunner(game, clientInterface);
 
-    GameRunner actual = GameRunner.create(playerFactory, gameConfiguration, clientInterface);
+    ConsoleGameRunner actual = ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface);
 
     assertEquals(expected, actual);
   }
 
   @Test
   void testEquality() {
-    PlayerFactory playerFactory = new MockPlayerFactory();
-    GameConfiguration gameConfiguration = new MockGameConfiguration();
+    ConsolePlayerFactory playerFactory = new MockPlayerFactory();
+    ConsoleGameConfiguration gameConfiguration = new MockGameConfiguration();
     ClientInterface clientInterface = new MockGameConsole();
-    GameRunner runner = GameRunner.create(playerFactory, gameConfiguration, clientInterface);
+    ConsoleGameRunner runner = ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface);
 
     Player playerOne = new MockPlayer(new MockPlayerOneMark(), "Not Player 1");
     Player playerTwo = new MockPlayer(new MockPlayerTwoMark(), "Not Player 2");
     Game game = new Game(playerOne, playerTwo, new MockEmptyMark());
-    GameRunner other = new GameRunner(game, clientInterface);
+    ConsoleGameRunner other = new ConsoleGameRunner(game, clientInterface);
 
     assertEquals(runner, runner);
-    assertEquals(runner, GameRunner.create(playerFactory, gameConfiguration, clientInterface));
+    assertEquals(runner, ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface));
     assertEquals(runner.hashCode(),
-        (GameRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
+        (ConsoleGameRunner.create(playerFactory, gameConfiguration, clientInterface)).hashCode());
     assertNotEquals(runner, other);
-    assertNotEquals(game, "not GameRunner");
+    assertNotEquals(game, "not ConsoleGameRunner");
     assertNotEquals(game, null);
     assertNotEquals(game.hashCode(), other.hashCode());
   }

@@ -7,9 +7,12 @@ import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
 import uk.ashleybye.tictactoe.core.player.Player;
 import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
-import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
-public class MockPlayerFactory implements PlayerFactory {
+public class MockPlayerFactory extends ConsolePlayerFactory {
+
+  public MockPlayerFactory() {
+    super(null);
+  }
 
   @Override
   public List<String> listPlayerTypes() {

@@ -11,7 +11,6 @@ import uk.ashleybye.tictactoe.console.game.GameConsole;
 import uk.ashleybye.tictactoe.console.view.ConfigurePlayerView;
 import uk.ashleybye.tictactoe.console.view.MainView;
 import uk.ashleybye.tictactoe.console.view.PlayGameView;
-import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 import uk.ashleybye.tictactoe.graphical.GraphicalClient;
 
 public class Application {
@@ -22,7 +21,7 @@ public class Application {
     if (console) {
       IOWrapper ioWrapper = new IOWrapper();
       GameConsole gameConsole = new GameConsole(ioWrapper);
-      PlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
+      ConsolePlayerFactory playerFactory = new ConsolePlayerFactory(gameConsole);
 
       ConsolePlayerConfiguration playerOneConfiguration = new ConsolePlayerConfiguration();
       ConsolePlayerConfiguration playerTwoConfiguration = new ConsolePlayerConfiguration();

@@ -1,29 +1,30 @@
-package uk.ashleybye.tictactoe.core;
+package uk.ashleybye.tictactoe.console.game;
 
 import java.util.Objects;
+import uk.ashleybye.tictactoe.core.ClientInterface;
+import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Board.InvalidSquareNumber;
 import uk.ashleybye.tictactoe.core.board.Board.SquareUnavailable;
 import uk.ashleybye.tictactoe.core.player.Player;
-import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
-public class GameRunner {
+public class ConsoleGameRunner {
 
   private final ClientInterface clientInterface;
   private Game game;
 
-  public GameRunner(Game game, ClientInterface clientInterface) {
+  public ConsoleGameRunner(Game game, ClientInterface clientInterface) {
     this.game = game;
     this.clientInterface = clientInterface;
   }
 
-  public static GameRunner create(
-      PlayerFactory playerFactory, GameConfiguration gameConfiguration, ClientInterface clientInterface) {
+  public static ConsoleGameRunner create(
+      ConsolePlayerFactory playerFactory, ConsoleGameConfiguration gameConfiguration, ClientInterface clientInterface) {
     Player playerOne = playerFactory.make(gameConfiguration.getPlayerConfiguration(1));
     Player playerTwo = playerFactory.make(gameConfiguration.getPlayerConfiguration(2));
 
     Game game = new Game(playerOne, playerTwo, gameConfiguration.getEmptyMark());
 
-    return new GameRunner(game, clientInterface);
+    return new ConsoleGameRunner(game, clientInterface);
   }
 
   public void play() {
@@ -50,7 +51,7 @@ public class GameRunner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GameRunner runner = (GameRunner) o;
+    ConsoleGameRunner runner = (ConsoleGameRunner) o;
     return Objects.equals(clientInterface, runner.clientInterface) &&
         Objects.equals(game, runner.game);
   }
