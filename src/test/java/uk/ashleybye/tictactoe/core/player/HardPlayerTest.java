@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.TestHelpers;
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Board;
 
 public class HardPlayerTest {
@@ -23,9 +23,9 @@ public class HardPlayerTest {
   @Test
   void testChoosesTieSquareWhenOnlyOneSquareRemains() {
     Board board = TestHelpers.generateBoard("X X O O O - X O X");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(6, position);
   }
@@ -33,9 +33,9 @@ public class HardPlayerTest {
   @Test
   void testChoosesWinningSquareWhenOnlyOneSquareRemains() {
     Board board = TestHelpers.generateBoard("X X O X X O O O -");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(9, position);
   }
@@ -43,9 +43,9 @@ public class HardPlayerTest {
   @Test
   void testChoosesWinningSquareWhenTwoSquaresRemain() {
     Board board = TestHelpers.generateBoard("X O X X O O - - O");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(7, position);
   }
@@ -53,9 +53,9 @@ public class HardPlayerTest {
   @Test
   void testBlocksOpponentFromWinning() {
     Board board = TestHelpers.generateBoard("X - - - O O - - -");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(4, position);
   }
@@ -63,9 +63,9 @@ public class HardPlayerTest {
   @Test
   void testAlsoBlocksOpponentFromWinning() {
     Board board = TestHelpers.generateBoard("- X O X O - - - -");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(7, position);
   }
@@ -73,9 +73,9 @@ public class HardPlayerTest {
   @Test
   void testPlaysForWinningMove() {
     Board board = TestHelpers.generateBoard("X - X O O - - X O");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(2, position);
   }
@@ -83,9 +83,9 @@ public class HardPlayerTest {
   @Test
   void testPlaysForkingMove() {
     Board board = TestHelpers.generateBoard("- X - - - O - O X");
-    TicTacToe ticTacToe = new TicTacToe(hardPlayer, opponent, board);
+    Game game = new Game(hardPlayer, opponent, board);
 
-    int position = hardPlayer.choosePositionToPlay(ticTacToe);
+    int position = hardPlayer.takeTurn(game);
 
     assertEquals(1, position);
   }

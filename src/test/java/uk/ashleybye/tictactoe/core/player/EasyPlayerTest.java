@@ -4,17 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.core.MockTicTacToe;
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.Game;
+import uk.ashleybye.tictactoe.core.MockGame;
 
 public class EasyPlayerTest {
 
   @Test
   void testChoosesTheFirstAvailablePosition() {
-    TicTacToe ticTacToe = new MockTicTacToe();
+    Game game = new MockGame();
     Player player = new EasyPlayer(new MockPlayerOneMark(), "Player");
 
-    assertEquals(4, player.choosePositionToPlay(ticTacToe));
+    assertEquals(4, player.takeTurn(game));
   }
 
   @Test

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+  maxHeight="600"
+  maxWidth="400"
+  minHeight="600"
+  minWidth="400"
+  styleClass="configure-menu-container"
+  stylesheets="@../css/stylesheet.css"
+  xmlns="http://javafx.com/javafx"
+  fx:controller="uk.ashleybye.tictactoe.graphical.controller.ConfigureGameMenuController">
+  <children>
+    <Label minHeight="100"
+      minWidth="360"
+      styleClass="configure-menu-title"
+      text="Configure Game"
+      fx:id="title"/>
+  </children>
+  <children>
+    <VBox minHeight="190"
+      minWidth="360"
+      styleClass="configure-menu-player-section">
+      <children>
+        <Label minHeight="40"
+          minWidth="340"
+          styleClass="configure-menu-player-section-heading"
+          text="Player 1:"/>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              styleClass="configure-menu-player-section-option"
+              text="Name:"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              styleClass="configure-menu-player-section-option-field"
+              fx:id="playerOneName"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              styleClass="configure-menu-player-section-option"
+              text="Mark:"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              styleClass="configure-menu-player-section-option-field"
+              fx:id="playerOneMark"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              styleClass="configure-menu-player-section-option"
+              text="Type:"/>
+          </children>
+          <children>
+            <ComboBox minHeight="40"
+              minWidth="240"
+              styleClass="configure-menu-player-section-option-field"
+              fx:id="playerOneType"/>
+          </children>
+        </HBox>
+      </children>
+      <VBox.margin>
+        <Insets>
+          <bottom>10</bottom>
+        </Insets>
+      </VBox.margin>
+    </VBox>
+  </children>
+  <children>
+    <VBox minHeight="190"
+      minWidth="360"
+      styleClass="configure-menu-player-section">
+      <children>
+        <Label minHeight="40"
+          minWidth="340"
+          styleClass="configure-menu-player-section-heading"
+          text="Player 2:"/>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              styleClass="configure-menu-player-section-option"
+              text="Name:"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              styleClass="configure-menu-player-section-option-field"
+              fx:id="playerTwoName"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              styleClass="configure-menu-player-section-option"
+              text="Mark:"/>
+          </children>
+          <children>
+            <TextField minHeight="40"
+              minWidth="240"
+              styleClass="configure-menu-player-section-option-field"
+              fx:id="playerTwoMark"/>
+          </children>
+        </HBox>
+      </children>
+      <children>
+        <HBox styleClass="configure-menu-player-section-row">
+          <children>
+            <Label minHeight="40"
+              minWidth="100"
+              styleClass="configure-menu-player-section-option"
+              text="Type:"/>
+          </children>
+          <children>
+            <ComboBox minHeight="40"
+              minWidth="240"
+              styleClass="configure-menu-player-section-option-field"
+              fx:id="playerTwoType"/>
+          </children>
+        </HBox>
+      </children>
+      <VBox.margin>
+        <Insets>
+          <bottom>10</bottom>
+        </Insets>
+      </VBox.margin>
+    </VBox>
+  </children>
+  <children>
+    <VBox minWidth="360"
+      styleClass="configure-menu-buttons">
+      <children>
+        <Button minHeight="50"
+          minWidth="360"
+          text="Main Menu"
+          fx:id="mainMenu"/>
+      </children>
+    </VBox>
+  </children>
+</VBox>

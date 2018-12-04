@@ -1,17 +1,18 @@
 package uk.ashleybye.tictactoe.core;
 
+import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerConfiguration;
 import uk.ashleybye.tictactoe.core.board.Mark;
 import uk.ashleybye.tictactoe.core.player.MockEmptyMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerOneMark;
 import uk.ashleybye.tictactoe.core.player.MockPlayerTwoMark;
-import uk.ashleybye.tictactoe.core.player.PlayerConfiguration;
 
-public class MockGameConfiguration implements GameConfiguration {
+public class MockGameConfiguration extends ConsoleGameConfiguration {
 
   @Override
-  public PlayerConfiguration getPlayerConfiguration(int player) {
+  public ConsolePlayerConfiguration getPlayerConfiguration(int player) {
     if (player == 1) {
-      return new PlayerConfiguration() {
+      return new ConsolePlayerConfiguration() {
         @Override
         public String getPlayerType() {
           return "1";
@@ -28,7 +29,7 @@ public class MockGameConfiguration implements GameConfiguration {
         }
       };
     } else {
-      return new PlayerConfiguration() {
+      return new ConsolePlayerConfiguration() {
         @Override
         public String getPlayerType() {
           return "2";

@@ -1,20 +1,20 @@
 package uk.ashleybye.tictactoe.core.player;
 
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.ClientInterface;
+import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
-public class HumanPlayer implements Player, HumanTurnSubscriber {
+public class HumanPlayer implements Player {
 
   private final Mark mark;
   private final String name;
-  private final HumanTurnPublisher publisher;
-  private Integer positionToPlay;
+  private final ClientInterface clientInterface;
 
-  public HumanPlayer(Mark mark, String name, HumanTurnPublisher publisher) {
+  public HumanPlayer(Mark mark, String name, ClientInterface clientInterface) {
     this.mark = mark;
     this.name = name;
-    this.publisher = publisher;
+    this.clientInterface = clientInterface;
   }
 
   @Override
@@ -28,19 +28,13 @@ public class HumanPlayer implements Player, HumanTurnSubscriber {
   }
 
   @Override
-  public int choosePositionToPlay(TicTacToe ticTacToe) {
-    positionToPlay = null;
-    publisher.subscribeToTurnNotifications(this);
-    while (true) {
-      if (positionToPlay != null) {
-        return positionToPlay;
-      }
-    }
+  public int takeTurn(Game game) {
+    return clientInterface.getPlayersMove();
   }
 
   @Override
-  public void notifyMoveMade(int position) {
-    positionToPlay = position;
+  public PlayerType getType() {
+    return PlayerType.USER;
   }
 
   @Override

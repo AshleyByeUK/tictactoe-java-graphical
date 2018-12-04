@@ -9,10 +9,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
 import uk.ashleybye.tictactoe.console.MockIOWrapper;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleMark;
-import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
-import uk.ashleybye.tictactoe.console.gameClient.MockPlayerFactory;
+import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsoleMark;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.console.game.MockPlayerFactory;
 import uk.ashleybye.tictactoe.console.view.SetPlayerMarkView.DuplicateMark;
 
 class ConfigurePlayerViewTest extends View {

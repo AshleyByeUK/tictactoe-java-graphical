@@ -1,8 +1,8 @@
 package uk.ashleybye.tictactoe.console.view;
 
 import uk.ashleybye.tictactoe.console.IOWrapper;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
-import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerConfiguration;
 
 public class SetPlayerNameView extends View {
 

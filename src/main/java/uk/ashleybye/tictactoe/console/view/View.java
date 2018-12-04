@@ -1,7 +1,7 @@
 package uk.ashleybye.tictactoe.console.view;
 
 import uk.ashleybye.tictactoe.console.IOWrapper;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
 
 public abstract class View {
 

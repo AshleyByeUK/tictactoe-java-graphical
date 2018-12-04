@@ -3,9 +3,9 @@ package uk.ashleybye.tictactoe.console.view;
 import java.util.List;
 import uk.ashleybye.tictactoe.console.ConsoleClient.InvalidMenuOption;
 import uk.ashleybye.tictactoe.console.IOWrapper;
-import uk.ashleybye.tictactoe.console.gameClient.ConsoleGameConfiguration;
-import uk.ashleybye.tictactoe.console.gameClient.ConsolePlayerConfiguration;
-import uk.ashleybye.tictactoe.core.PlayerFactory;
+import uk.ashleybye.tictactoe.console.game.ConsoleGameConfiguration;
+import uk.ashleybye.tictactoe.console.game.ConsolePlayerConfiguration;
+import uk.ashleybye.tictactoe.core.player.PlayerFactory;
 
 public class SetPlayerTypeView extends View {
 

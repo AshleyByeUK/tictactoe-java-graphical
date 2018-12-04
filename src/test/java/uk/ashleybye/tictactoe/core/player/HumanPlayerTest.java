@@ -6,32 +6,33 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import uk.ashleybye.tictactoe.console.gameClient.MockGameConsole;
-import uk.ashleybye.tictactoe.core.MockTicTacToe;
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.console.game.MockGameConsole;
+import uk.ashleybye.tictactoe.core.ClientInterface;
+import uk.ashleybye.tictactoe.core.Game;
+import uk.ashleybye.tictactoe.core.MockGame;
 
 public class HumanPlayerTest {
 
   @Test
   void testCanGetAMoveWhenThereIsNoDelay() {
-    HumanTurnPublisher turnPublisher = new MockHumanTurnPublisher(1, 0L);
-    Player player = new HumanPlayer(new MockPlayerOneMark(), "Player", turnPublisher);
+    ClientInterface clientInterface = new MockClientInterface(1, 0L);
+    Player player = new HumanPlayer(new MockPlayerOneMark(), "Player", clientInterface);
 
-    TicTacToe ticTacToe = new MockTicTacToe();
+    Game game = new MockGame();
 
-    assertEquals(1, player.choosePositionToPlay(ticTacToe));
+    assertEquals(1, player.takeTurn(game));
   }
 
   @Disabled
   @Test
   @Tag("slow")
   void testCanGetAMoveWhenThereIsADelay() {
-    HumanTurnPublisher turnPublisher = new MockHumanTurnPublisher(1, 10000L);
-    Player player = new HumanPlayer(new MockPlayerOneMark(), "Player", turnPublisher);
+    ClientInterface clientInterface = new MockClientInterface(1, 10000L);
+    Player player = new HumanPlayer(new MockPlayerOneMark(), "Player", clientInterface);
 
-    TicTacToe ticTacToe = new MockTicTacToe();
+    Game game = new MockGame();
 
-    assertEquals(1, player.choosePositionToPlay(ticTacToe));
+    assertEquals(1, player.takeTurn(game));
   }
 
   @Test

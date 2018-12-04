@@ -2,7 +2,7 @@ package uk.ashleybye.tictactoe.core.player;
 
 import java.util.List;
 import java.util.Objects;
-import uk.ashleybye.tictactoe.core.TicTacToe;
+import uk.ashleybye.tictactoe.core.Game;
 import uk.ashleybye.tictactoe.core.board.Board;
 import uk.ashleybye.tictactoe.core.board.Mark;
 
@@ -28,20 +28,25 @@ public class HardPlayer implements Player {
   }
 
   @Override
-  public int choosePositionToPlay(TicTacToe ticTacToe) {
-    opponent = ticTacToe.getOtherPlayer();
-    return findBestPosition(ticTacToe);
+  public int takeTurn(Game game) {
+    opponent = game.getOtherPlayer();
+    return findBestPosition(game);
   }
 
-  private int findBestPosition(TicTacToe ticTacToe) {
+  @Override
+  public PlayerType getType() {
+    return PlayerType.COMPUTER;
+  }
+
+  private int findBestPosition(Game game) {
     int bestScore = Integer.MIN_VALUE;
     int bestPosition = Integer.MIN_VALUE;
 
-    List<Integer> openPositions = ticTacToe.listOpenPositions();
+    List<Integer> openPositions = game.listOpenPositions();
     for (int position : openPositions) {
-      Board board = ticTacToe.getBoard().markSquare(position, mark);
-      TicTacToe updatedTicTacToe = new TicTacToe(opponent, this, board);
-      int score = minimax(updatedTicTacToe, 0, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
+      Board board = game.getBoard().markSquare(position, mark);
+      Game updatedGame = new Game(opponent, this, board);
+      int score = minimax(updatedGame, 0, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
       if (score > bestScore) {
         bestScore = score;
         bestPosition = position;
@@ -51,26 +56,26 @@ public class HardPlayer implements Player {
     return bestPosition;
   }
 
-  private int minimax(TicTacToe ticTacToe, int depth, boolean maximising, int alpha, int beta) {
-    if (ticTacToe.isGameOver() || depth >= 5) {
-      return score(ticTacToe, depth);
+  private int minimax(Game game, int depth, boolean maximising, int alpha, int beta) {
+    if (game.isGameOver() || depth >= 5) {
+      return score(game, depth);
     }
 
     if (maximising) {
-      return maximise(ticTacToe, depth, maximising, alpha, beta);
+      return maximise(game, depth, maximising, alpha, beta);
     } else {
-      return minimise(ticTacToe, depth, maximising, alpha, beta);
+      return minimise(game, depth, maximising, alpha, beta);
     }
   }
 
-  private int maximise(TicTacToe ticTacToe, int depth, boolean maximising, int alpha, int beta) {
+  private int maximise(Game game, int depth, boolean maximising, int alpha, int beta) {
     int maxScore = Integer.MIN_VALUE;
 
-    List<Integer> openPositions = ticTacToe.listOpenPositions();
+    List<Integer> openPositions = game.listOpenPositions();
     for (int position : openPositions) {
-      Board board = ticTacToe.getBoard().markSquare(position, mark);
-      TicTacToe updatedTicTacToe = new TicTacToe(opponent, this, board);
-      int score = minimax(updatedTicTacToe, depth + 1, !maximising, alpha, beta);
+      Board board = game.getBoard().markSquare(position, mark);
+      Game updatedGame = new Game(opponent, this, board);
+      int score = minimax(updatedGame, depth + 1, !maximising, alpha, beta);
       maxScore = Math.max(maxScore, score);
       alpha = Math.max(maxScore, alpha);
       if (beta <= alpha) {
@@ -81,14 +86,14 @@ public class HardPlayer implements Player {
     return maxScore;
   }
 
-  private int minimise(TicTacToe ticTacToe, int depth, boolean maximising, int alpha, int beta) {
+  private int minimise(Game game, int depth, boolean maximising, int alpha, int beta) {
     int minScore = Integer.MAX_VALUE;
 
-    List<Integer> openPositions = ticTacToe.listOpenPositions();
+    List<Integer> openPositions = game.listOpenPositions();
     for (int position : openPositions) {
-      Board board = ticTacToe.getBoard().markSquare(position, opponent.getMark());
-      TicTacToe updatedTicTacToe = new TicTacToe(this, opponent, board);
-      int score = minimax(updatedTicTacToe, depth + 1, !maximising, alpha, beta);
+      Board board = game.getBoard().markSquare(position, opponent.getMark());
+      Game updatedGame = new Game(this, opponent, board);
+      int score = minimax(updatedGame, depth + 1, !maximising, alpha, beta);
       minScore = Math.min(minScore, score);
       beta = Math.max(minScore, beta);
       if (beta <= alpha) {
@@ -99,10 +104,10 @@ public class HardPlayer implements Player {
     return minScore;
   }
 
-  private int score(TicTacToe ticTacToe, int depth) {
-    if (ticTacToe.isWon(this)) {
+  private int score(Game game, int depth) {
+    if (game.isWon(this)) {
       return 100 - depth;
-    } else if (ticTacToe.isWon(opponent)) {
+    } else if (game.isWon(opponent)) {
       return -100 + depth;
     } else {
       return 0;
